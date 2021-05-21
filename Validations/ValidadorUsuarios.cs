@@ -20,7 +20,7 @@ namespace MSSuscripcion.Validations
         public static string REGEX_ESTUDIANTES_NECESARIOS = "^([a-zA-z]+\\s{0,3})+[a-zA-Z]+\\s{0,3}$";
         public static string REGEX_NUMERICA = "^[0-9]+$";
         public static string REGEX_EMAIL = "^[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
-        public static string REGEX_CONTRASENA = "^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$";
+        public static string REGEX_CONTRASENA = "^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,200}$";
         public static string REGEX_FECHA = "^[0-9]{1,2}\\/[0-9]{1,2}\\/[0-9]{2,}\\s?[0-9]{1,2}:[0-9]{2}:[0-9]{2}\\s?[a|A|p|P]\\.\\s?[m|M]\\.$";
         public bool validarEntero(int valor, string regex)
         {

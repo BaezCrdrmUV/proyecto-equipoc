@@ -7,13 +7,14 @@ namespace MSSuscripcion.Models
 {
     public partial class Usuario
     {
-        public uint Id { get; set; }
+        public string Id { get; set; }
         public uint? FkIdArtista { get; set; }
         public string NombreDeUsuario { get; set; }
         public string NombreDelPropietario { get; set; }
-        public string Contrasena { get; set; }
-        public string Email { get; set; }
-        public string Pais { get; set; }
-        public string Estado { get; set; }
+        public uint FkidEstatus { get; set; }
+
+        public virtual Estatusderegistro FkidEstatusNavigation { get; set; }
+        public virtual Contrasena Contrasena { get; set; }
+        public virtual Datosdelocalizacion Datosdelocalizacion { get; set; }
     }
 }
