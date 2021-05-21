@@ -1,8 +1,13 @@
 import "reflect-metadata";
 import * as path       from 'path';
 var express = require('express');
-import * as logger from 'morgan';
+import morgan from 'morgan';
 import * as bodyParser from 'body-parser';
+import {artistasApi} from "./api/ArtistasApi";
+import {albumesApi} from "./api/AlbumesApi";
+import {cancionesApi} from "./api/CancionesApi";
+import {listaAPi} from "./api/ListaReproduccionApi";
+import { ListaReproduccion } from "./bd/entity/ListaReproduccion";
 
 
  class App{
@@ -21,25 +26,9 @@ import * as bodyParser from 'body-parser';
 
     private middleware(): void{
 
-        this.express.use(logger('dev'));
+        this.express.use(morgan('dev'));
       
 
-        // Static files
-        //this.express.use(express.static('public'));
-        //this.express.use("/images", express.static(path.join(__dirname, "../storage/images")));
-        //this.express.use("/artistas", express.static(path.join(__dirname, "../storage/audio")));
-        // Headers, allow CORS
-        /*
-        this.express.use((req, res, next) => {
-            console.log("CABECERAS");
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-            next();
-
-            
-        });¨
-        */
     }
 
     private routes(){
@@ -47,16 +36,18 @@ import * as bodyParser from 'body-parser';
         let RootRouter = express.Router();
         RootRouter.get('/',(req,res,next) =>{
             res.json({
-                message:'Welcome to the jungle'
+                message:'B'
 
             });
 
         });
         this.express.use('/',RootRouter);
-        this.express.use('/artistas',);
-        this.express.use('/albumes',);
-        this.express.use('/canciones', );
-        this.express.use('/streaming', );
+        this.express.use('/artistas',artistasApi);
+        this.express.use('/albumes',albumesApi);
+        this.express.use('/canciones',cancionesApi);
+        this.express.use('/ListaDeReproduccion', listaAPi)
+        //this.express.use('/streaming', );
+        //this.express.use('*',);
 
     }
 
