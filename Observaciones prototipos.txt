@@ -1,0 +1,35 @@
+Observaciones generales
+    no hay una opcion en ningun lado para agregar listas de reproduccion,debe haber una en el reprpudctor y ottra en la panatlla de listas de reproduccion
+    la pantalla de seleccione canciones a eliminar no se si la pensaste parra un caso en especial o la vamos a reutilizar
+
+Observaciones por pantalla
+
+pantalla de registro
+    faltan datos del formulario checa la bd
+pantalla de resultados de busqueda
+    se debe mostrar los suguientes datos de la cancion
+        portada en miniatura
+        nombre de la cancion
+        nombre del album al que pertenece
+        nombre del artista al que pertenece
+            esto se muestra por el caso en el que varios artista tienen una cancion con el mismo nombre, asi saben cual quieren oir
+            
+Pantalla reproductor
+    -solo le faltan los botones de adenlatar cancion(cancion completa) y retroceder cancion
+    igual si ya sabes como hacer que el reproductr quede fijo en la parte de abajo perfecto en caso de que no, no seria seguro que lograramos
+    ponerlo igual
+    -hay que ponerle iconopara crear lista de reproduccion desde ahi mismo
+pantalla de listas de reproduccion  
+    -no tiene la opcion para agregar lista de rerpoduccion  hay que ponersela ya sea en icono u otra cosa
+    - no tiene una pantalla donde se vean las canciones de cada lista
+Pantalla de para añadir albumes y canciones
+    siento que el boton añadir cancion  no funcionaria desde esa posicion porque primero hay que saber a que album le vamos a añadir la cancion
+    y terminariamos dandole un listado de albumes, que seria redundante si desde ahi podemos darle click a un album y ya ahi en la pantalla
+    que se abra tener la copcion aladir album, igual si ya tienen pensado una logica para eso estaria bien me la explicaras, pero hasta donde veo 
+    seria redundante
+Pantalla de registro de cancion 
+    -le faltan varios datos al formulario revisa la bd de MSmusica la tabla canciones y la bd de multimedia la tabla archivosDeCanciones
+    los datos del formulario de la cancion deben tener los datos de esas 2 tablas y un campo para el archivo de la cancion
+    a las canciones no se les sube imagen toman la imagen del album
+Pantalla de rehistro del albumes    
+    tambien faltan datos al album checa la bd musica la tabla albumes
