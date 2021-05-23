@@ -16,7 +16,7 @@ var http = require('http');
 var https = require('https');
 
 
-
+//si se compilo
 let server = http.createServer(app);
 //const ip = "192.168.100.51";
 const port = 4001;
@@ -194,8 +194,8 @@ let artistaJsonUpdate = {
         artista.fkIdEstatus=1;
         servicioartistas.registrarArtista(artista); */
 
-
-    console.log("2"+__dirname); 
+        console.log(process.env.TYPEORM_ENTITIES);
+    //console.log("2"+__dirname); 
     console.log("corriendo en:  "+port);
     
 });
