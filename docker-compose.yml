@@ -72,11 +72,11 @@ services:
             - "mysql_musica"
         ports:
             - "8091:4001"
-        build: 
-            context: ../MSMusica/
-            dockerfile: Dockerfile
-        #build:
-        #    https://github.com/aaron-77/LiberMusic#MSMusica
+        #build: 
+        #    context: ../MSMusica/
+        #    dockerfile: Dockerfile
+        build:
+            https://github.com/BaezCrdrmUV/proyecto-equipoc#MSMusica
         environment: 
             TYPEORM_CONNECTION: "mysql"
             TYPEORM_HOST: "mysql_musica"
