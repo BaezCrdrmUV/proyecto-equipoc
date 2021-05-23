@@ -15,7 +15,7 @@ import app from "./app";
 var http = require('http');
 var https = require('https');
 
-
+//comentario de prueba
 //si se compilo
 let server = http.createServer(app);
 //const ip = "192.168.100.51";
