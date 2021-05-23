@@ -24,7 +24,10 @@ public async registrarListaReproduccion (lista): Promise<any>{
 }
 
 public async actualizarListaReproduccion (lista){
+    
     let  listaParseado = ListaParser.jsonToLista(lista);
+    
+    
     let resultadoDeOperacion;
     try{
         let repositorioLista = new ListaReproduccionRepository();

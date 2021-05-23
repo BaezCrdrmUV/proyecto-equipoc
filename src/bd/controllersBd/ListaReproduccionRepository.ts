@@ -7,8 +7,9 @@ import {validateOrReject} from "class-validator";
 
 export class ListaReproduccionRepository {
 
-    public  async  crearLista(listaJson){
-  
+    public  async  crearLista(listaJson):Promise<any>{
+        
+        let cancionRegistrada;
          
         try{
             await createConnection();
@@ -19,23 +20,26 @@ export class ListaReproduccionRepository {
             lista.nombre = listaJson.nombre;
             lista.numeroDeTracks = listaJson.numeroDeTracks;
             lista.fkIdEstatus = listaJson.fkIdEstatus;
-            lista.fkIdUsuario = listaJson.fkIdEstatus;
+            lista.fkIdUsuario = listaJson.fkIdUsuario;
 
 
-            const cancionRegistrada =await getConnection().manager.save(lista);
-            console.log("cancion guardada exitosamente: "+cancionRegistrada.nombre);
+            cancionRegistrada =await getConnection().manager.save(lista);
+           
         }catch(excepcion){
-            console.log(excepcion);
+            return MensajesManager.crearMensajeDeError(excepcion);
         } 
+        return  MensajesManager.crearMensajeDeExito("lista registrada con exito",cancionRegistrada);
     }
 
-    public async actualizarLista (listap:ListaReproduccion):Promise<ListaReproduccion>{
-            
+    public async actualizarLista (listap:ListaReproduccion):Promise<any>{
+         let lista;
+        
         try{
             await createConnection();
-            const lista =await getRepository(ListaReproduccion).findOne(listap.id);
+            lista =await getRepository(ListaReproduccion).findOne(listap.id);
+           
             if(lista == null){
-                return null;
+                return MensajesManager.crearMensajeDeErrorDeValidacion(null);
             }
             lista.id = listap.id;
             lista.nombre = listap.nombre;
@@ -43,35 +47,37 @@ export class ListaReproduccionRepository {
             lista.fkIdEstatus = listap.fkIdEstatus;
             lista.fkIdUsuario = lista.fkIdUsuario;
 
-            await getRepository(ListaReproduccion).save(lista);
-            console.log("lista de reproduccion actualizada exitosamente: "+lista.nombre);
+            lista = await getRepository(ListaReproduccion).save(lista);
+         
         }catch(excepcion){
-            console.log(excepcion);
-        } 
+            return MensajesManager.crearMensajeDeError(excepcion);
+        }
+            return MensajesManager.crearMensajeDeExito("lista registrada con exito",lista); 
     }
 
 
-    public async obtenerListaPorId(idlista:string):Promise<ListaReproduccion>{
+    public async obtenerListaPorId(idlista:string):Promise<any>{
         let lista;
         try{   
             await createConnection();
             lista = await getRepository(ListaReproduccion).findOneOrFail({where:{id:idlista}});
+            
         
         }catch(excepcion){
-                console.log(excepcion);
+                return MensajesManager.crearMensajeDeError(excepcion);
         }
-        return lista;
+        return MensajesManager.crearMensajeDeExito("consulta realizada con exito",lista);
     }
 
-    public async obtenerListaPorNombre(nombreLista:string):Promise<ListaReproduccion[]>{
+    public async obtenerListaPorNombre(nombreLista:string):Promise<any>{
         let listas;
         try{   
             await createConnection();
             listas = await getRepository(ListaReproduccion).find({where:{nombre:Like("%"+nombreLista+"%")}});
         }catch(excepcion){
-                console.log(excepcion);
+                return MensajesManager.crearMensajeDeError(excepcion);
         }
-        return listas;
+        return MensajesManager.crearMensajeDeExito("consulta realizada con exito",listas);
     }
 
   

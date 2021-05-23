@@ -7,11 +7,11 @@ export class ListaParser{
        
         let lista = new ListaReproduccion();
 
-        lista.id = lista.id,
-        lista.fkIdUsuario = lista.fkIdUsuario,
-        lista.nombre = lista.nombre,
-        lista.numeroDeTracks = lista.numeroDeTracks,
-        lista.fkIdEstatus = lista.fkIdEstatus
+        lista.id = datosLista.id,
+        lista.fkIdUsuario = datosLista.fkIdUsuario,
+        lista.nombre = datosLista.nombre,
+        lista.numeroDeTracks = datosLista.numeroDeTracks,
+        lista.fkIdEstatus = datosLista.fkIdEstatus
 
         return lista;
     }

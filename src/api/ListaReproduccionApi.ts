@@ -38,6 +38,11 @@ class ListaReproduccionApi {
 
     async actualizarArtista(req: any, res: any, nextFunction: NextFunction) {
         try {
+            console.log("IDLISTAAPI: "+req.body.id);
+            console.log("FKIDUSUARIOPAPI: "+req.body.fkIdUsuario);
+            console.log("NOMBRELISTAAPI: "+req.body.nombre);
+            console.log("NUMERODETRACKSAPI: "+req.body.numeroDeTracks);
+            console.log("IDESTATUSAPI: "+req.body.fkIdEstatus);
             let respuesta = await serviciosListas.actualizarListaReproduccion(req.body);
             res.send(respuesta);
         } catch (error) {

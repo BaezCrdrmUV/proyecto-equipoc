@@ -1,7 +1,7 @@
 import {Entity, PrimaryGeneratedColumn, Column,BaseEntity,OneToMany,ManyToOne,PrimaryColumn} from "typeorm";
 import { usuariobd } from "../../config/global";
 import {Cancion} from "./Cancion";
-@Entity("ListaReproduccion")
+@Entity("listasdereproduccion")
 export class ListaReproduccion extends BaseEntity {
  
     

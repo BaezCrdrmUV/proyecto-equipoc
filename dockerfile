@@ -4,5 +4,6 @@ WORKDIR /home/node/app
 COPY package*.json ./
 USER node
 RUN npm install
+ADD . /home/node/app
 COPY --chown=node:node . .
-CMD [ "node", "src/index.js" ]
+CMD [ "node", "dist/index.js" ]
