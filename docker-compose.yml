@@ -64,21 +64,29 @@ services:
         build:
             https://github.com/aaron-77/LiberMusic#MSUsuarios
         environment: 
-            DB_CONNECTION_STRING: "server=mysql_musica;user=admin;password=admin;database=libermusicusuarios"
+            DB_CONNECTION_STRING: "server=mysql_suscripcion;user=admin;password=admin;database=libermusicusuarios"
             
    ms_musica:
         image: ms_musica_libermusic
         depends_on: 
             - "mysql_musica"
         ports:
-            - "8091:80"
-        #build: 
-        #    context: ../MSMusica/
-        #    dockerfile: Dockerfile
-        build:
-            https://github.com/aaron-77/LiberMusic#MSMusica
+            - "8091:4001"
+        build: 
+            context: ../MSMusica/
+            dockerfile: Dockerfile
+        #build:
+        #    https://github.com/aaron-77/LiberMusic#MSMusica
         environment: 
-            DB_CONNECTION_STRING: "server=mysql_suscripcion;user=admin;password=admin;database=libermusicmusica"
+            TYPEORM_CONNECTION: "mysql"
+            TYPEORM_HOST: "mysql_musica"
+            TYPEORM_USERNAME: "admin"
+            TYPEORM_PASSWORD: "admin"
+            TYPEORM_DATABASE: "libermusicmusica"
+            TYPEORM_SYNCHRONIZE: "true"
+            TYPEORM_LOGGING: "true"
+            TYPEORM_ENTITIES: "dist/bd/entity/**/*.js"
+            
 
     # ms_clientes:
     #    image: ms_clientes_uv
