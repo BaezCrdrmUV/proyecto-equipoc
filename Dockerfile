@@ -4,7 +4,7 @@ WORKDIR /home/node/app
 COPY package*.json ./
 USER node
 RUN npm install
-ADD . /home/node/app
+ADD ./ /home/node/app
 COPY --chown=node:node . .
 RUN ./node_modules/typescript/bin/tsc  --project $(pwd)/tsconfig.json
 CMD [ "node", "dist/index.js" ]
