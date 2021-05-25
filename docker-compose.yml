@@ -61,8 +61,7 @@ services:
         #build: 
         #    context: ../MSSuscripcion/
         #    dockerfile: Dockerfile
-        build:
-            https://github.com/aaron-77/LiberMusic#MSUsuarios
+        build: https://github.com/BaezCrdrmUV/proyecto-equipoc.git#MSSuscripcion
         environment: 
             DB_CONNECTION_STRING: "server=mysql_suscripcion;user=admin;password=admin;database=libermusicusuarios"
             
@@ -72,11 +71,10 @@ services:
             - "mysql_musica"
         ports:
             - "8091:4001"
-        build: 
-            context: ../MSMusica/
-            dockerfile: Dockerfile
-        #build:
-        #    https://github.com/aaron-77/LiberMusic#MSMusica
+        # build: 
+        #     context: ../MSMusica/
+        #     dockerfile: Dockerfile
+        build: https://github.com/BaezCrdrmUV/proyecto-equipoc.git#MSMusica
         environment: 
             TYPEORM_CONNECTION: "mysql"
             TYPEORM_HOST: "mysql_musica"
