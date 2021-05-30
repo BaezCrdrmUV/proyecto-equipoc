@@ -3,6 +3,7 @@ import express from 'express';
 import path from 'path';
 import fs  from 'fs-extra';
 import {servicioPortadas} from '../services/ServicioPortadas';
+import {servicioCanciones} from '../services/ServicioCanciones';
 
 import {rutaBaseCancionesYPortadas} from "../config/global";
 const fileUpload = require('express-fileupload');
@@ -26,10 +27,11 @@ class MultimediaApi {
        
         this.router.post('/subirPortadaArtista',this.subirPortadaArtista); // ?ids=12345...,23426...,63464....
         this.router.post('/subirPortadaAlbum',this.subirPortadaAlbum);
-        this.router.put('/subirCancion' ,this.subirCancion);
+        this.router.post('/subirCancion' ,this.subirCancion);
+        this.router.get('/buscarPortadaId/:idPortada' ,this.buscarPortadaPorId);
         this.router.get('/buscarPortadaArtista/:idArtista' ,this.buscarPortadaArtista);
         this.router.get('/buscarPortadaAlbum/:idAlbum' ,this.buscarPortadaAlbum);
-        this.router.get('/buscarUrlCancion/:idCancion' ,this.buscarPortadaArtista);
+        this.router.get('/buscarUrlCancion/:idCancion' ,this.buscarUrlCancion);
     }
 
     async subirPortadaArtista(req: any, res: any, nextFunction: NextFunction) {
@@ -68,7 +70,7 @@ class MultimediaApi {
         let respuesta;
         try {
                   
-           //respuesta = await servicioArtistas.registrarArtista(req.body);
+           respuesta = await servicioCanciones.subirCancion(req);
            if(respuesta.estatus == true){
             res.status(201);
             res.send(respuesta);
@@ -81,26 +83,13 @@ class MultimediaApi {
         }
     }
 
-    async registrarDatosPortadaEnBd(req: any, res: any, nextFunction: NextFunction) {
-        let respuesta;
-        try {
-           //respuesta = await servicioArtistas.actualizarArtista(req.body);
-           if(respuesta.estatus == true){
-            res.status(201);
-            res.send(respuesta);
-        }else{
-            res.status(204);
-            res.send(respuesta);
-        }
-        } catch (error) {
-            res.send(respuesta);
-        }
-    }
+   
 
-    async registrarDatosCancionEnBd(req: any, res: any, nextFunction: NextFunction) {
+   
+    async buscarPortadaPorId(req: any, res: any, nextFunction: NextFunction) {
         let respuesta;
         try {
-           //respuesta = await servicioArtistas.actualizarArtista(req.body);
+           respuesta = await servicioPortadas.buscarPortadaPorId(req.body);
            if(respuesta.estatus == true){
             res.status(201);
             res.send(respuesta);
@@ -117,25 +106,13 @@ class MultimediaApi {
     async buscarPortadaAlbum(req: any, res: any, nextFunction: NextFunction) {
         let respuesta;
         try{
-            if(req.query.idArtista != undefined){
-               //respuesta = await servicioArtistas.buscarArtistaPorId(req.query.idArtista);
+         
+               respuesta = await servicioPortadas.buscarPortadaPorIdAlbum(req.body);
                if(respuesta.estatus == true){
                 res.status(201);
                 res.send(respuesta);
-            }else{
-                res.status(204);
-                res.send(respuesta);
-            }
-            }else if(req.query.nombreArtista != undefined){
-              //respuesta =  await servicioArtistas.buscarArtistaPorNombre(req.query.nombreArtista);
-              if(respuesta.estatus == true){
-                res.status(201);
-                res.send(respuesta);
-              }else{
-                res.status(204);
-                res.send(respuesta);
-                }
-            }
+               }
+           
         }catch(error){
             res.send(respuesta);
         }
@@ -145,25 +122,16 @@ class MultimediaApi {
     async buscarPortadaArtista(req: any, res: any, nextFunction: NextFunction) {
         let respuesta;
         try{
-            if(req.query.idArtista != undefined){
-               //respuesta = await servicioArtistas.buscarArtistaPorId(req.query.idArtista);
+            
+                respuesta = await servicioPortadas.buscarPortadaPorIdArtista(req.body);
                if(respuesta.estatus == true){
-                res.status(201);
-                res.send(respuesta);
-            }else{
-                res.status(204);
-                res.send(respuesta);
-            }
-            }else if(req.query.nombreArtista != undefined){
-              //respuesta =  await servicioArtistas.buscarArtistaPorNombre(req.query.nombreArtista);
-              if(respuesta.estatus == true){
-                res.status(201);
-                res.send(respuesta);
-              }else{
-                res.status(204);
-                res.send(respuesta);
+                    res.status(201);
+                    res.send(respuesta);
+                }else{
+                    res.status(204);
+                    res.send(respuesta);
                 }
-            }
+            
         }catch(error){
             res.send(respuesta);
         }
@@ -173,7 +141,7 @@ class MultimediaApi {
         let respuesta;
         try{
             if(req.query.idArtista != undefined){
-               //respuesta = await servicioArtistas.buscarArtistaPorId(req.query.idArtista);
+               respuesta = await servicioCanciones.buscarUrlDeCancion(req.body);
                if(respuesta.estatus == true){
                 res.status(201);
                 res.send(respuesta);

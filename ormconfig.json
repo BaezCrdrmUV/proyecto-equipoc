@@ -1,0 +1,11 @@
+{
+    "type": "mysql",
+    "host": "192.168.100.51",
+    "port": 3312,
+    "username": "admin",
+    "password": "admin",
+    "database": "libermusicmultimedia",
+    "logging": "true",
+    "syncronize": "true",
+    "entities": ["../dist/bd/entity/**/*.js"]
+ }
