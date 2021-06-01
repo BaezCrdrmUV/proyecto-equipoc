@@ -30,7 +30,7 @@ class BusquedasApi {
                 }else{
                     res.status(204);
                     res.send(respuesta);
-                }
+                }//
             }
         } catch (error) {
             res.send(respuesta);
