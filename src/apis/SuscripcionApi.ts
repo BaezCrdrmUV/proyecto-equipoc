@@ -1,5 +1,5 @@
 import { Router, Request, Response,NextFunction,Express } from "express";
-import {Loginservice} from "../services/LoginService";
+import {suscripcionService} from "../services/SuscriocionServices";
 import express from 'express';
 
 
@@ -14,15 +14,15 @@ constructor() {
     this.routes();
 }
 routes(): void {   
-    this.router.get('/doLogin',express.json(),this.doLogin); 
+    this.router.get('/RegistrarUsuario',express.json(),this.RegistrarUsuario); 
   
 }
 
-async doLogin(req: any, res: any, nextFunction: NextFunction) {
+async RegistrarUsuario(req: any, res: any, nextFunction: NextFunction) {
     let respuesta;
     try {
         if(req.query.NombreDeUsuario != undefined){
-            respuesta = await Loginservice.HacerLogin(req.query.usuario);
+            respuesta = await suscripcionService.RegistrarUsuario(req.query.usuario);
             if(respuesta.estatus == true){
                 res.status(201);
                 res.send(respuesta);
@@ -37,4 +37,4 @@ async doLogin(req: any, res: any, nextFunction: NextFunction) {
 }
 
 }
-export let login = new LoginApi().router;
+export let RegistrarApi = new LoginApi().router;
