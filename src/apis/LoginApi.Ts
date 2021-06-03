@@ -38,3 +38,4 @@ async doLogin(req: any, res: any, nextFunction: NextFunction) {
 }
 
 }
+export let login = new LoginApi().router;

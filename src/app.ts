@@ -1,5 +1,6 @@
 import express from "express";
 import {busquedasApi} from "./apis/BusquedasApi";
+import {login} from "./apis/LoginApi";
 import morgan from 'morgan';
 class App {
     express : any;
@@ -38,6 +39,7 @@ class App {
         });
         this.express.use('/',RootRouter);
         this.express.use('/buscarCancion',busquedasApi);
+        this.express.use('/LoginApi',login);
         //this.express.use('/streaming',streamingApi);
        
         //this.express.use('*',);
