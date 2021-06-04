@@ -2,3 +2,4 @@ export const rutaServicioBusquedaCanciones = "http://192.168.100.51:8091/artista
 export const rutaServicioBusquedaPortadas = "http://192.168.100.51:8092/multimedia/buscarPortadaArtista/"
 export const rutaServicioLogin = "http://192.168.100.51:8092/controller/login"
 export const rutaServicioRegistrar = "http://192.168.100.51:8092/controller/RegistrarUsuario"
+export const rutaServicioActualizarUsuario = "http://192.168.100.51:8092/controller/actualizarUsuario"
