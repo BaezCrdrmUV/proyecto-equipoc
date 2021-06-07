@@ -85,7 +85,7 @@ export class CancionesRepository {
         
         try{
             
-            cancion = await getRepository(ArchivoCancion).find({where:{id:IdCancion}});
+            cancion = await getRepository(ArchivoCancion).findOneOrFail({where:{fkIdCancion:IdCancion}});
             if(cancion == undefined ||cancion.length == 0){
                 return MensajesManager.crearMensajeDeErrorDeValidacion(null);
             }

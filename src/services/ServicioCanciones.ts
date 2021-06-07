@@ -44,11 +44,11 @@ export class ServicioCanciones{
         
     }
     public async buscarUrlDeCancion(idCancion):Promise<any>{
-        if(idCancion != undefined){
+        
             let cancionesRepository = new CancionesRepository();
             let respuesta = await cancionesRepository.obtenerUrlCancion(idCancion);
             return respuesta;
-    }
+    
 }
    
    
