@@ -5,7 +5,7 @@
     "username": "admin",
     "password": "admin",
     "database": "libermusicmultimedia",
-    "logging": "true",
-    "syncronize": "true",
+    "logging": true,
+    "syncronize": true,
     "entities": ["../dist/bd/entity/**/*.js"]
  }

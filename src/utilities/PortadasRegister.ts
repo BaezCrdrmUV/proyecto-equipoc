@@ -10,7 +10,7 @@ export class PortadasRegister{
    
    public async guardarPortadaArtistaEnFileSystem(datosDeArchivo){
         let respuestaDeCreacionDeDirectorios =await this.crearRutaDeGuardadoPortadaArtista(datosDeArchivo);
-        let nombreImagenConExtension = datosDeArchivo.nombreImagen+datosDeArchivo.formato;
+        let nombreImagenConExtension = datosDeArchivo.nombreDeImagen+datosDeArchivo.formato;
         let rutaDeGuardadoFinal = path.join(respuestaDeCreacionDeDirectorios.rutaDeGuardado,nombreImagenConExtension);
         let respuestaFinal = null;
         try {
@@ -25,7 +25,7 @@ export class PortadasRegister{
    }
    public async guardarPortadaAlbumEnFileSystem(datosDeArchivo):Promise<any>{
      let respuestaDeCreacionDeDirectorios =await this.crearRutaDeGuardadoPortadaAlbum(datosDeArchivo);
-        let nombreImagenConExtension = datosDeArchivo.nombreImagen+datosDeArchivo.formato;
+        let nombreImagenConExtension = datosDeArchivo.nombreDeImagen+datosDeArchivo.formato;
         let rutaDeGuardadoFinal = path.join(respuestaDeCreacionDeDirectorios.rutaDeGuardado,nombreImagenConExtension);
         let respuestaFinal = null;
         try {

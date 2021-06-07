@@ -18,7 +18,7 @@ export class ArchivoPortada extends BaseEntity{
     
     @Column("varchar",{length:200})
     @Matches("^([a-zA-z0-9]+\\s{0,3})+([a-zA-Z0-9]+\\s{0,3})*$")
-    nombreImagen:string
+    nombreDeImagen:string
   
     @Column("varchar",{length:200})
     @IsNotEmpty()

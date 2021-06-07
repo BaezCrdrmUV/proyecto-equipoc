@@ -3,7 +3,12 @@ import {min,max,length,Length,Matches,IsNotEmpty,IsFQDN,IsNumber} from "class-va
 import {ArchivoPortada} from "./ArchivoPortada";
 @Entity("datosarchivosdecanciones")
 export class ArchivoCancion extends BaseEntity{
-
+    constructor(){
+        super();
+    
+        this.fkIdEstatus = 1;
+        
+    }
    
     @PrimaryColumn("varchar",{length:200})
     @IsNotEmpty()

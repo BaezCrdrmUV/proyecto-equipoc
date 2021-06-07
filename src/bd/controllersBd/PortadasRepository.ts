@@ -1,6 +1,6 @@
 import {getConnection,getRepository,getConnectionManager,createConnection,Like} from "typeorm";
 import {ArchivoPortada} from "../entity/ArchivoPortada";
-import {MensajesManager} from "../../Utilities/MensajesManager";
+import {MensajesManager} from "../../utilities/MensajesManager";
 import {v4 as uuidv4} from "uuid";
 import {validateOrReject} from "class-validator";
 import { ArchivosPortadasParser } from "../../utilities/ArchivosPortadasParser";
@@ -8,14 +8,17 @@ import { ArchivosPortadasParser } from "../../utilities/ArchivosPortadasParser";
 export class PortadasRepository {
 
     public  async  registrarPortada(portada):Promise<any>{
-     
+     process.on('unhandledRejection',function (error){
+
+         console.log(error);
+     });
         
         let portadaRegistrada; 
     
         try{
  
            portada.id = uuidv4();
-           let archivoPortadaBd = ArchivosPortadasParser.jsonToArchivosPortadas(portada);
+           let archivoPortadaBd = await getConnection().manager.create(ArchivoPortada,portada);
             try{
                 console.log("INICIA VALIDACION");
                 await validateOrReject(archivoPortadaBd);
@@ -51,7 +54,7 @@ export class PortadasRepository {
             portada.fkIdArtista = portadaP.fkIdArtista; 
             portada.fkIdAlbum = portadaP.fkIdAlbum;
             portada.formato = portadaP.formato;
-            portada.nombreImagen = portadaP.nombreImagen;
+            portada.nombreImagen = portadaP.nombreDeImagen;
             portada.urlCancion = portadaP.urlDePortada;
             portada.fkIdEstatus = portadaP.fkIdEstatus;
             console.log("TERMINA ASIGNACION");
@@ -73,6 +76,7 @@ export class PortadasRepository {
     }
 
     public async obtenerPortadaPorId(idPortada:string):Promise<any>{
+        console.log("ID PORTADA 2: "+idPortada);
         let portada;
         try{
             
@@ -96,6 +100,22 @@ export class PortadasRepository {
 
     }
 
+    public async obtenerPortadaPorIdAlbum(IdAlbum : string):Promise<any>{
+        let portada = null;
+        
+        try{
+            
+            portada = await getRepository(ArchivoPortada).find({where:{fkIdAlbum:IdAlbum}});
+            if(portada == undefined ||portada.length == 0){
+                return MensajesManager.crearMensajeDeErrorDeValidacion(null);
+            }
+        }catch(excepcion){
+            return MensajesManager.crearMensajeDeError(excepcion,"Hubo un error al consultar la portada");
+        }
+        return MensajesManager.crearMensajeDeExito("consulta exitosa",portada);
+
+    }
+
     public async obtenerPortadaPorIdArtista(IdArtista : string):Promise<any>{
         let portada = null;
         
@@ -112,21 +132,7 @@ export class PortadasRepository {
 
     }
 
-    public async obtenerPortadaPorIdAlbum(IdAlbum : string):Promise<any>{
-        let portada = null;
-        
-        try{
-            
-            portada = await getRepository(ArchivoPortada).find({where:{fkIdArtista:IdAlbum}});
-            if(portada == undefined ||portada.length == 0){
-                return MensajesManager.crearMensajeDeErrorDeValidacion(null);
-            }
-        }catch(excepcion){
-            return MensajesManager.crearMensajeDeError(excepcion,"Hubo un error al consultar la portada");
-        }
-        return MensajesManager.crearMensajeDeExito("consulta exitosa",portada);
-
-    }
+    
 
 
 }

@@ -19,9 +19,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.nombrePredeterminadoDeCanciones = exports.nombrePredeterminadoDePortadas = exports.rutaBaseCancionesYPortadas = void 0;
+exports.rutaScriptDeSegmentacion = exports.nombrePredeterminadoDeCanciones = exports.nombrePredeterminadoDePortadas = exports.rutaBaseCancionesYPortadas = void 0;
 const path = __importStar(require("path"));
 exports.rutaBaseCancionesYPortadas = path.join(__dirname, "..", "..", "artistas");
 exports.nombrePredeterminadoDePortadas = "portada";
 exports.nombrePredeterminadoDeCanciones = "original";
+exports.rutaScriptDeSegmentacion = path.join(__dirname, "..", "..", "src", "generate-dash.sh");
 //# sourceMappingURL=global.js.map

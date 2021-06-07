@@ -1,13 +1,12 @@
 import "reflect-metadata";
-import {ConnectionManager, createConnection, UsingJoinColumnIsNotAllowedError} from "typeorm";
+import {ConnectionManager, createConnection} from "typeorm";
 import app from './app';
 import http from 'http';
 
 
 let server = http.createServer(app);
 const port = 4002;
-const ip = "192.168.100.51";
-server.listen(port,ip,function(){
+server.listen(port,function(){
     conectar();
     console.log("DIRNAME: "+__dirname);
     console.log("\n");
@@ -16,5 +15,10 @@ server.listen(port,ip,function(){
 
 
 const conectar = async () => {
-    await createConnection();
+    try{
+        await createConnection();
+    }catch(excepcion){
+        console.log("No se ha podido conectar con la bd")
+    }
+    
 }

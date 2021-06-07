@@ -9,7 +9,7 @@ export class ArchivosPortadasParser{
         archivoDePortada.id = archivoPortadaJson.id,
         archivoDePortada.fkIdArtista = archivoPortadaJson.fkIdArtista; 
         archivoDePortada.fkIdAlbum = archivoPortadaJson.fkIdAlbum;
-        archivoDePortada.nombreImagen = archivoPortadaJson.nombreImagen;
+        archivoDePortada.nombreDeImagen = archivoPortadaJson.nombreImagen;
         archivoDePortada.formato = archivoPortadaJson.formato;
         archivoDePortada.urlDePortada = archivoPortadaJson.urlCancion;
         archivoDePortada.fkIdEstatus = archivoPortadaJson.fkIdEstatus;
@@ -20,7 +20,7 @@ export class ArchivosPortadasParser{
         let archivoPortadaJson ={
             fkIdArtista:archivoPortada.fkIdArtista,
             fkIdAlbum:archivoPortada.fkIdAlbum,
-            nombreImagen:archivoPortada.nombreImagen,
+            nombreImagen:archivoPortada.nombreDeImagen,
             formato:archivoPortada.formato,
             urlCancion:archivoPortada.urlDePortada,
             fkIdEstatus:archivoPortada.fkIdEstatus
