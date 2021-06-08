@@ -3,6 +3,35 @@ import { MensajesManager } from "./MensajesManager";
 
 export class RequestManager {
 
+    public async postRequest(url,bodyP ={}){
+        let axiosConfig: AxiosRequestConfig ={
+            method: 'post',
+            url: url,
+            data:bodyP,
+            responseType: 'json'
+        }       
+        let respuestaFinal = {
+            estatus:false,
+            mensaje :"",
+            datos:new Array(),
+            errores:new Array()
+        }
+        let artistasA = new Array();  
+        
+       try{
+          let res =await axios(axiosConfig);
+         
+          if(res.data.datos.length > 0){
+              return MensajesManager.crearMensajeDeExitoRequestServicio("transaccion realizada con exito",res.data);
+          }else{
+            return MensajesManager.crearMensajeDeErrorRequestServicio("Error la transaccion resultados");
+          }
+          
+      }catch(excepcion){
+        return MensajesManager.crearMensajeDeErrorRequestServicio("No se obtuvieron resultados",excepcion);
+      }
+    }
+
     public async getRequest(url,paramsP ={}){
         let axiosConfig: AxiosRequestConfig ={
             method: 'get',

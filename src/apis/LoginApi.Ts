@@ -14,8 +14,7 @@ constructor() {
     this.routes();
 }
 routes(): void {   
-    this.router.get('/doLogin',express.json(),this.doLogin); 
-  
+    this.router.post('/doLogin',express.json(),this.doLogin);   
 }
 
 async doLogin(req: any, res: any, nextFunction: NextFunction) {

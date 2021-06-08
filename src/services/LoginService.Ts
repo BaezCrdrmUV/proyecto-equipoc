@@ -16,19 +16,15 @@ export class LoginService {
            errores:new Array()
          };
          let requestManager = new RequestManager();
-         let usuarioCnsultado = await requestManager.getRequest(rutaServicioLogin,Usuario);
+         let usuarioCnsultado = await requestManager.postRequest(rutaServicioLogin,Usuario);
        
          if(usuarioCnsultado.estatus == true){
              
-           try{
-            
-               usuarioCnsultado = await requestManager.getRequest(rutaServicioLogin,usuarioCnsultado);
-            
-           }catch(excepcion){
-               return MensajesManager.crearMensajeDeError("error al consultar los datos",excepcion);
-           }
+          
+            return MensajesManager.crearMensajeDeExito("Inicio de sesion exitoso",usuarioCnsultado.datos);
+           
          }          
-           return  MensajesManager.crearMensajeDeExito("UsuarioEncontrado consultados con exito",usuarioCnsultado.datos);
+           return  usuarioCnsultado.datos;
      }
 
 }
