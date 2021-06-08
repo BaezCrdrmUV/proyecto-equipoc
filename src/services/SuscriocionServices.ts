@@ -43,12 +43,13 @@ export class ServiciosSuscripcion {
       };
       let requestManager = new RequestManager();
      
-      let usuarioConsultado = await requestManager.getRequest(rutaServicioActualizarUsuario,Usuario);
+      let usuarioConsultado = await requestManager.putRequest(rutaServicioActualizarUsuario,Usuario);
       if(usuarioConsultado.estatus == true){
           
+        
         try{
-         usuarioConsultado = await requestManager.getRequest(rutaServicioActualizarUsuario,Usuario);
-      
+   
+          return usuarioConsultado;
          
         }catch(excepcion){
             return MensajesManager.crearMensajeDeError("error al actualizar el usuario",excepcion);

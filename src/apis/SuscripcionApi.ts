@@ -15,7 +15,7 @@ constructor() {
 }
 routes(): void {   
     this.router.post('/RegistrarUsuario',express.json(),this.RegistrarUsuario); 
-    this.router.get('/ActualizarUsuario',express.json(),this.ActualizarUsuario); 
+    this.router.put('/ActualizarUsuario',express.json(),this.ActualizarUsuario); 
   
 }
 
@@ -41,15 +41,10 @@ async RegistrarUsuario(req: any, res: any, nextFunction: NextFunction) {
 async ActualizarUsuario(req: any, res: any, nextFunction: NextFunction) {
     let respuesta;
     try {
-        if(req.query.NombreDeUsuario != undefined){
-            respuesta = await suscripcionService.RegistrarUsuario(req.query.usuario);
-            if(respuesta.estatus == true){
-                res.status(201);
-                res.send(respuesta);
-            }else{
-                res.status(204);
-                res.send(respuesta);
-            }
+        if(req.body.nombreDeUsuario != undefined){
+            respuesta = await suscripcionService.ActualizarUsuario(req.body);
+            res.send(respuesta);
+          
         }
     } catch (error) {
         res.send(respuesta);

@@ -42,6 +42,7 @@ class App {
         this.express.use('/buscarCancion',busquedasApi);
         this.express.use('/LoginApi',login);
         this.express.use('/Registrar',RegistrarApi);
+        this.express.use('/Actualizar',RegistrarApi);
        //
         //this.express.use('*',);
 
