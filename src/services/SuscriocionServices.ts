@@ -17,11 +17,11 @@ export class ServiciosSuscripcion {
          };
          let requestManager = new RequestManager();
         
-         let usuarioCnsultado = await requestManager.getRequest(rutaServicioRegistrar,Usuario);
+         let usuarioCnsultado = await requestManager.postRequest(rutaServicioRegistrar,Usuario);
          if(usuarioCnsultado.estatus == true){
              
            try{
-            usuarioCnsultado = await requestManager.getRequest(rutaServicioRegistrar,Usuario);
+            return usuarioCnsultado;
          
             
            }catch(excepcion){
@@ -29,7 +29,7 @@ export class ServiciosSuscripcion {
            }
         }
                   
-           return  MensajesManager.crearMensajeDeExito("Usuario registrado con exito",usuarioCnsultado.datos);
+           return  MensajesManager.crearMensajeDeExito("Usuario registrado con exito");
      }
 
 

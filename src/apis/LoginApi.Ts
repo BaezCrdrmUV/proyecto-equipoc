@@ -20,8 +20,8 @@ routes(): void {
 async doLogin(req: any, res: any, nextFunction: NextFunction) {
     let respuesta;
     try {
-        if(req.query.NombreDeUsuario != undefined){
-            respuesta = await Loginservice.HacerLogin(req.query.usuario);
+        if(req.body.nombreDeUsuario != undefined){
+            respuesta = await Loginservice.HacerLogin(req.body);
             if(respuesta.estatus == true){
                 res.status(201);
                 res.send(respuesta);
