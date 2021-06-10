@@ -1,10 +1,11 @@
 import fse from 'fs-extra';
 import fs from 'fs';
-import {rutaBaseCancionesYPortadas} from "../config/global";
+import {rutaBaseAccesoPublicoPortadasYCanciones,rutaBaseCancionesYPortadas} from "../config/global";
 import path from 'path';
 import { MensajesManager } from './MensajesManager';
 import {exec} from 'child_process';
 import {rutaScriptDeSegmentacion} from "../config/global";
+
 
 export class CancionesRegister {
     
@@ -20,20 +21,21 @@ export class CancionesRegister {
           respuestaFinal.erroresDeGuardado.push(excepcion);
           return respuestaFinal;
         }
-        return MensajesManager.crearMensajeDeExitoDeGuardadoFisico("la cancion se escribio correctamente",rutaDeGuardadoFinal);     
+        return MensajesManager.crearMensajeDeExitoDeGuardadoFisico("la cancion se escribio correctamente",rutaDeGuardadoFinal,rutaBaseDeGuardadoCancion.rutaDeGuardadoPublica);     
    }
 
    private async crearRutaDeGuardadoCancion(datosDeArchivo):Promise<any>{
                
         let rutaDeGuardado =  path.join(rutaBaseCancionesYPortadas,datosDeArchivo.nombreArtista,datosDeArchivo.nombreAlbum,datosDeArchivo.nombreCancion);
+        let rutaDeGuardadoPublica = path.join(rutaBaseAccesoPublicoPortadasYCanciones,"artistas",datosDeArchivo.nombreArtista,datosDeArchivo.nombreAlbum,datosDeArchivo.nombreCancion,"dash","index.mpd");
         try{
             await fse.mkdirs(rutaDeGuardado);
         }catch(excepcion){
         
-            return MensajesManager.crearMensajeDeErrorGuardadoFisico(excepcion,"no se crear la ruta de guardado");
+            return MensajesManager.crearMensajeDeErrorGuardadoFisico(excepcion,"no se pudo crear la ruta de guardado");
         }     
         
-        return  MensajesManager.crearMensajeDeExitoDeGuardadoFisico("ruta creada exitosamente",rutaDeGuardado);
+        return  MensajesManager.crearMensajeDeExitoDeGuardadoFisico("ruta creada exitosamente",rutaDeGuardado,rutaDeGuardadoPublica);
     }
     public async borrarCancion(urlCancion){
         fse.remove(urlCancion);

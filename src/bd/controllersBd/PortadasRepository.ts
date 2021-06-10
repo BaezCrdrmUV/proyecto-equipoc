@@ -46,15 +46,16 @@ export class PortadasRepository {
             console.log("ID ALBUM "+portadaP.id);
             portada =await getRepository(ArchivoPortada).findOneOrFail(portadaP.id);
             console.log("BSUQUEDA REALIZADA");
-            if(portada == null){
+            if(portada == undefined){
                 console.log("BUSQUEDA NULA");
                 return MensajesManager.crearMensajeDeErrorDeValidacion(null);
             }
             console.log("COMIENZA ASIGNACION");
+            portada.id = portadaP.id;
             portada.fkIdArtista = portadaP.fkIdArtista; 
             portada.fkIdAlbum = portadaP.fkIdAlbum;
             portada.formato = portadaP.formato;
-            portada.nombreImagen = portadaP.nombreDeImagen;
+            portada.nombreDeImagen = portadaP.nombreDeImagen;
             portada.urlCancion = portadaP.urlDePortada;
             portada.fkIdEstatus = portadaP.fkIdEstatus;
             console.log("TERMINA ASIGNACION");
@@ -66,13 +67,13 @@ export class PortadasRepository {
                 return MensajesManager.crearMensajeDeErrorDeValidacion(excepcionDeValidacion);
             }
             await getRepository(ArchivoPortada).save(portada);
-            console.log("GUARDADO EXITOSO");
+            console.log("ACTUALIZADO EXITOSO");
         }catch(excepcion){
-            console.log("FALLO EL GUARDADO");
+            console.log("FALLO EL ACTUALIZADO");
             return MensajesManager.crearMensajeDeError(excepcion,"No se ha podido actualizar la portada");
         }
 
-        return MensajesManager.crearMensajeDeExito("portada actualizado con exito");
+        return MensajesManager.crearMensajeDeExito("portada actualizada con exito");
     }
 
     public async obtenerPortadaPorId(idPortada:string):Promise<any>{

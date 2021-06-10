@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.servicioPortadas = void 0;
 const PortadasRegister_1 = require("../utilities/PortadasRegister");
-const global_1 = require("../config/global");
 const MensajesManager_1 = require("../utilities/MensajesManager");
 const PortadasRepository_1 = require("../bd/controllersBd/PortadasRepository");
 const FormateadorEntradasDeRegistro_1 = require("../utilities/FormateadorEntradasDeRegistro");
@@ -23,6 +22,7 @@ class ServicioPortadas {
             let portadasRepository = new PortadasRepository_1.PortadasRepository();
             //se asigna la url de gaurdado al objeto que se guardara en bd
             datosPreparados.datosParaRegistroEnBd.urlDePortada = resultadoDeEscritura.rutaDeGuardado;
+            datosPreparados.datosParaRegistroEnBd.urlPublicaDePortada = resultadoDeEscritura.rutaDeGuardadoPublica;
             let respuestaBd;
             respuestaBd = await portadasRepository.registrarPortada(datosPreparados.datosParaRegistroEnBd);
             if (respuestaBd.estatus == false) {
@@ -39,14 +39,63 @@ class ServicioPortadas {
     }
     async subirPordataAlbum(datosPortada) {
         let filesRegister = new PortadasRegister_1.PortadasRegister();
-        let datosPreparados = this.prepararDatosParaGuardadoDePortadas(datosPortada);
+        let datosPreparados = FormateadorEntradasDeRegistro_1.FormateadorEntradasDeRegistro.prepararDatosParaGuardadoDePortadas(datosPortada);
         let resultadoDeEscritura = await filesRegister.guardarPortadaAlbumEnFileSystem(datosPreparados.datosParaArchivo);
         if (resultadoDeEscritura.estatus == true) {
             let portadasRepository = new PortadasRepository_1.PortadasRepository();
             //se asigna la url de guardado al objeto que se guardara en bd
             datosPreparados.datosParaRegistroEnBd.urlDePortada = resultadoDeEscritura.rutaDeGuardado;
+            datosPreparados.datosParaRegistroEnBd.urlPublicaDePortada = resultadoDeEscritura.rutaDeGuardadoPublica;
             let respuestaBd;
             respuestaBd = await portadasRepository.registrarPortada(datosPreparados.datosParaRegistroEnBd);
+            if (respuestaBd.estatus == false) {
+                console.log("ELIMINANDO PORTADA");
+                await filesRegister.borrarPortada(resultadoDeEscritura.urlCancion);
+                console.log("PORTADA ELMINADA");
+            }
+            return respuestaBd;
+        }
+        else {
+            let erroresDeGuardadoFisico = resultadoDeEscritura.resultadoDeOperacion.erroresDeGuardado;
+            return MensajesManager_1.MensajesManager.crearMensajeDeError(erroresDeGuardadoFisico, "Error al registrar la portada");
+        }
+    }
+    async actualizarPordataAlbum(datosPortada) {
+        let filesRegister = new PortadasRegister_1.PortadasRegister();
+        console.log("ACTUALIZANDO PORTADA ");
+        let datosPreparados = FormateadorEntradasDeRegistro_1.FormateadorEntradasDeRegistro.prepararDatosParaActualizadoDePortadas(datosPortada);
+        let resultadoDeEscritura = await filesRegister.guardarPortadaAlbumEnFileSystem(datosPreparados.datosParaArchivo);
+        if (resultadoDeEscritura.estatus == true) {
+            let portadasRepository = new PortadasRepository_1.PortadasRepository();
+            //se asigna la url de guardado al objeto que se guardara en bd
+            datosPreparados.datosParaRegistroEnBd.urlDePortada = resultadoDeEscritura.rutaDeGuardado;
+            datosPreparados.datosParaRegistroEnBd.urlPublicaDePortada = resultadoDeEscritura.rutaDeGuardadoPublica;
+            let respuestaBd;
+            respuestaBd = await portadasRepository.actualizarPortada(datosPreparados.datosParaRegistroEnBd);
+            if (respuestaBd.estatus == false) {
+                console.log("ELIMINANDO PORTADA");
+                await filesRegister.borrarPortada(resultadoDeEscritura.urlCancion);
+                console.log("PORTADA ELMINADA");
+            }
+            return respuestaBd;
+        }
+        else {
+            let erroresDeGuardadoFisico = resultadoDeEscritura.resultadoDeOperacion.erroresDeGuardado;
+            return MensajesManager_1.MensajesManager.crearMensajeDeError(erroresDeGuardadoFisico, "Error al registrar la portada");
+        }
+    }
+    async actualizarPordataArtista(datosPortada) {
+        let filesRegister = new PortadasRegister_1.PortadasRegister();
+        console.log("ACTUALIZANDO PORTADA ");
+        let datosPreparados = FormateadorEntradasDeRegistro_1.FormateadorEntradasDeRegistro.prepararDatosParaActualizadoDePortadas(datosPortada);
+        let resultadoDeEscritura = await filesRegister.guardarPortadaArtistaEnFileSystem(datosPreparados.datosParaArchivo);
+        if (resultadoDeEscritura.estatus == true) {
+            let portadasRepository = new PortadasRepository_1.PortadasRepository();
+            //se asigna la url de guardado al objeto que se guardara en bd
+            datosPreparados.datosParaRegistroEnBd.urlDePortada = resultadoDeEscritura.rutaDeGuardado;
+            datosPreparados.datosParaRegistroEnBd.urlPublicaDePortada = resultadoDeEscritura.rutaDeGuardadoPublica;
+            let respuestaBd;
+            respuestaBd = await portadasRepository.actualizarPortada(datosPreparados.datosParaRegistroEnBd);
             if (respuestaBd.estatus == false) {
                 console.log("ELIMINANDO PORTADA");
                 await filesRegister.borrarPortada(resultadoDeEscritura.urlCancion);
@@ -94,28 +143,6 @@ class ServicioPortadas {
             return MensajesManager_1.MensajesManager.crearMensajeDeError(excepcion, "error al consultar la portada");
         }
         return respuestaBd;
-    }
-    prepararDatosParaGuardadoDePortadas(datosPortada) {
-        let datosParaArchivo = {
-            nombreImagen: global_1.nombrePredeterminadoDePortadas,
-            formato: "." + datosPortada.files.portada.mimetype.split("/")[1],
-            nombreArtista: datosPortada.body.nombreArtista,
-            nombreAlbum: datosPortada.body.nombreAlbum,
-            portada: datosPortada.files.portada
-        };
-        let datosParaRegistroEnBd = {
-            fkIdArtista: datosPortada.body.fkIdArtista,
-            fkIdAlbum: datosPortada.body.fkIdAlbum,
-            nombreImagen: global_1.nombrePredeterminadoDePortadas,
-            formato: datosParaArchivo.formato,
-            urlDePortada: datosPortada.body.urlDePortada,
-            fkIdEstatus: parseInt(datosPortada.body.fkIdEstatus)
-        };
-        let datosPreparados = {
-            datosParaArchivo,
-            datosParaRegistroEnBd
-        };
-        return datosPreparados;
     }
 }
 exports.servicioPortadas = new ServicioPortadas();

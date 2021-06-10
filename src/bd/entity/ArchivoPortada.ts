@@ -28,6 +28,10 @@ export class ArchivoPortada extends BaseEntity{
     @Column("longtext")
     @IsNotEmpty()
     urlDePortada:string
+
+    @Column("longtext")
+    @IsNotEmpty()
+    urlPublicaDePortada:string
     
     @Column("int",{unsigned:true,nullable:true,default:1 ,comment:"estado del registro 1 activo 2 inactivo"})
     @IsNumber()

@@ -19,6 +19,7 @@ class App{
 
     constructor(){
         
+        console.log("DIRNAME: "+__dirname);
         this.express = express();
         this.middleware();
         this.routes();
@@ -26,11 +27,18 @@ class App{
 
     private middleware(): void{
 
-        
         this.express.use(morgan('dev'));
         this.express.use(express.json());
         this.express.use(express.urlencoded({ extended: true }));
         this.express.use(uploadManager());
+
+        this.express.use((req, res, next) => {
+            console.log("CABECERAS");
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+            next(); 
+        });
 
     }
 
@@ -44,10 +52,12 @@ class App{
             });
 
         });
+        let rutaArtistas = path.join(__dirname,'..','artistas');
+        console.log("ruta estatica "+rutaArtistas)
+        this.express.use(express.static(rutaArtistas));
         this.express.use('/',RootRouter);
         this.express.use('/multimedia',multimediaApi);
         this.express.use('/streaming',streamingApi);
-       
         //this.express.use('*',);
 
     }

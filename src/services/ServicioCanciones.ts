@@ -23,6 +23,7 @@ export class ServicioCanciones{
             let cancionesRepository = new CancionesRepository();
             //se asigna la url de gaurdado al objeto que se guardara en bd
             datosPreparados.datosParaRegistroEnBd.urlCancion = resultadoDeEscritura.rutaDeGuardado;
+            datosPreparados.datosParaRegistroEnBd.urlPublicaCancion = resultadoDeEscritura.rutaDeGuardadoPublica;
             console.log("RUTA ARRAY : "+ resultadoDeEscritura.rutaDeGuardado.split(path.sep+"original.mp3"));
             let rutasSeparada = resultadoDeEscritura.rutaDeGuardado.split(path.sep+"original.mp3");
             let rutaDeSegmentacion = rutasSeparada[0];
@@ -49,8 +50,6 @@ export class ServicioCanciones{
             let respuesta = await cancionesRepository.obtenerUrlCancion(idCancion);
             return respuesta;
     
-}
-   
-   
+    }
 }
 export let servicioCanciones = new ServicioCanciones()

@@ -57,18 +57,20 @@ class MensajesManager {
         resultadoOperacion.mensaje = mensaje;
         return resultadoOperacion;
     }
-    static crearMensajeDeExitoDeGuardadoFisico(mensaje, rutaDeGuardado) {
+    static crearMensajeDeExitoDeGuardadoFisico(mensaje, rutaDeGuardado, rutaDeGuardadoPublica = null) {
         let resultadoOperacion = {
             estatus: false,
             datos: null,
             mensaje: "",
             rutaDeGuardado: "",
+            rutaDeGuardadoPublica: "",
             erroresDeGuardado: [],
             erroresDeValidacion: []
         };
         resultadoOperacion.estatus = true;
         resultadoOperacion.mensaje = mensaje;
         resultadoOperacion.rutaDeGuardado = rutaDeGuardado;
+        resultadoOperacion.rutaDeGuardadoPublica = rutaDeGuardadoPublica;
         return resultadoOperacion;
     }
 }

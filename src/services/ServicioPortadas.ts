@@ -21,6 +21,7 @@ class ServicioPortadas{
             let portadasRepository = new PortadasRepository();
             //se asigna la url de gaurdado al objeto que se guardara en bd
             datosPreparados.datosParaRegistroEnBd.urlDePortada = resultadoDeEscritura.rutaDeGuardado;
+            datosPreparados.datosParaRegistroEnBd.urlPublicaDePortada = resultadoDeEscritura.rutaDeGuardadoPublica;
             let respuestaBd;
         
             respuestaBd = await portadasRepository.registrarPortada(datosPreparados.datosParaRegistroEnBd);
@@ -39,12 +40,13 @@ class ServicioPortadas{
     }
     public async subirPordataAlbum(datosPortada):Promise<any>{
         let filesRegister = new PortadasRegister();
-        let datosPreparados = this.prepararDatosParaGuardadoDePortadas(datosPortada);
+        let datosPreparados = FormateadorEntradasDeRegistro.prepararDatosParaGuardadoDePortadas(datosPortada);
         let resultadoDeEscritura =await filesRegister.guardarPortadaAlbumEnFileSystem(datosPreparados.datosParaArchivo);
         if(resultadoDeEscritura.estatus == true){
             let portadasRepository = new PortadasRepository();
             //se asigna la url de guardado al objeto que se guardara en bd
             datosPreparados.datosParaRegistroEnBd.urlDePortada = resultadoDeEscritura.rutaDeGuardado;
+            datosPreparados.datosParaRegistroEnBd.urlPublicaDePortada = resultadoDeEscritura.rutaDeGuardadoPublica;
             let respuestaBd;
             respuestaBd = await portadasRepository.registrarPortada(datosPreparados.datosParaRegistroEnBd);
             if(respuestaBd.estatus == false){
@@ -57,10 +59,55 @@ class ServicioPortadas{
             let erroresDeGuardadoFisico =resultadoDeEscritura.resultadoDeOperacion.erroresDeGuardado;
             return MensajesManager.crearMensajeDeError(erroresDeGuardadoFisico,"Error al registrar la portada");
         }
-        
     }
 
-   
+    public async actualizarPordataAlbum(datosPortada):Promise<any>{
+        let filesRegister = new PortadasRegister();
+        console.log("ACTUALIZANDO PORTADA ");
+        let datosPreparados = FormateadorEntradasDeRegistro.prepararDatosParaActualizadoDePortadas(datosPortada);
+        let resultadoDeEscritura =await filesRegister.guardarPortadaAlbumEnFileSystem(datosPreparados.datosParaArchivo);
+        if(resultadoDeEscritura.estatus == true){
+            let portadasRepository = new PortadasRepository();
+            //se asigna la url de guardado al objeto que se guardara en bd
+            datosPreparados.datosParaRegistroEnBd.urlDePortada = resultadoDeEscritura.rutaDeGuardado;
+            datosPreparados.datosParaRegistroEnBd.urlPublicaDePortada = resultadoDeEscritura.rutaDeGuardadoPublica;
+            let respuestaBd;
+            respuestaBd = await portadasRepository.actualizarPortada(datosPreparados.datosParaRegistroEnBd);
+            if(respuestaBd.estatus == false){
+                console.log("ELIMINANDO PORTADA");
+                await filesRegister.borrarPortada(resultadoDeEscritura.urlCancion);
+                console.log("PORTADA ELMINADA");
+            }
+            return respuestaBd;
+        }else {
+            let erroresDeGuardadoFisico =resultadoDeEscritura.resultadoDeOperacion.erroresDeGuardado;
+            return MensajesManager.crearMensajeDeError(erroresDeGuardadoFisico,"Error al registrar la portada");
+        }
+    }
+
+    public async actualizarPordataArtista(datosPortada):Promise<any>{
+        let filesRegister = new PortadasRegister();
+        console.log("ACTUALIZANDO PORTADA ");
+        let datosPreparados = FormateadorEntradasDeRegistro.prepararDatosParaActualizadoDePortadas(datosPortada);
+        let resultadoDeEscritura =await filesRegister.guardarPortadaArtistaEnFileSystem(datosPreparados.datosParaArchivo);
+        if(resultadoDeEscritura.estatus == true){
+            let portadasRepository = new PortadasRepository();
+            //se asigna la url de guardado al objeto que se guardara en bd
+            datosPreparados.datosParaRegistroEnBd.urlDePortada = resultadoDeEscritura.rutaDeGuardado;
+            datosPreparados.datosParaRegistroEnBd.urlPublicaDePortada = resultadoDeEscritura.rutaDeGuardadoPublica;
+            let respuestaBd;
+            respuestaBd = await portadasRepository.actualizarPortada(datosPreparados.datosParaRegistroEnBd);
+            if(respuestaBd.estatus == false){
+                console.log("ELIMINANDO PORTADA");
+                await filesRegister.borrarPortada(resultadoDeEscritura.urlCancion);
+                console.log("PORTADA ELMINADA");
+            }
+            return respuestaBd;
+        }else {
+            let erroresDeGuardadoFisico =resultadoDeEscritura.resultadoDeOperacion.erroresDeGuardado;
+            return MensajesManager.crearMensajeDeError(erroresDeGuardadoFisico,"Error al registrar la portada");
+        }
+    }
 
     public async buscarPortadaPorId(idPortada:string):Promise<any>{
         console.log("ID PORTADA 1"+idPortada);
@@ -96,33 +143,5 @@ class ServicioPortadas{
         }
         return respuestaBd;
     }
-
-   
-
-    private prepararDatosParaGuardadoDePortadas(datosPortada):any{
-        let datosParaArchivo ={
-            nombreImagen:nombrePredeterminadoDePortadas,
-            formato:"."+datosPortada.files.portada.mimetype.split("/")[1],
-            nombreArtista:datosPortada.body.nombreArtista,
-            nombreAlbum:datosPortada.body.nombreAlbum,
-            portada:datosPortada.files.portada
-        }
-       
-        let datosParaRegistroEnBd = {
-            fkIdArtista:datosPortada.body.fkIdArtista,
-            fkIdAlbum:datosPortada.body.fkIdAlbum,
-            nombreImagen:nombrePredeterminadoDePortadas,
-            formato:datosParaArchivo.formato,
-            urlDePortada:datosPortada.body.urlDePortada,
-            fkIdEstatus:parseInt(datosPortada.body.fkIdEstatus)
-        }
-        let datosPreparados = {
-            datosParaArchivo,
-            datosParaRegistroEnBd
-        }
-        return datosPreparados;
-    }
-  
-
 }
 export let servicioPortadas = new ServicioPortadas()

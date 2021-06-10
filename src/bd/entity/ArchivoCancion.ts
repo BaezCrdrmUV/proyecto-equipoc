@@ -35,6 +35,9 @@ export class ArchivoCancion extends BaseEntity{
     @Column("longtext")
     @IsNotEmpty()
     urlCancion:string
+    @Column("longtext")
+    @IsNotEmpty()
+    urlPublicaCancion:string
     @Column("int",{unsigned:true,nullable:true,default:1 ,comment:"estado del registro 1 activo 2 inactivo"})
     @IsNumber()
     fkIdEstatus:number
