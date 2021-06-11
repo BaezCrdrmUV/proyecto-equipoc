@@ -40,7 +40,7 @@ export class Cancion extends BaseEntity{
     @IsNumber()
     fkIdEstatus:number
 
-    @ManyToOne((type) => Album, (album) => album.canciones)
+    
     album: Album;
     
 

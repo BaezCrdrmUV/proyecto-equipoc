@@ -23,7 +23,7 @@ class ListaReproduccionApi {
         this.router.post('/crear',express.json(),this.registrarLista); // ?ids=12345...,23426...,63464....
         this.router.put('/actualizar',express.json() ,this.actualizarArtista);
         this.router.put('/agregarCancion',express.json() ,this.agregarCancion);
-        this.router.put('/agregarCancion',express.json() ,this.eliminarCancion);
+        this.router.put('/eliminarCancion',express.json() ,this.eliminarCancion);
         this.router.get('/buscar',express.json() ,this.buscarListaPorId);
      
 

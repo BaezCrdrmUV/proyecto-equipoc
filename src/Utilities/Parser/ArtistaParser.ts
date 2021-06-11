@@ -15,12 +15,14 @@ export class ArtistaParser{
         artista.web = datosArtista.web;
         artista.fkIdEstatus = datosArtista.fkIdEstatus;
         artista.nacionalidad = datosArtista.nacionalidad;
+        
         if(datosArtista.albumes != (null || undefined)){
             datosArtista.albumes.forEach(album => {
                 let albumParsed = AlbumParser.jsonToAlbum(album);
                 artista.albumes.push(albumParsed);
             });
         }
+        
        
         return artista;
     }

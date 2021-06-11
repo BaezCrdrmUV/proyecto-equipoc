@@ -50,10 +50,8 @@ export class Album extends BaseEntity {
     @IsNumber()
     fkIdEstatus: number;
 
-    @ManyToOne((type) => Artista, artista => artista.albumes)
+    
     artista:Artista;
-
-    @OneToMany((type) => Cancion, (cancion) => cancion.album)
     canciones: Cancion[];
     
 

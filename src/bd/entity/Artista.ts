@@ -45,8 +45,6 @@ export class Artista extends BaseEntity {
     fkIdEstatus: number;
 
     
-
-    @OneToMany(type => Album, album => album.artista,{cascade:true})
     albumes: Album[];
     
    

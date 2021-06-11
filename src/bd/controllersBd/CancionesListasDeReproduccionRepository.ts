@@ -31,11 +31,21 @@ export class CancionesListasDeReproduccionRepository {
     }
 
     public async eliminarCancion (cancionEnListaDeReproduccionP):Promise<any>{
+        process.on('unhandledRejection',function (error){
+
+            console.log(error);
+        });
         
         try{
            
             const cancionEnListaDeReproduccion =await getRepository(CancionesListasDeReproduccion).findOne({where:{fkIdCancion:cancionEnListaDeReproduccionP.fkIdCancion,
                                                                                     fkIdListaDeReproduccion:cancionEnListaDeReproduccionP.fkIdListaDeReproduccion}});
+            
+            console.log("OBEJTO "+ cancionEnListaDeReproduccion);
+            console.log("ID "+cancionEnListaDeReproduccion.id)
+            console.log("IDLISTA "+cancionEnListaDeReproduccion.fkIdListaDeReproduccion);
+            console.log("IDCANCION "+cancionEnListaDeReproduccion.fkIdCancion);
+            console.log("ESTATUS "+cancionEnListaDeReproduccion.fkIdEstatus);
             if(cancionEnListaDeReproduccion == null){
                 return MensajesManager.crearMensajeDeErrorDeValidacion(null);
             }
