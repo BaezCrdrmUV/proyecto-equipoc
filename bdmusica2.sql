@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `libermusicmusica`.`cancioneslistasdereproduccion` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_cancioneslistasdereproduccion_listasdereproduccion1`
-    FOREIGN KEY (`flIdListaDeReproduccion`)
+    FOREIGN KEY (`fkIdListaDeReproduccion`)
     REFERENCES `libermusicmusica`.`listasdereproduccion` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
