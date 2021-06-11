@@ -32,10 +32,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `libermusicmultimedia`.`datosarchivosdeportadas` (
   `id` VARCHAR(200) NOT NULL,
-  `fkIdAlbum` VARCHAR(200) NOT NULL,
+  `fkIdArtista` VARCHAR(200) NULL, 
+  `fkIdAlbum` VARCHAR(200) NULL,
   `nombreDeImagen` VARCHAR(45) NOT NULL,
   `formato` VARCHAR(10) NOT NULL,
   `urlDePortada` LONGTEXT NOT NULL,
+  `urlPublicaDePortada` LONGTEXT NOT NULL,
   `fkIdEstatus` INT UNSIGNED NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_datosarchivosdeportadas_estatusDeArchivos1_idx` (`fkIdEstatus` ASC) VISIBLE,
@@ -53,12 +55,14 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `libermusicmultimedia`.`datosarchivosdecanciones` (
   `id` VARCHAR(200) NOT NULL,
   `fkIdCancion` VARCHAR(200) NOT NULL,
-  `fkIdPortada` VARCHAR(200) NOT NULL,
+  `fkIdPortada` VARCHAR(200) NULL,
+  `portadaId` VARCHAR(200) NULL,
   `nombreDelArchivo` VARCHAR(200) NOT NULL,
   `tamanoEnMb` INT UNSIGNED NOT NULL,
   `formato` VARCHAR(10) NOT NULL,
   `codigoIsrc` VARCHAR(12) NOT NULL,
   `urlCancion` LONGTEXT NOT NULL,
+  `urlPublicaCancion` LONGTEXT NOT NULL,
   `fkIdEstatus` INT UNSIGNED NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_datosarchivosdecanciones_datosarchivosdeportadas1_idx` (`fkIdPortada` ASC) VISIBLE,
@@ -88,6 +92,6 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 INSERT INTO `libermusicmultimedia`.`estatusdearchivos` ( `id`,`nombre`) VALUES ('1',' activo' );
 INSERT INTO `libermusicmultimedia`.`estatusdearchivos` (`id` ,`nombre`) VALUES ('2','inactivo' );
-INSERT INTO `libermusicmultimedia`.`datosarchivosdeportadas` (`id` ,`fkIdAlbum`,`nombreDeImagen`,`formato`,`urlDePortada`) VALUES ('1','1','imagen','.png','una/ruta' );
-INSERT INTO `libermusicmultimedia`.`datosarchivosdecanciones` ( `id`,`fkIdCancion`,`fkIdPortada`,`nombreDelArchivo`,`tamanoEnMb`,`formato`,`codigoIsrc`,`urlCancion`) VALUES (' 1','1','1','cancion',8,'.mp3','123456789101','una/ruta');
+INSERT INTO `libermusicmultimedia`.`datosarchivosdeportadas` (`id` ,`fkIdAlbum`,`nombreDeImagen`,`formato`,`urlDePortada`,`urlPublicaDePortada`) VALUES ('1','1','imagen','.png','una/ruta','otra/ruta' );
+INSERT INTO `libermusicmultimedia`.`datosarchivosdecanciones` ( `id`,`fkIdCancion`,`fkIdPortada`,`nombreDelArchivo`,`tamanoEnMb`,`formato`,`codigoIsrc`,`urlCancion`,`urlPublicaCancion`) VALUES (' 1','1','1','cancion',8,'.mp3','123456789101','una/ruta','otra ruta');
 COMMIT;
