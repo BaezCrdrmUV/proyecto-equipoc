@@ -53,19 +53,19 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `libermusicmusica`.`albumes` (
   `id` VARCHAR(200) NOT NULL,
-  `fkIdArista` VARCHAR(200) NOT NULL,
+  `fkIdArtista` VARCHAR(200) NOT NULL,
   `titulo` VARCHAR(200) NOT NULL,
   `duracion` INT UNSIGNED NOT NULL COMMENT 'duracion en segundos',
   `numeroDeTracks` INT UNSIGNED NOT NULL,
   `companiaProductora` VARCHAR(200) NOT NULL,
   `tipoDeAlbum` VARCHAR(200) NOT NULL COMMENT 'sencillo,edicion especial,etc.',
-  `fechaDeLanzamiento` DATE NULL,
+  `anoDeLanzamiento` INT NULL,
   `fkIdEstatus` INT UNSIGNED NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
-  INDEX `fk_albumes_artistas1_idx` (`fkIdArista` ASC) VISIBLE,
+  INDEX `fk_albumes_artistas1_idx` (`fkIdArtista` ASC) VISIBLE,
   INDEX `fk_albumes_estatusdearchivos1_idx` (`fkIdEstatus` ASC) VISIBLE,
   CONSTRAINT `fk_albumes_artistas1`
-    FOREIGN KEY (`fkIdArista`)
+    FOREIGN KEY (`fkIdArtista`)
     REFERENCES `libermusicmusica`.`artistas` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -169,7 +169,7 @@ INSERT INTO `libermusicmusica`.`estatusderegistrosmusica` ( `id`,`nombreDeEstatu
 INSERT INTO `libermusicmusica`.`estatusderegistrosmusica` (`id` ,`nombreDeEstatus`) VALUES ('2','inactivo' );
 INSERT INTO `libermusicmusica`.`estatusderegistrosmusica` (`id` ,`nombreDeEstatus`) VALUES ('3','en revision' );
 INSERT INTO `libermusicmusica`.`artistas` ( `id`,`nombre`,`nombreArtistico`,`anoDeNacimiento`,`web`,`nacionalidad`) VALUES (' 1','James Labrie,John Perucci,Mike Portnoy','Dream Theather',1985,'www.dreamtheater.com','EUA');
-INSERT INTO `libermusicmusica`.`albumes` ( `id`,`fkIdArista`,`titulo`,`duracion`,`numeroDeTracks`,`companiaProductora`,`tipoDeAlbum`,`fechaDeLanzamiento`) VALUES ('1',' 1' ,'When Dream and Day Unite',3600,9,'Mechanic Records','sencillo','1989-03-06');
+INSERT INTO `libermusicmusica`.`albumes` ( `id`,`fkIdArtista`,`titulo`,`duracion`,`numeroDeTracks`,`companiaProductora`,`tipoDeAlbum`,`fechaDeLanzamiento`) VALUES ('1',' 1' ,'When Dream and Day Unite',3600,9,'Mechanic Records','sencillo','1989-03-06');
 INSERT INTO `libermusicmusica`.`canciones` ( `id`,`fkIdAlbum`,`titulo`,`numeroDeTrack`,`genero`,`duracion`,`contenidoExplicito`) VALUES ('1','1' ,'A fortune in lies',1,'Progresive metal',5,0);
 INSERT INTO `libermusicmusica`.`listasdereproduccion` ( `id`,`fkIdUsuario` ,`nombre`,`numeroDeTracks`) VALUES ('1' ,'1','rock',0);
 INSERT INTO `libermusicmusica`.`cancioneslistasdereproduccion` ( `id`,`fkIdCancion` ,`fkIdListaDeReproduccion`) VALUES ('1' ,'1','1');
