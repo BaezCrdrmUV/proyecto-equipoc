@@ -1,6 +1,6 @@
 import {getConnection,getRepository,getConnectionManager,createConnection,In,Like} from "typeorm";
 import {Cancion} from "../entity/Cancion";
-import {CancionesListasDeReproduccion} from "../entity/cancionesListasDeReproduccion"
+import {CancionesListasDeReproduccion} from "../entity/CancionesListasDeReproduccion"
 import {CancionParser} from "../../Utilities/Parser/CancionParser";
 import {v4 as uuidv4} from "uuid";
 import {MensajesManager} from "../../Utilities/MensajesManager/MensajesManager";
