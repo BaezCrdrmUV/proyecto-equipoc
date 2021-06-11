@@ -29,11 +29,7 @@ export class CancionesListasDeReproduccion extends BaseEntity {
     fkIdEstatus: number;
 
 
-    @ManyToOne(() => Cancion, cancionx => cancionx.cancionesLista)
-    public cancion!: Cancion;
-
-    @ManyToOne(() => ListaReproduccion, listax => listax.cancionesLista)
-    public lista!: ListaReproduccion;
+   
    
 }
 

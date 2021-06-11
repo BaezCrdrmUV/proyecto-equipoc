@@ -1,6 +1,7 @@
 {
     "type": "mysql",
-    "host": "mysql_musica",
+    "host": "localhost",
+    "port":"3311",
     "username": "admin",
     "password": "admin",
     "database": "libermusicmusica",

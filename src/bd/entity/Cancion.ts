@@ -42,7 +42,6 @@ export class Cancion extends BaseEntity{
 
     @ManyToOne((type) => Album, (album) => album.canciones)
     album: Album;
-    @OneToMany(() => CancionesListasDeReproduccion, cancionesLista => cancionesLista.cancion)
-    public cancionesLista!: CancionesListasDeReproduccion[];
+    
 
 }

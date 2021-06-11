@@ -31,8 +31,7 @@ export class ListaReproduccion extends BaseEntity {
     fkIdEstatus: number;
 
 
-    @OneToMany(() => CancionesListasDeReproduccion, cancionesLista => cancionesLista.lista)
-    public cancionesLista!: CancionesListasDeReproduccion[];
+  
     
 
    
