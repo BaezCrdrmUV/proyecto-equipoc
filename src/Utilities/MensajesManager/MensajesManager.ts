@@ -32,7 +32,7 @@ export class MensajesManager {
         let resultadoOperacion = {
             estatus:false,
             datos:null,
-            mensaje:"",
+            mensaje:"No se encontraron resultados",
             erroresDeGuardado:[],
             erroresDeValidacion:[]
         }

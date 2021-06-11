@@ -3,6 +3,7 @@ import {Cancion} from "../entity/Cancion";
 import {CancionParser} from "../../Utilities/Parser/CancionParser";
 import {v4 as uuidv4} from "uuid";
 import {MensajesManager} from "../../Utilities/MensajesManager/MensajesManager";
+import {validateOrReject} from "class-validator";
 
 export class CancionesRepository {
 
@@ -10,8 +11,6 @@ export class CancionesRepository {
   
          
         try{
-            await createConnection();
-            
             let  cancion =  CancionParser.jsonToCancion(cancionJson);
 
             cancion.id =  uuidv4();
@@ -22,21 +21,24 @@ export class CancionesRepository {
             cancion.duracion = cancionJson.duracion;
             cancion.contenidoExplicito = cancionJson.contenidoExplicito;
             cancion.fkIdEstatus = cancionJson.estado;
+            try{
+                validateOrReject(cancion);
+            }catch(excepcionDeValidacion){
+                return MensajesManager.crearMensajeDeErrorDeValidacion(excepcionDeValidacion);
+            }
             const cancionRegistrada =await getConnection().manager.save(cancion);
             
            
         }catch(excepcion){
             return MensajesManager.crearMensajeDeError(excepcion);
-        }finally{
-            getConnection().close();
-        } 
+        }
         return MensajesManager.crearMensajeDeExito("cancion guardada exitosamente");
     }
 
     public async actualizarCancion (cancionP:Cancion):Promise<any>{
             
         try{
-            await createConnection();
+           
             const cancion =await getRepository(Cancion).findOne(cancionP.id);
             if(cancion == null){
                 return MensajesManager.crearMensajeDeErrorDeValidacion(null);
@@ -49,6 +51,11 @@ export class CancionesRepository {
             cancion.duracion = cancionP.duracion;
             cancion.contenidoExplicito = cancionP.contenidoExplicito;
             cancion.fkIdEstatus = cancionP.fkIdEstatus;
+            try{
+                validateOrReject(cancion);
+            }catch(excepcionDeValidacion){
+                return MensajesManager.crearMensajeDeErrorDeValidacion(excepcionDeValidacion);
+            }
 
             await getRepository(Cancion).save(cancion);
            
@@ -62,7 +69,7 @@ export class CancionesRepository {
         let canciones;
 
         try{
-            await createConnection();
+            
             canciones = getRepository(Cancion).find({skip:cancionesOmitidas,
                                                     take:numeroDeCancionesEsperadas});
             if(canciones == undefined || canciones.length == 0){
@@ -78,7 +85,7 @@ export class CancionesRepository {
     public async obtenerCancionPorId(idCancion:string):Promise<any>{
         let cancion;
         try{   
-            await createConnection();
+           
             cancion = await getRepository(Cancion).findOneOrFail({where:{id:idCancion}});
             if(cancion == undefined){
                 return MensajesManager.crearMensajeDeErrorDeValidacion(null);
@@ -94,7 +101,7 @@ export class CancionesRepository {
                                         numeroDeCancionesEsperadas:number):Promise<any>{
         let canciones;
         try{   
-            await createConnection();
+           
             canciones = await getRepository(Cancion).find({where:{titulo:Like("%"+nombreCancion+"%")},
                                                                   skip:cancionesOmitidas,
                                                                   take:numeroDeCancionesEsperadas
@@ -114,7 +121,7 @@ export class CancionesRepository {
                                         numeroDeCancionesEsperadas:number):Promise<any>{
         let canciones;
         try{   
-            await createConnection();
+           
             canciones = await getRepository(Cancion).find({where:{fkIdAlbum:idAlbum},
                                                                   skip:cancionesOmitidas,
                                                                   take:numeroDeCancionesEsperadas
@@ -131,7 +138,7 @@ export class CancionesRepository {
     public async obtenerCancionesDeListaDeReproduccion(idCanciones:string[]):Promise<any>{
         let canciones;
         try{   
-            await createConnection();
+           
             canciones = await getRepository(Cancion).find({id:In(idCanciones)});
             if(canciones == undefined || canciones.length == 0){
                 return MensajesManager.crearMensajeDeErrorDeValidacion(null);

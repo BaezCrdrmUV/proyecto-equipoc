@@ -23,7 +23,7 @@ const port = 4001;
 
 
 server.listen(port, function () {
- 
+    conectar();
     let artistaRepository = new ArtistasRepository();
     let albumRepository = new AlbumesRepository();
     let cancionRepository = new CancionesRepository();
@@ -194,9 +194,13 @@ let artistaJsonUpdate = {
         artista.fkIdEstatus=1;
         servicioartistas.registrarArtista(artista); */
 
-        console.log(process.env.TYPEORM_ENTITIES);
+        
     //console.log("2"+__dirname); 
     console.log("corriendo en:  "+port);
     
 });
+
+const conectar = async() =>{
+        await createConnection();
+}
 

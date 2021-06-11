@@ -1,6 +1,7 @@
 import { Router, Request, Response,NextFunction,Express } from "express";
 import express from 'express';
 import {servicioCanciones} from '../services/ServicioCanciones';
+import { Console } from "console";
 
 class CancionesApi {
     
@@ -20,9 +21,11 @@ class CancionesApi {
     }
 
     async registrarCancion(req: any, res: any, nextFunction: NextFunction) {
+        let respuesta; 
         try {
+           
             if(req.body != undefined && req.body != null){
-                let respuesta = await servicioCanciones.crearCancion(req.body);
+                respuesta = await servicioCanciones.crearCancion(req.body);
                 if(respuesta.estatus == true){
                     res.status(201);
                     res.send(respuesta);
@@ -32,14 +35,15 @@ class CancionesApi {
                 }
             }
         } catch (error) {
-            console.log(error);
+            res.send(respuesta);
         }
     }
 
     async actualizarCancion(req: any, res: any, nextFunction: NextFunction) {
+        let respuesta;
         try {
             if(req.body != undefined && req.body != null){
-                    let respuesta = await servicioCanciones.actualizarCancion(req.body);
+                    respuesta = await servicioCanciones.actualizarCancion(req.body);
                     console.log("API CANCIONES: "+respuesta);
                     if(respuesta.estatus == true){
                         res.status(201);
@@ -50,52 +54,59 @@ class CancionesApi {
                     }
             }
         } catch (error) {
-            console.log(error);
+            res.send(respuesta);
         }
     }
 
     async buscarCanciones(req: any, res: any, nextFunction: NextFunction) {
+        let respuesta;
         try{
+            console.log("1C");
             if(req.query.todas != undefined){
                 console.log("SE EJECUTO TODAS");
-                let respuesta =await servicioCanciones.obtenerTodasLasCanciones(req.query.resultadosOmitidos,req.query.numeroDeResultadosEsperados);
+                respuesta =await servicioCanciones.obtenerTodasLasCanciones(req.query.resultadosOmitidos,req.query.numeroDeResultadosEsperados);
+                console.log("2C");
                 if(respuesta.estatus == true){
+                    console.log("Exito busuqeda C");
                     res.status(200);
                     res.send(respuesta);
                 }else{
+                    console.log("Errorbusqueda C");
                     res.status(200);
                     res.send(respuesta);
                 }
             }else if(req.query.id != undefined){
                 console.log("SE EJECUTO ID");
                 console.log("ID EN API "+req.query.id);
-                let respuesta =await servicioCanciones.obtenerCancionPorId(req.query.id);
-                    res.status(200);
-                    res.send(respuesta);
+                respuesta =await servicioCanciones.obtenerCancionPorId(req.query.id);
+                console.log("BUSQUEDA ID CORRECTA 1C");
+                res.status(200);
+                res.send(respuesta);
                 
             }else if(req.query.titulo != undefined){
                 console.log("SE EJECUTO titulo");
-                let respuesta =await servicioCanciones.obtenerCancionPorNombre(req.query.titulo,req.query.resultadosOmitidos,req.query.numeroDeResultadosEsperados);
-                
-                    res.status(200);
-                    res.send(respuesta);
+                respuesta =await servicioCanciones.obtenerCancionPorNombre(req.query.titulo,req.query.resultadosOmitidos,req.query.numeroDeResultadosEsperados);
+                console.log("BUSQUEDA TITULO CORRECTA 1C");
+                res.status(200);
+                res.send(respuesta);
                 
             }else if(req.query.idAlbum != undefined){
                 console.log("SE EJECUTO IDALBUM");    
-                 let respuesta =await servicioCanciones.obtenerCancionPorAlbum(req.query.idAlbum,req.query.resultadosOmitidos,req.query.numeroDeResultadosEsperados);
-                
-                    res.status(200);
-                    res.send(respuesta);
+                 respuesta =await servicioCanciones.obtenerCancionPorAlbum(req.query.idAlbum,req.query.resultadosOmitidos,req.query.numeroDeResultadosEsperados);
+                 console.log("BUSQUEDA ALBUM CORRECTA 1C");
+                 res.status(200);
+                 res.send(respuesta);
                 
 
             }else if(req.query.idLista != undefined){
-                let respuesta =await servicioCanciones.obtenerCancionesDeListaDeReproduccion(req.query.idLista);
-                   res.status(200);
-                   res.send(respuesta);
+                respuesta =await servicioCanciones.obtenerCancionesDeListaDeReproduccion(req.query.idLista);
+                console.log("BUSQUEDA IDLISTA CORRECTA 1C");
+                res.status(200);
+                res.send(respuesta);
                
             }
         }catch(error){
-            console.log(error)
+            res.send(respuesta);
         }
     }
 

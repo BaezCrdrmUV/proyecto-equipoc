@@ -43,7 +43,7 @@ export class ServicioCanciones {
             let repositorioCancion = new CancionesRepository();
             resultadoDeOperacion = await repositorioCancion.obtenerTodasLasCanciones(resultadosOmitidos,numeroDeResultadosEsperados);
             console.log("MENSAJE EN SERVICIO: " +resultadoDeOperacion.mensaje);
-            console.log("DATOS EN SERVICIO: "+ resultadoDeOperacion.datos.titulo);
+            console.log("DATOS EN SERVICIO: "+ resultadoDeOperacion.datos);
             console.log("VALIDACION : "+ resultadoDeOperacion.erroresDeValidacion);
             console.log("ERRORES :"+resultadoDeOperacion.erroresDeGuardado);
             return resultadoDeOperacion;   

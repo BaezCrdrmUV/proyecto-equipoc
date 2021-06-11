@@ -1,0 +1,10 @@
+{
+    "type": "mysql",
+    "host": "mysql_musica",
+    "username": "admin",
+    "password": "admin",
+    "database": "libermusicmusica",
+    "logging": true,
+    "syncronize": true,
+    "entities": ["../dist/bd/entity/**/*.js"]
+ }

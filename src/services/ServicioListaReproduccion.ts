@@ -13,9 +13,9 @@ public async registrarListaReproduccion (lista): Promise<any>{
     try{
         let repositorioListas = new ListaReproduccionRepository();
         resultadoDeOperacion = await repositorioListas.crearLista(listaParseado);
-        //console.log(resultadoDeOperacion.mensaje);
-        //console.log(resultadoDeOperacion.erroresDeValidacion);
-        //console.log(resultadoDeOperacion.erroresDeGuardado);
+        console.log(resultadoDeOperacion.mensaje);
+        console.log(resultadoDeOperacion.erroresDeValidacion);
+        console.log(resultadoDeOperacion.erroresDeGuardado);
         return resultadoDeOperacion;   
     }catch(errores){
         console.log("errores: "+ errores);

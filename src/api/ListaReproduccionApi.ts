@@ -1,6 +1,7 @@
 import { Router, Request, Response,NextFunction,Express } from "express";
 import express from 'express';
 import {serviciosListas} from '../services/ServicioListaReproduccion';
+import {createConnection, Connection} from "typeorm";
 
 
 
@@ -13,6 +14,7 @@ class ListaReproduccionApi {
  
 
     constructor() {
+       
         this.app = express();
         this.router = Router();
         this.routes();
@@ -26,47 +28,53 @@ class ListaReproduccionApi {
     }
 
     async registrarLista(req: any, res: any, nextFunction: NextFunction) {
-        try {
-                  
+        let respuesta;
+        try {          
             let respuesta = await  serviciosListas.registrarListaReproduccion(req.body);
             res.send(respuesta);
 
         } catch (error) {
-            console.log(error);
+            res.send(respuesta);
         }
     }
 
     async actualizarArtista(req: any, res: any, nextFunction: NextFunction) {
+        let respuesta;
         try {
             console.log("IDLISTAAPI: "+req.body.id);
             console.log("FKIDUSUARIOPAPI: "+req.body.fkIdUsuario);
             console.log("NOMBRELISTAAPI: "+req.body.nombre);
             console.log("NUMERODETRACKSAPI: "+req.body.numeroDeTracks);
             console.log("IDESTATUSAPI: "+req.body.fkIdEstatus);
-            let respuesta = await serviciosListas.actualizarListaReproduccion(req.body);
+            respuesta = await serviciosListas.actualizarListaReproduccion(req.body);
             res.send(respuesta);
         } catch (error) {
-            console.log(error);
+            res.send(respuesta);
         }
     }
 
     async buscarListaPorId(req: any, res: any, nextFunction: NextFunction) {
+        let  respuesta;
         try{
             
             if(req.query.idlista != undefined){
-                let respuesta = await serviciosListas.buscarListaReproduccionPorId(req.query.idlista);
+                respuesta = await serviciosListas.buscarListaReproduccionPorId(req.query.idlista);
                 res.send(respuesta);
             }else if(req.query.nombreLista != undefined){
-               let respuesta = await serviciosListas.buscarListaReproduccionPorNombre(req.query.nombreLista);
+               respuesta = await serviciosListas.buscarListaReproduccionPorNombre(req.query.nombreLista);
                res.send(respuesta);
             }
             /*else{
                 res.send('el davis es puto') para mandar al cliente;
             }*/
         }catch(error){
-            console.log(error)
+            res.send(respuesta);
         }
 
+    }
+
+    async conectarBd(){
+       
     }
 
 

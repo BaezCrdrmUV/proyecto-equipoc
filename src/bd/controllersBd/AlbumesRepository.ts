@@ -14,7 +14,6 @@ export class AlbumesRepository {
   
          
         try{
-            await createConnection();
         
             album.id = uuidv4();
             album.fkIdArtista = album.fkIdArtista; 
@@ -34,9 +33,7 @@ export class AlbumesRepository {
          
         }catch(excepcion){
            MensajesManager.crearMensajeDeError(excepcion);
-        }finally{
-            getConnection().close();
-        } 
+        }
 
         return MensajesManager.crearMensajeDeExito("album creado con exito");
     }
@@ -44,7 +41,7 @@ export class AlbumesRepository {
     public async actualizarAlbum (albumP:Album):Promise<any>{
         let album;    
         try{
-            await createConnection();
+          
             console.log("CONEXION CREADA");
             console.log("ID ALBUM "+albumP.id);
             album =await getRepository(Album).findOneOrFail(albumP.id);
@@ -75,9 +72,6 @@ export class AlbumesRepository {
         }catch(excepcion){
             console.log("FALLO EL GUARDADO");
             return MensajesManager.crearMensajeDeError(excepcion);
-        }finally{
-            console.log("CERRANDO LA CONEXION");
-            getConnection().close();
         }
 
         return MensajesManager.crearMensajeDeExito("album actualizado con exito");
@@ -89,7 +83,7 @@ export class AlbumesRepository {
             
             console.log("ID ALBUM: "+idAlbum);
             console.log("SE CREA CONEXION");
-            await createConnection();
+          
             album = await getRepository(Album).findOneOrFail({where:{id:idAlbum}});
             console.log("VALOR DEL ALBUM"+album);
             if(album == undefined){
@@ -101,9 +95,6 @@ export class AlbumesRepository {
         }catch(excepcion){
             console.log("HUBO EXCEPCION: ");
             return MensajesManager.crearMensajeDeError(excepcion);
-        }finally{
-
-            await getConnection().close();
         }
         
         return MensajesManager.crearMensajeDeExito("consulta exitosa",album);
@@ -114,7 +105,7 @@ export class AlbumesRepository {
         let albumes = null;
         
         try{
-            await createConnection();
+            
             albumes = await getRepository(Album).find({where:{titulo:Like("%"+nombreAlbum+"%")}, 
                                                             skip:cancionesOmitidas,
                                                             take:numeroDeCancionesEsperadas});
@@ -123,9 +114,6 @@ export class AlbumesRepository {
             }
         }catch(excepcion){
             return MensajesManager.crearMensajeDeError(excepcion);
-        }finally{
-
-          await  getConnection().close();
         }
         return MensajesManager.crearMensajeDeExito("consulta exitosa",albumes);
 
@@ -133,7 +121,7 @@ export class AlbumesRepository {
 
     public async obtenerAlbumesPorIdArtista(idArtista:string,cancionesOmitidas,numeroDeCancionesEsperadas):Promise<any>{
         let albumesDeArtista
-        await createConnection();
+        
         try{
             albumesDeArtista = await getRepository(Album).find({where:{fkIdArtista:idArtista},
                                                                         skip:cancionesOmitidas,
@@ -143,8 +131,6 @@ export class AlbumesRepository {
             }
         }catch(excepcion){
                 return MensajesManager.crearMensajeDeError(excepcion);
-        }finally{
-           await getConnection().close();
         }
     
         return MensajesManager.crearMensajeDeExito("consulta exitosa",albumesDeArtista);

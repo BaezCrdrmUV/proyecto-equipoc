@@ -1,4 +1,4 @@
-import {getConnection,getRepository,getConnectionManager,createConnection, Like,} from "typeorm";
+import {getConnection,getRepository,getConnectionManager,createConnection, Like, ConnectionManager, getConnectionOptions,} from "typeorm";
 import {ListaReproduccion} from "../entity/ListaReproduccion";
 import {ListaParser} from "../../Utilities/Parser/ListaReproduccionParser";
 import {MensajesManager} from "../../Utilities/MensajesManager/MensajesManager";
@@ -7,22 +7,20 @@ import {validateOrReject} from "class-validator";
 
 export class ListaReproduccionRepository {
 
-    public  async  crearLista(listaJson):Promise<any>{
-        
+    public  async  crearLista(listaJson):Promise<any>{   
         let cancionRegistrada;
-         
         try{
-            await createConnection();
-            
             let  lista =  ListaParser.jsonToLista(listaJson);
-
             lista.id =  uuidv4();
             lista.nombre = listaJson.nombre;
             lista.numeroDeTracks = listaJson.numeroDeTracks;
             lista.fkIdEstatus = listaJson.fkIdEstatus;
             lista.fkIdUsuario = listaJson.fkIdUsuario;
-
-
+            try{
+                validateOrReject(lista);
+            }catch(excepcionDeValidacion){
+                return MensajesManager.crearMensajeDeErrorDeValidacion(excepcionDeValidacion);
+            }
             cancionRegistrada =await getConnection().manager.save(lista);
            
         }catch(excepcion){
@@ -35,7 +33,7 @@ export class ListaReproduccionRepository {
          let lista;
         
         try{
-            await createConnection();
+          
             lista =await getRepository(ListaReproduccion).findOne(listap.id);
            
             if(lista == null){
@@ -46,6 +44,11 @@ export class ListaReproduccionRepository {
             lista.numeroDeTracks = listap.numeroDeTracks;
             lista.fkIdEstatus = listap.fkIdEstatus;
             lista.fkIdUsuario = lista.fkIdUsuario;
+            try{
+                validateOrReject(lista);
+            }catch(excepcionDeValidacion){
+                return MensajesManager.crearMensajeDeErrorDeValidacion(excepcionDeValidacion);
+            }
 
             lista = await getRepository(ListaReproduccion).save(lista);
          
@@ -59,12 +62,12 @@ export class ListaReproduccionRepository {
     public async obtenerListaPorId(idlista:string):Promise<any>{
         let lista;
         try{   
-            await createConnection();
+          
             lista = await getRepository(ListaReproduccion).findOneOrFail({where:{id:idlista}});
             
         
         }catch(excepcion){
-                return MensajesManager.crearMensajeDeError(excepcion);
+            return MensajesManager.crearMensajeDeError(excepcion);
         }
         return MensajesManager.crearMensajeDeExito("consulta realizada con exito",lista);
     }
@@ -72,16 +75,12 @@ export class ListaReproduccionRepository {
     public async obtenerListaPorNombre(nombreLista:string):Promise<any>{
         let listas;
         try{   
-            await createConnection();
+            
             listas = await getRepository(ListaReproduccion).find({where:{nombre:Like("%"+nombreLista+"%")}});
         }catch(excepcion){
                 return MensajesManager.crearMensajeDeError(excepcion);
         }
         return MensajesManager.crearMensajeDeExito("consulta realizada con exito",listas);
     }
-
-  
-
-   
 }
 

@@ -11,7 +11,7 @@ export class ArtistasRepository {
           
         try{
             
-            await createConnection();    
+              
             let  artista = new Artista()
             artista.id = uuidv4();
 	        artista.nombre = datosartista.nombre;
@@ -25,8 +25,6 @@ export class ArtistasRepository {
             }catch(excepcionDeValidacion){
                 
                 return MensajesManager.crearMensajeDeErrorDeValidacion(excepcionDeValidacion);
-            }finally{
-                
             }
             const user =await getConnection().manager.save(artista);
             
@@ -34,15 +32,13 @@ export class ArtistasRepository {
         }catch(excepcion){
            
            return MensajesManager.crearMensajeDeError(excepcion);
-        }finally{
-            getConnection().close();
-        } 
+        }
         return MensajesManager.crearMensajeDeExito("artista registrado con exito");
     }
 
     public async actualizarArtista (artistaP:Artista):Promise<any>{
         try{
-            await createConnection();
+            
             const artista =await getRepository(Artista).findOne(artistaP.id);
             if(artista == null){
                 return MensajesManager.crearMensajeDeErrorDeValidacion(null);
@@ -61,9 +57,7 @@ export class ArtistasRepository {
             await getRepository(Artista).save(artistaP);
         }catch(excepcion){
             return MensajesManager.crearMensajeDeErrorDeValidacion(excepcion);
-        }finally{
-            getConnection().close();
-        } 
+        }
         return MensajesManager.crearMensajeDeExito("datos modificados con exito")
 
     }
@@ -73,7 +67,7 @@ export class ArtistasRepository {
         
         let artista;
         try{
-            await createConnection();
+            
             artista = await getRepository(Artista).findOneOrFail({where:{id:idArtista}});
             if(artista == (null|| undefined)){
                 return MensajesManager.crearMensajeDeErrorDeValidacion(null);
@@ -82,8 +76,6 @@ export class ArtistasRepository {
             
             return MensajesManager.crearMensajeDeError(excepcion);
         
-        }finally{
-            getConnection().close();
         }
     
         return MensajesManager.crearMensajeDeExito("consulta exitosa",artista);
@@ -97,7 +89,7 @@ export class ArtistasRepository {
         let ar = [];
     
         try{
-            await createConnection();
+            
             artistas = await getRepository(Artista).find({nombreArtistico:Like("%"+nombreArtista+"%")});
             if(artistas == null || artistas.length == 0){
                 return MensajesManager.crearMensajeDeErrorDeValidacion(null);
@@ -105,8 +97,6 @@ export class ArtistasRepository {
         }catch(excepcion){
             getConnection().close();
             return MensajesManager.crearMensajeDeErrorDeValidacion(excepcion);
-        }finally{
-            getConnection().close();
         }
        
        
