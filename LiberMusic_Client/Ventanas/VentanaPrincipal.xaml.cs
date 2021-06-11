@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LiberMusic_Client.Models;
 using LiberMusic_Client.Paginas;
 
 namespace LiberMusic_Client.Ventanas
@@ -21,8 +22,10 @@ namespace LiberMusic_Client.Ventanas
     /// </summary>
     public partial class VentanaPrincipal : Window
     {
-        public VentanaPrincipal()
+        private Usuario _usuarioSesion;
+        public VentanaPrincipal(Usuario usuario)
         {
+            _usuarioSesion = usuario;
             InitializeComponent();
            
         }
