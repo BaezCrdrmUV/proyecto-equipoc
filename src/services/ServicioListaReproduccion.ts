@@ -106,9 +106,23 @@ public async buscarListaReproduccionPorId(idLista){
         console.log("errores: "+ errores);
     }
    return resultadoDeOperacion;
-
-
 }
+public async obtenerCancionesDeListaDeReproduccion(idLista:string){
+    let resultadoDeOperacion;
+    try{
+        let repositorioLista = new CancionesListasDeReproduccionRepository();
+        resultadoDeOperacion = await repositorioLista.obtenerCancionesDeListaDeReproduccion(idLista);
+        console.log(resultadoDeOperacion.mensaje);
+        console.log(resultadoDeOperacion.datos);
+        console.log(resultadoDeOperacion.erroresDeValidacion);
+        console.log(resultadoDeOperacion.erroresDeGuardado);
+        return resultadoDeOperacion;   
+    }catch(errores){
+        console.log("errores: "+ errores);
+    }
+   return resultadoDeOperacion;
+}
+
 
 }
 export let serviciosListas = new ServiciosListaReproduccion()

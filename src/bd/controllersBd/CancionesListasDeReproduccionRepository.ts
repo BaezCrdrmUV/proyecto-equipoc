@@ -38,10 +38,10 @@ export class CancionesListasDeReproduccionRepository {
         
         try{
            
-            const cancionEnListaDeReproduccion =await getRepository(CancionesListasDeReproduccion).findOne({where:{fkIdCancion:cancionEnListaDeReproduccionP.fkIdCancion,
-                                                                                    fkIdListaDeReproduccion:cancionEnListaDeReproduccionP.fkIdListaDeReproduccion}});
+            let cancionEnListaDeReproduccion : CancionesListasDeReproduccion =await getRepository(CancionesListasDeReproduccion).findOneOrFail({where:{fkIdCancion:cancionEnListaDeReproduccionP.fkIdCancion,
+                                                                                    fkIdListaDeReproduccion:cancionEnListaDeReproduccionP.fkIdListaDeReproduccion,fkIdEstatus:1}});
             
-            console.log("OBEJTO "+ cancionEnListaDeReproduccion);
+            console.log("OBJETO "+ cancionEnListaDeReproduccion);
             console.log("ID "+cancionEnListaDeReproduccion.id)
             console.log("IDLISTA "+cancionEnListaDeReproduccion.fkIdListaDeReproduccion);
             console.log("IDCANCION "+cancionEnListaDeReproduccion.fkIdCancion);
@@ -49,20 +49,26 @@ export class CancionesListasDeReproduccionRepository {
             if(cancionEnListaDeReproduccion == null){
                 return MensajesManager.crearMensajeDeErrorDeValidacion(null);
             }
+            console.log("APUNTO DE ASIGNAR EL ESTATUS");
             cancionEnListaDeReproduccion.fkIdEstatus = 2;
-           
+            console.log("ESTATUS ASIGNADO");
             try{
+                console.log("APUNTO DE VALIDAR");
                 validateOrReject(cancionEnListaDeReproduccion);
+                console.log("VALIDADO CORRECTAMENTE");
             }catch(excepcionDeValidacion){
+                console.log("HUBO EXCEPCION");
                 return MensajesManager.crearMensajeDeErrorDeValidacion(excepcionDeValidacion);
             }
-
+            console.log("APUNTO DE EJECUTAR EL BORRADO");
             await getRepository(CancionesListasDeReproduccion).save(cancionEnListaDeReproduccion);
-           
+            console.log("SE EJECUTO EL BORRADO");
         }catch(excepcion){
+            console.log("EXCEPCION AL BORRAR");
             return MensajesManager.crearMensajeDeError(excepcion);
         } 
-        return MensajesManager.crearMensajeDeExito("cancion actualizada exitosamente: ");
+        console.log("BORRADO EXITOSO");
+        return MensajesManager.crearMensajeDeExito("tu cancion se ha eliminado de la lista ");
     }
 
    
@@ -79,7 +85,7 @@ export class CancionesListasDeReproduccionRepository {
         }catch(excepcion){
             return MensajesManager.crearMensajeDeError(excepcion);
         }
-        return MensajesManager.crearMensajeDeExito("consulta realizada con exito");
+        return MensajesManager.crearMensajeDeExito("consulta realizada con exito",canciones);
     }
 }
 

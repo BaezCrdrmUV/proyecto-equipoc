@@ -10,8 +10,6 @@ export class ArtistasRepository {
     public  async  crearArtista(datosartista:Artista):Promise<any>{
           
         try{
-            
-              
             let  artista = new Artista()
             artista.id = uuidv4();
 	        artista.nombre = datosartista.nombre;
@@ -27,7 +25,6 @@ export class ArtistasRepository {
                 return MensajesManager.crearMensajeDeErrorDeValidacion(excepcionDeValidacion);
             }
             const user =await getConnection().manager.save(artista);
-            
             
         }catch(excepcion){
            

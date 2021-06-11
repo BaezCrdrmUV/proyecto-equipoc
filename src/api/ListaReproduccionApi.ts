@@ -2,6 +2,7 @@ import { Router, Request, Response,NextFunction,Express } from "express";
 import express from 'express';
 import {serviciosListas} from '../services/ServicioListaReproduccion';
 import {createConnection, Connection} from "typeorm";
+import { MensajesManager } from "../Utilities/MensajesManager/MensajesManager";
 
 
 
@@ -25,6 +26,7 @@ class ListaReproduccionApi {
         this.router.put('/agregarCancion',express.json() ,this.agregarCancion);
         this.router.put('/eliminarCancion',express.json() ,this.eliminarCancion);
         this.router.get('/buscar',express.json() ,this.buscarListaPorId);
+        this.router.get('/cancionesLista',express.json() ,this.obtenerCancionesDeLista);
      
 
     }
@@ -67,11 +69,6 @@ class ListaReproduccionApi {
     async eliminarCancion(req: any, res: any, nextFunction: NextFunction) {
         let respuesta;
         try {
-            console.log("IDLISTAAPI: "+req.body.id);
-            console.log("FKIDUSUARIOPAPI: "+req.body.fkIdUsuario);
-            console.log("NOMBRELISTAAPI: "+req.body.nombre);
-            console.log("NUMERODETRACKSAPI: "+req.body.numeroDeTracks);
-            console.log("IDESTATUSAPI: "+req.body.fkIdEstatus);
             respuesta = await serviciosListas.eliminarCancion(req.body);
             res.send(respuesta);
         } catch (error) {
@@ -100,12 +97,21 @@ class ListaReproduccionApi {
 
     }
 
-    async conectarBd(){
-       
+    async obtenerCancionesDeLista(req: any, res: any, nextFunction: NextFunction){
+        let  respuesta;
+        try{
+            if(req.query.idLista != undefined){
+                respuesta = await serviciosListas.obtenerCancionesDeListaDeReproduccion(req.query.idlista);
+                res.send(respuesta);
+            }else{
+                respuesta = MensajesManager.crearMensajeDeExito("No hay lista seleccionada");
+                res.send(respuesta);
+            }
+        }catch(error){
+            res.send(respuesta);
+        }
+
     }
-
-
-
 }
 export let listaAPi = new ListaReproduccionApi().router;
 

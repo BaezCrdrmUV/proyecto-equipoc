@@ -21,8 +21,12 @@ export class CancionesListasDeReproduccion extends BaseEntity {
     @IsNotEmpty()
     @Length(36,200)
     fkIdListaDeReproduccion: string;
-
-  
+    
+    @Column("int",{ unsigned:true,
+        nullable:true,   
+       default:1
+          ,comment:"estado del registro (activo,inactivo)"
+      })
     @IsNumber()
     fkIdEstatus: number;
 
