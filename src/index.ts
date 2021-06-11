@@ -201,6 +201,12 @@ let artistaJsonUpdate = {
 });
 
 const conectar = async() =>{
-        await createConnection();
+        try{
+                await createConnection();
+        }catch(excepcion){
+                console.log("Error al conectar con la BD");
+                console.log(excepcion);
+        }
+        //
 }
 
