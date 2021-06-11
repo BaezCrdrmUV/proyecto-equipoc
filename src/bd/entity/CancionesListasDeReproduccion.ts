@@ -12,14 +12,12 @@ export class CancionesListasDeReproduccion extends BaseEntity {
     @Length(36,200)
     id: string;
 
+    @Column("varchar")
     @IsNotEmpty()
     @Length(36,200)
     fkIdCancion: string;
 
-    @Column("varchar",{length:200
-                      ,comment:"nombre artistico"
-                      })
-  
+    @Column("varchar")
     @IsNotEmpty()
     @Length(36,200)
     fkIdListaDeReproduccion: string;
