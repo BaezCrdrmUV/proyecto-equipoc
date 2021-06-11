@@ -22,6 +22,8 @@ class ListaReproduccionApi {
     routes(): void {   
         this.router.post('/crear',express.json(),this.registrarLista); // ?ids=12345...,23426...,63464....
         this.router.put('/actualizar',express.json() ,this.actualizarArtista);
+        this.router.put('/agregarCancion',express.json() ,this.agregarCancion);
+        this.router.put('/agregarCancion',express.json() ,this.eliminarCancion);
         this.router.get('/buscar',express.json() ,this.buscarListaPorId);
      
 
@@ -52,6 +54,31 @@ class ListaReproduccionApi {
             res.send(respuesta);
         }
     }
+
+    async agregarCancion(req: any, res: any, nextFunction: NextFunction) {
+        let respuesta;
+        try {
+            respuesta = await serviciosListas.agregarCancion(req.body);
+            res.send(respuesta);
+        } catch (error) {
+            res.send(respuesta);
+        }
+    }
+    async eliminarCancion(req: any, res: any, nextFunction: NextFunction) {
+        let respuesta;
+        try {
+            console.log("IDLISTAAPI: "+req.body.id);
+            console.log("FKIDUSUARIOPAPI: "+req.body.fkIdUsuario);
+            console.log("NOMBRELISTAAPI: "+req.body.nombre);
+            console.log("NUMERODETRACKSAPI: "+req.body.numeroDeTracks);
+            console.log("IDESTATUSAPI: "+req.body.fkIdEstatus);
+            respuesta = await serviciosListas.eliminarCancion(req.body);
+            res.send(respuesta);
+        } catch (error) {
+            res.send(respuesta);
+        }
+    }
+
 
     async buscarListaPorId(req: any, res: any, nextFunction: NextFunction) {
         let  respuesta;

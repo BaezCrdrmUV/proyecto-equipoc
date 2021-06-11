@@ -6,7 +6,7 @@ import {v4 as uuidv4} from "uuid";
 import {MensajesManager} from "../../Utilities/MensajesManager/MensajesManager";
 import {validateOrReject} from "class-validator";
 
-export class CancionesRepository {
+export class CancionesListasDeReproduccionRepository {
 //comentario
     public  async  agregarCancion(cancionListaDeRerpoduccion):Promise<any>{
   
@@ -30,7 +30,7 @@ export class CancionesRepository {
         return MensajesManager.crearMensajeDeExito("cancion guardada exitosamente");
     }
 
-    public async eliminarCancion (cancionEnListaDeReproduccionP:CancionesListasDeReproduccion):Promise<any>{
+    public async eliminarCancion (cancionEnListaDeReproduccionP):Promise<any>{
         
         try{
            
