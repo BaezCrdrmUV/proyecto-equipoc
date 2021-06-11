@@ -1,7 +1,7 @@
 import {Entity, PrimaryGeneratedColumn, Column,BaseEntity,ManyToOne,JoinColumn,PrimaryColumn,OneToMany} from "typeorm";
 import {min,max,length,Length,Matches,IsNotEmpty,IsFQDN,IsNumber} from "class-validator";
 import {Album} from "./Album";
-import {CancionesListasDeReproduccion} from "./cancionesListasDeReproduccion";
+import {CancionesListasDeReproduccion} from "./CancionesListasDeReproduccion";
 @Entity("canciones")
 export class Cancion extends BaseEntity{
 
