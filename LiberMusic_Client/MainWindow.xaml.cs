@@ -59,6 +59,7 @@ namespace LiberMusic_Client
                     response.EnsureSuccessStatusCode();
                 if (response.IsSuccessStatusCode) {
                     var result = await response.Content.ReadAsStringAsync();
+                    var postResult = JsonSerializer.Deserialize<usuarioLogin>(result);
 
                 }
 
