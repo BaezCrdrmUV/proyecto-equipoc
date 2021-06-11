@@ -33,18 +33,42 @@ namespace LiberMusic_Client
             btnIngresar.IsEnabled = false;
         //Activar Pantalla de carga
            Conexiones conexion = new Conexiones();
-           Usuario ususarioconsultado = await conexion.HacerLogin(txtUsuario.Text, txtPassword.Password);
+            try
+            {
+                Usuario ususarioconsultado = await conexion.HacerLogin(txtUsuario.Text, txtPassword.Password);
 
-            if (ususarioconsultado != null)
+                if (ususarioconsultado.id !=null)
+                {
+                    if (ususarioconsultado.fkIdArtista == null)
+                    {
+                        Ventanas.VentanaPrincipal ventana = new Ventanas.VentanaPrincipal(ususarioconsultado);
+                        ventana.Show();
+                        this.Close();
+
+                    }
+                    else {
+                        Ventanas.VentanaPrincipalCreador ventana = new Ventanas.VentanaPrincipalCreador(ususarioconsultado);
+                        ventana.Show();
+                        this.Close();
+                    }
+                   
+                }
+                else
+                {
+
+                    MessageBox.Show("No encontramos el usuario");
+                    btnIngresar.IsEnabled = true;
+                }
+            }
+            catch (Exception ecepcioncachada)
             {
 
-                Ventanas.VentanaPrincipal ventana = new Ventanas.VentanaPrincipal(ususarioconsultado);
-                ventana.Show();
+                MessageBox.Show("ocurrió un error al realizar el proceso de login");
             }
-            else {
-
-                MessageBox.Show("No encontramos el usuario");
+            finally {
                 btnIngresar.IsEnabled = true;
+                txtPassword.Clear();
+                txtUsuario.Clear();
             }
 
         }

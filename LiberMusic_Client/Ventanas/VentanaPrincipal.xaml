@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LiberMusic_Client.Ventanas"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="VentanaPrincipal" Height="1080" Width="800" >
+        Title="VentanaPrincipal" Height="1080" Width="800" Icon="/Recursos/Imagenes/Icon.png" >
  
     <Grid>
         <Grid.ColumnDefinitions>
@@ -53,7 +53,7 @@
         </Grid>
         <Grid Grid.Column="1">
             <Frame x:Name="PaginaFrame"  Grid.Row="1" NavigationUIVisibility="Hidden" 
-                   Source="/Paginas/PaginasAdmin/RegistrarCancion.xaml"/>
+                   />
         </Grid>
        
 

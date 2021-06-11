@@ -11,17 +11,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LiberMusic_Client.Ventanas
+namespace LiberMusic_Client.Paginas
 {
+    
     /// <summary>
-    /// Lógica de interacción para VentanaPrincipalCreador.xaml
+    /// Lógica de interacción para PaginaBienvenidaUsuario.xaml
     /// </summary>
-    public partial class VentanaPrincipalCreador : Window
+    public partial class PaginaBienvenidaUsuario : Page
     {
-        public VentanaPrincipalCreador(Usuario usuario)
+        private Usuario _usuario;
+        public PaginaBienvenidaUsuario(Usuario usuario)
         {
+            this._usuario = usuario;
+            this.DataContext = usuario;
             InitializeComponent();
         }
     }

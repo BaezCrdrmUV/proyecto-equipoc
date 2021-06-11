@@ -25,8 +25,10 @@ namespace LiberMusic_Client.Ventanas
         private Usuario _usuarioSesion;
         public VentanaPrincipal(Usuario usuario)
         {
-            _usuarioSesion = usuario;
             InitializeComponent();
+            _usuarioSesion = usuario;
+            PaginaFrame.Content = new PaginaBienvenidaUsuario(_usuarioSesion);
+           
            
         }
 

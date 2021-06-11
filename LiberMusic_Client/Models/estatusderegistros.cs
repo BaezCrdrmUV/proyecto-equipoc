@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace LiberMusic_Client.Models
 {
- 
-        public class Contrasena
-        {
-            public string Contrasena1 { set; get; }
-        }
-    
+   public class estatusderegistros
+    {
+        public int id { get; set; }
+        public string nombreDeEstatus { get; set; }
+    }
 }
