@@ -9,12 +9,11 @@
       "module": "commonjs",
       "moduleResolution": "node",
       "outDir": "./dist",
-      "rootDir": "./src",
+      "rootDirs": ["./src","./test/**/*"],
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "esModuleInterop": true,
       "noImplicitAny": false,
       "sourceMap": true
-   },
-   "exclude": []
+   }
 }
