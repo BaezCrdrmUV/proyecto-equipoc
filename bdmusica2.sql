@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `libermusicmusica`.`cancioneslistasdereproduccion` (
   `fkIdEstatus` INT UNSIGNED NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_cancioneslistasdereproduccion_canciones1_idx` (`fkIdCancion` ASC) VISIBLE,
-  INDEX `fk_cancioneslistasdereproduccion_listasdereproduccion1_idx` (`flIdListaDeReproduccion` ASC) VISIBLE,
+  INDEX `fk_cancioneslistasdereproduccion_listasdereproduccion1_idx` (`fkIdListaDeReproduccion` ASC) VISIBLE,
   INDEX `fk_cancioneslistasdereproduccion_estatusdearchivos1_idx` (`fkIdEstatus` ASC) VISIBLE,
   CONSTRAINT `fk_cancioneslistasdereproduccion_canciones1`
     FOREIGN KEY (`fkIdCancion`)
