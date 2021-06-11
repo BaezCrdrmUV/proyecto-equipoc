@@ -101,7 +101,8 @@ class ListaReproduccionApi {
         let  respuesta;
         try{
             if(req.query.idLista != undefined){
-                respuesta = await serviciosListas.obtenerCancionesDeListaDeReproduccion(req.query.idlista);
+                console.log("ID LISTA API: "+ req.query.idLista);
+                respuesta = await serviciosListas.obtenerCancionesDeListaDeReproduccion(req.query.idLista);
                 res.send(respuesta);
             }else{
                 respuesta = MensajesManager.crearMensajeDeExito("No hay lista seleccionada");

@@ -32,7 +32,6 @@ export class CancionesListasDeReproduccionRepository {
 
     public async eliminarCancion (cancionEnListaDeReproduccionP):Promise<any>{
         process.on('unhandledRejection',function (error){
-
             console.log(error);
         });
         
@@ -76,16 +75,20 @@ export class CancionesListasDeReproduccionRepository {
     
     public async obtenerCancionesDeListaDeReproduccion(idLista:string):Promise<any>{
         let canciones;
+        let idsCanciones = [];
         try{   
            
             canciones = await getRepository(CancionesListasDeReproduccion).find({fkIdListaDeReproduccion:idLista});
             if(canciones == undefined || canciones.length == 0){
                 return MensajesManager.crearMensajeDeErrorDeValidacion(null);
             }
+            canciones.forEach(registroCancionesListas => {
+                idsCanciones.push(registroCancionesListas.fkIdCancion);
+            });
         }catch(excepcion){
             return MensajesManager.crearMensajeDeError(excepcion);
         }
-        return MensajesManager.crearMensajeDeExito("consulta realizada con exito",canciones);
+        return MensajesManager.crearMensajeDeExito("consulta realizada con exito",idsCanciones);
     }
 }
 

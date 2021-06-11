@@ -109,6 +109,7 @@ public async buscarListaReproduccionPorId(idLista){
 }
 public async obtenerCancionesDeListaDeReproduccion(idLista:string){
     let resultadoDeOperacion;
+    console.log("ID LISTA SERVICIO: "+idLista);
     try{
         let repositorioLista = new CancionesListasDeReproduccionRepository();
         resultadoDeOperacion = await repositorioLista.obtenerCancionesDeListaDeReproduccion(idLista);

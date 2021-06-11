@@ -23,7 +23,7 @@ export class MensajesManager {
             erroresDeGuardado:[],
             erroresDeValidacion:[]
         }
-        resultadoOperacion.erroresDeValidacion.push(excepcion);
+        resultadoOperacion.erroresDeGuardado.push(excepcion);
         resultadoOperacion.mensaje= "Error al realizar la transaccion";        
         return resultadoOperacion;
     }
@@ -45,7 +45,7 @@ export class MensajesManager {
         }
         return resultadoOperacion;
     }
-    
+
   
    
 }
