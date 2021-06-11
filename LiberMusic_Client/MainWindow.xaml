@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LiberMusic_Client"
         mc:Ignorable="d"
-        Title="Login" Height="600" Width="800" Icon="C:\Users\jhoni\Documents\Proyecto redes\db\Front\LiberMusic_Client\Recursos\Imagenes\Icon.png">
+        Title="Login" Height="600" Width="800">
     <Grid Background="{StaticResource AzulCastilloLight}">
         
         <Grid.ColumnDefinitions>
@@ -14,10 +14,7 @@
 
         </Grid.ColumnDefinitions>
         <Grid x:Name="LateralIzquierdo" Background="{StaticResource AzulCastillo}" Grid.Column="0">
-            <Image Source="C:\Users\jhoni\Documents\Proyecto redes\db\Front\LiberMusic_Client\Recursos\Imagenes\Gato1.png" Width="250" Margin="0,0,0,0" Stretch="Fill" >
-                
-
-            </Image>
+         
             
         </Grid>
         <Grid Grid.Column="1">
@@ -42,7 +39,7 @@
                     </Grid>
                     <Grid Grid.Column="1">
                         <StackPanel Grid.Row="0">
-                            <TextBox Template="{StaticResource InputControlTemplate}">
+                            <TextBox Name="txtUsuario" Template="{StaticResource InputControlTemplate}">
                                 
                             </TextBox>
                         </StackPanel>
@@ -65,7 +62,7 @@
                     </Grid>
                     <Grid Grid.Column="1">
                         <StackPanel Grid.Row="0">
-                            <PasswordBox Template="{StaticResource PasswordControlTemplate}">
+                            <PasswordBox Name="txtPassword" Template="{StaticResource PasswordControlTemplate}">
                                 
                             </PasswordBox>
                         </StackPanel>
@@ -78,7 +75,7 @@
             <StackPanel Width="450" Margin="0,300,0,130">
                 <Grid>
                     <StackPanel Grid.Row="0">
-                        <Button Content="Ingresar" Style="{StaticResource BotonPrincipalStyle}">
+                        <Button x:Name="btnIngresar" Content="Ingresar" Style="{StaticResource BotonPrincipalStyle}" Cursor="Hand" Click="doLogin">
                             
                         </Button>
                         
@@ -90,7 +87,7 @@
             <StackPanel Width="450" Margin="0,400,0,30">
                 <Grid>
                     <StackPanel Grid.Row="0">
-                        <Button Content="Registrarse" Style="{StaticResource BotonPrincipalStyle}">
+                        <Button Name="btnRegistrarse" Content="Registrarse" Style="{StaticResource BotonPrincipalStyle}" Cursor="Hand">
 
                         </Button>
 

@@ -59,5 +59,14 @@ namespace LiberMusic_Client.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a http://localhost:4003/LoginApi/doLogin.
+        /// </summary>
+        internal static string rutaApiLogin {
+            get {
+                return ResourceManager.GetString("rutaApiLogin", resourceCulture);
+            }
+        }
     }
 }
