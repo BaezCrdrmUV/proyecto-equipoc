@@ -63,7 +63,7 @@ export class ListaReproduccionRepository {
         let lista;
         try{   
           
-            lista = await getRepository(ListaReproduccion).findOneOrFail({where:{id:idlista}});
+            lista = await getRepository(ListaReproduccion).findOneOrFail({where:{id:idlista,fkIdEstatus:1}});
             
         
         }catch(excepcion){
@@ -76,7 +76,7 @@ export class ListaReproduccionRepository {
         let listas;
         try{   
             
-            listas = await getRepository(ListaReproduccion).find({where:{nombre:Like("%"+nombreLista+"%")}});
+            listas = await getRepository(ListaReproduccion).find({where:{nombre:Like("%"+nombreLista+"%"),fkIdEstatus:1}});
         }catch(excepcion){
                 return MensajesManager.crearMensajeDeError(excepcion);
         }
