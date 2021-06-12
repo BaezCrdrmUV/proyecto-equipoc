@@ -26,13 +26,8 @@ class CancionesApi {
            
             if(req.body != undefined && req.body != null){
                 respuesta = await servicioCanciones.crearCancion(req.body);
-                if(respuesta.estatus == true){
-                    res.status(201);
-                    res.send(respuesta);
-                }else{
-                    res.status(200);
-                    res.send(respuesta);
-                }
+                res.send(respuesta);
+
             }
         } catch (error) {
             res.send(respuesta);
@@ -45,13 +40,8 @@ class CancionesApi {
             if(req.body != undefined && req.body != null){
                     respuesta = await servicioCanciones.actualizarCancion(req.body);
                     console.log("API CANCIONES: "+respuesta);
-                    if(respuesta.estatus == true){
-                        res.status(201);
-                        res.send(respuesta);
-                    }else{
-                        res.status(200);
-                        res.send(respuesta);
-                    }
+                    res.send(respuesta);
+                    
             }
         } catch (error) {
             res.send(respuesta);
@@ -66,15 +56,9 @@ class CancionesApi {
                 console.log("SE EJECUTO TODAS");
                 respuesta =await servicioCanciones.obtenerTodasLasCanciones(req.query.resultadosOmitidos,req.query.numeroDeResultadosEsperados);
                 console.log("2C");
-                if(respuesta.estatus == true){
-                    console.log("Exito busuqeda C");
-                    res.status(200);
-                    res.send(respuesta);
-                }else{
-                    console.log("Errorbusqueda C");
-                    res.status(200);
-                    res.send(respuesta);
-                }
+                console.log("Exito busuqeda C");
+                res.send(respuesta);
+                
             }else if(req.query.id != undefined){
                 console.log("SE EJECUTO ID");
                 console.log("ID EN API "+req.query.id);

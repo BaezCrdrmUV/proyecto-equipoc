@@ -24,13 +24,8 @@ class AlbumesApi {
         try {
             if(req.body != undefined && req.body != null){
                 respuesta = await servicioAlbumes.crearAlbum(req.body);
-                if(respuesta.estatus == true){
-                    res.status(201);
-                    res.send(respuesta);
-                }else{
-                    res.status(204);
-                    res.send(respuesta);
-                }
+                res.send(respuesta);
+                
             }
         } catch (error) {
             res.send(respuesta);
@@ -43,13 +38,7 @@ class AlbumesApi {
             if(req.body != undefined && req.body != null){
                     respuesta = await servicioAlbumes.actualizarAlbum(req.body);
                     console.log("API ALBUMES: "+respuesta);
-                    if(respuesta.estatus == true){
-                        res.status(201);
-                        res.send(respuesta);
-                    }else{
-                        res.status(204);
-                        res.send(respuesta);
-                    }
+                    res.send(respuesta);
             }
         } catch (error) {
             res.send(respuesta);
@@ -63,33 +52,18 @@ class AlbumesApi {
                 console.log("SE EJECUTO ID");
                 console.log("ID EN API "+req.query.id);
                 respuesta =await servicioAlbumes.obtenerAlbumPorId(req.query.id);
-                if(respuesta.estatus == true){
-                    res.status(200);
-                    res.send(respuesta);
-                }else{
-                    res.status(204);
-                    res.send(respuesta);
-                }
+                res.send(respuesta);
+                
             }else if(req.query.titulo != undefined){
                 console.log("SE EJECUTO titulo");
                 respuesta =await servicioAlbumes.obtenerAlbumPorNombre(req.query.titulo,req.query.resultadosOmitidos,req.query.numeroDeResultadosEsperados);
-                if(respuesta.estatus == true){
-                    res.status(200);
-                    res.send(respuesta);
-                }else{
-                    res.status(204);
-                    res.send(respuesta);
-                }
+                res.send(respuesta);
+                
             }else if(req.query.idArtista != undefined){
                 console.log("SE EJECUTO ARTISTA");    
-                respuesta =await servicioAlbumes.obtenerAlbumesPorIdArtista(req.query.idArtista,req.query.resultadosOmitidos,req.query.numeroDeResultadosEsperados);
-                 if(respuesta.estatus == true){
-                    res.status(201);
-                    res.send(respuesta);
-                }else{
-                    res.status(204);
-                    res.send(respuesta);
-                }
+                respuesta =await servicioAlbumes.obtenerAlbumesPorIdArtista(req.query.idArtista,req.query.resultadosOmitidos,req.query.numeroDeResultadosEsperados); 
+                res.send(respuesta);
+                
             }
         }catch(error){
             res.send(respuesta);
