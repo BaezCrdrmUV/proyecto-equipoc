@@ -138,16 +138,23 @@ export class CancionesRepository {
 
     public async obtenerCancionesDeListaDeReproduccion(idCanciones:string[]):Promise<any>{
         let canciones;
+        console.log(typeof(idCanciones));
+        console.log(idCanciones);
         try{   
-           
+           console.log("A PUNTO DE CONSULTAR")
             canciones = await getRepository(Cancion).find({id:In(idCanciones)});
+            console.log("CONSULTA REALIZADA")
             if(canciones == undefined || canciones.length == 0){
+                console.log("RESPUESTA SIN DATOS")
                 return MensajesManager.crearMensajeDeErrorDeValidacion(null);
             }
+            console.log("FIN DEL TRY")
         }catch(excepcion){
+            console.log("HUBO EXCEPCION")
             return MensajesManager.crearMensajeDeError(excepcion);
         }
-        return MensajesManager.crearMensajeDeExito("consulta realizada con exito");
+        console.log("CONSULTA EXITOSA")
+        return MensajesManager.crearMensajeDeExito("consulta realizada con exito",canciones);
     }
 }
 
