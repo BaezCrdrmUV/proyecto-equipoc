@@ -101,11 +101,11 @@ export class ServicioCanciones {
        return resultadoDeOperacion;
     }
 
-    public async obtenerCancionesDeListaDeReproduccion(idLista){
+    public async obtenerCancionesDeListaDeReproduccion(idsCanciones){
         let resultadoDeOperacion;
         try{
             let repositorioCancion = new CancionesRepository();
-            resultadoDeOperacion = await repositorioCancion.obtenerCancionesDeListaDeReproduccion(idLista);
+            resultadoDeOperacion = await repositorioCancion.obtenerCancionesDeListaDeReproduccion(idsCanciones);
             console.log(resultadoDeOperacion.mensaje);
             console.log(resultadoDeOperacion.datos);
             console.log(resultadoDeOperacion.erroresDeValidacion);
