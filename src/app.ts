@@ -3,7 +3,6 @@ import * as path       from 'path';
 var express = require('express');
 import morgan from 'morgan';
 import * as bodyParser from 'body-parser';
-import {artistasApi} from "./api/ArtistasApi";
 import {albumesApi} from "./api/AlbumesApi";
 import {cancionesApi} from "./api/CancionesApi";
 import {listaAPi} from "./api/ListaReproduccionApi";
@@ -48,9 +47,8 @@ import { ListaReproduccion } from "./bd/entity/ListaReproduccion";
 
         });
         this.express.use('/',RootRouter);
-        this.express.use('/artistas',artistasApi);
-        this.express.use('/albumes',albumesApi);
-        this.express.use('/canciones',cancionesApi);
+        this.express.use('/albumesPrivados',albumesApi);
+        this.express.use('/cancionesPrivadas',cancionesApi);
         this.express.use('/ListaDeReproduccion', listaAPi)
         //this.express.use('/streaming', );
         //this.express.use('*',);
