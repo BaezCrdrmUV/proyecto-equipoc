@@ -98,8 +98,9 @@ class CancionesApi {
                  res.send(respuesta);
                 
 
-            }else if(req.query.idLista != undefined){
-                respuesta =await servicioCanciones.obtenerCancionesDeListaDeReproduccion(req.query.idLista);
+            }else if(req.query.idCanciones != undefined){
+                let idsFormatoArreglo = req.query.idCanciones.split(",");
+                respuesta =await servicioCanciones.obtenerCancionesDeListaDeReproduccion(idsFormatoArreglo);
                 console.log("BUSQUEDA IDLISTA CORRECTA 1C");
                 res.status(200);
                 res.send(respuesta);
