@@ -4,13 +4,16 @@ import {Album} from "../entity/Album";
 import {v4 as uuidv4} from "uuid";
 import {validateOrReject} from "class-validator";
 import {MensajesManager} from "../../Utilities/MensajesManager/MensajesManager";
+import { ConexionManager } from "../../Utilities/ConexionManager";
 
 export class ArtistasRepository {
 
     public  async  crearArtista(datosartista:Artista):Promise<any>{
           
         try{
-            let  artista = new Artista()
+           
+            
+            let  artista = new Artista();
             artista.id = uuidv4();
 	        artista.nombre = datosartista.nombre;
             artista.nombreArtistico = datosartista.nombreArtistico;

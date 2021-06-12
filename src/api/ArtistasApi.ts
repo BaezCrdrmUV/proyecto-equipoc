@@ -39,13 +39,7 @@ class ArtistasApi {
         let respuesta;
         try {
            respuesta = await servicioArtistas.actualizarArtista(req.body);
-           if(respuesta.estatus == true){
-            res.status(201);
-            res.send(respuesta);
-        }else{
-            res.status(204);
-            res.send(respuesta);
-        }
+           res.send(respuesta);
         } catch (error) {
             res.send(respuesta);
         }

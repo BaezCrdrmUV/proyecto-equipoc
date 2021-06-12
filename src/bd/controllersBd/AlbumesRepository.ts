@@ -6,7 +6,7 @@ import {Artista} from "../entity/Artista";
 import {MensajesManager} from "../../Utilities/MensajesManager/MensajesManager";
 import {v4 as uuidv4} from "uuid";
 import {validateOrReject} from "class-validator";
-import { isUndefined } from "util";
+import { ConexionManager } from "../../Utilities/ConexionManager";
 
 export class AlbumesRepository {
 
@@ -14,7 +14,7 @@ export class AlbumesRepository {
   
          
         try{
-        
+            
             album.id = uuidv4();
             album.fkIdArtista = album.fkIdArtista; 
             album.titulo = album.titulo;

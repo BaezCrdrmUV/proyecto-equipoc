@@ -7,6 +7,7 @@ import {artistasApi} from "./api/ArtistasApi";
 import {albumesApi} from "./api/AlbumesApi";
 import {cancionesApi} from "./api/CancionesApi";
 import {listaAPi} from "./api/ListaReproduccionApi";
+import {createConnection} from "typeorm";
 import { ListaReproduccion } from "./bd/entity/ListaReproduccion";
 
 
@@ -33,6 +34,11 @@ import { ListaReproduccion } from "./bd/entity/ListaReproduccion";
 
     private routes(){
 
+        try{
+        
+        }catch(excepcion){
+            console.log();
+        }
         let RootRouter = express.Router();
         RootRouter.get('/',(req,res,next) =>{
             res.json({

@@ -7,8 +7,8 @@ import {AlbumParser} from "./Utilities/Parser/AlbumesParser";
 import {CancionParser} from "./Utilities/Parser/CancionParser"
 import {Artista} from "./bd/entity/Artista";
 import * as aplicattion from "./app";
-import {createConnection} from "typeorm";
-import { format } from "url";
+import {createConnection,getConnection} from "typeorm";
+
 import {v4 as uuidv4} from "uuid"
 import app from "./app";
 
@@ -22,8 +22,34 @@ let server = http.createServer(app);
 const port = 4001;
 
 
+const conectarBd = async() =>{
+        let intentarConexion = true;
+        while(intentarConexion){
+                 try{
+                        await createConnection();
+                         intentarConexion = false;
+                 }catch(excepcion){
+                      
+                 }
+        } 
+ }
+
+conectarBd();
+
+
+/*
+const probarConexion = async() =>{
+        try{
+                getConnection();
+        }catch(excepcion){
+                console.log("EXCEPCION "+excepcion);
+        }
+}
+probarConexion();
+*/
+
 server.listen(port, function () {
-    conectar();
+    
     let artistaRepository = new ArtistasRepository();
     let albumRepository = new AlbumesRepository();
     let cancionRepository = new CancionesRepository();
@@ -200,13 +226,5 @@ let artistaJsonUpdate = {
     
 });
 
-const conectar = async() =>{
-        try{
-                await createConnection();
-        }catch(excepcion){
-                console.log("Error al conectar con la BD");
-                console.log(excepcion);
-        }
-        //
-}
+
 

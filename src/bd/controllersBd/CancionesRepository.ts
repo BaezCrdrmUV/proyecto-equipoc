@@ -66,12 +66,13 @@ export class CancionesRepository {
     }
 
     public async obtenerTodasLasCanciones(cancionesOmitidas:number,numeroDeCancionesEsperadas:number):Promise<any>{
-        let canciones;
-
+        let canciones;   
         try{
             
-            canciones = getRepository(Cancion).find({skip:cancionesOmitidas,
+            canciones = await getRepository(Cancion).find({skip:cancionesOmitidas,
                                                     take:numeroDeCancionesEsperadas});
+            
+            
             if(canciones == undefined || canciones.length == 0){
                 return MensajesManager.crearMensajeDeErrorDeValidacion(null);
             }
@@ -79,7 +80,7 @@ export class CancionesRepository {
         }catch(excepcion){
             return MensajesManager.crearMensajeDeError(excepcion);
         }
-        return MensajesManager.crearMensajeDeExito("consulta exitosa");
+        return MensajesManager.crearMensajeDeExito("consulta exitosa",canciones);
     }
 
     public async obtenerCancionPorId(idCancion:string):Promise<any>{

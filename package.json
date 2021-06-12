@@ -24,6 +24,6 @@
    "scripts": {
       "start": "3-node src/index.ts",
       "typeorm": "ts-node ./node_modules/typeorm/cli.js",
-      "test":"./node_modules/.bin/mocha -R min"
+      "test": "./node_modules/.bin/mocha -R min"
    }
 }

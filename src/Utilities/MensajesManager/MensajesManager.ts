@@ -44,10 +44,7 @@ export class MensajesManager {
             resultadoOperacion.mensaje= "los datos introducidos no son validos";
         }
         return resultadoOperacion;
-    }
-
-  
-   
+    }   
 }
 
 
