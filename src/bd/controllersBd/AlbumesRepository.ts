@@ -25,7 +25,7 @@ export class AlbumesRepository {
             album.anoDeLanzamiento = album.anoDeLanzamiento;
             album.fkIdEstatus=1;
             try{
-                validateOrReject(album);
+                await validateOrReject(album);
             }catch(excepcionDeValidacion){
                 return MensajesManager.crearMensajeDeErrorDeValidacion(excepcionDeValidacion);
             }

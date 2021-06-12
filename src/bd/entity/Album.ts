@@ -36,7 +36,7 @@ export class Album extends BaseEntity {
     companiaProductora: string;
     
     @Column("varchar",{length:200,comment:"sencillo,edicion especial,etc."})
-    @Matches("^([a-zA-zñ]+\\s{1,3})+[a-zA-Zñ]+\\s{0,3}$")
+    @Matches("^([a-zA-zñ]+\\s{0,3})+[a-zA-Zñ]*\\s{0,3}$")
     tipoDeAlbum: string;
 
     @Column("int",{nullable:true})
