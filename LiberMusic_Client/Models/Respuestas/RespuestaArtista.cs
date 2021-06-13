@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LiberMusic_Client.Models.Respuestas
 {
-    class RespuestaArtista
+    public class RespuestaArtista
     {
         public bool estatus { get; set; }
         public string mensaje { get; set; }
