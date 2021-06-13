@@ -3,102 +3,148 @@ version: '3.9'
 services:
     # Bases de datos
     
-   mysql_suscripcion:
-        image: mysql/mysql-server:latest
-        ports:
-            - "3310:3306"
-        restart: always
-        volumes:
-            - db_volume_suscripcion:/var/lib/mysql
-            - ../db/bdusuarios2.sql:/docker-entrypoint-initdb.d/bdusuarios2.sql:ro
-        command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_0900_ai_ci']
-        environment: 
-            MYSQL_ROOT_PASSWORD: "root"
-            MYSQL_HOST: localhost
-            MYSQL_DATABASE: "libermusicusuarios"
-            MYSQL_USER: "root"
-        container_name: db_suscripcion
+#    mysql_suscripcion:
+#         image: mysql/mysql-server:latest
+#         ports:
+#             - "3310:3306"
+#         restart: always
+#         volumes:
+#             - db_volume_suscripcion:/var/lib/mysql
+#             - ../db/bdusuarios2.sql:/docker-entrypoint-initdb.d/bdusuarios2.sql:ro
+#         command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_0900_ai_ci']
+#         environment: 
+#             MYSQL_ROOT_PASSWORD: "root"
+#             MYSQL_HOST: localhost
+#             MYSQL_DATABASE: "libermusicusuarios"
+#             MYSQL_USER: "root"
+#         container_name: db_suscripcion
 
    mysql_musica:
-        image: mysql/mysql-server:latest
-        ports:
-            - "3311:3306"
-        restart: always
-        volumes:
-            - db_volume_musica:/var/lib/mysql
-            - ../db/bdmusica2.sql:/docker-entrypoint-initdb.d/bdmusica2.sql:ro
-        command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_0900_ai_ci']
-        environment: 
-            MYSQL_ROOT_PASSWORD: "root"
-            MYSQL_HOST: localhost
-            MYSQL_DATABASE: "libermusicmusica"
-            MYSQL_USER: "root"
-        container_name: db_musica
+       image: mysql/mysql-server:latest
+       ports:
+           - "3311:3306"
+       restart: always
+       volumes:
+           - db_volume_musica:/var/lib/mysql
+           - ../db/bdmusica2.sql:/docker-entrypoint-initdb.d/bdmusica2.sql:ro
+       command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_0900_ai_ci']
+       environment: 
+           MYSQL_ROOT_PASSWORD: "root"
+           MYSQL_HOST: localhost
+           MYSQL_DATABASE: "libermusicmusica"
+           MYSQL_USER: "root"
+       container_name: db_musica
 
-    #mysql_multimedia:
-    #    image: mysql/mysql-server:latest
-    #    ports:
-    #        - "3312:3306"
-    #    restart: always
-    #    volumes:
-    #        - db_volume_multimedia:/var/lib/mysql
-    #        - ../db/bdmultimedia.sql:/docker-entrypoint-initdb.d/bdmultimedia.sql:ro
-    #    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_0900_ai_ci']
-    #    environment: 
-    #        MYSQL_ROOT_PASSWORD: "root"
-    #        MYSQL_HOST: localhost
-    #        MYSQL_DATABASE: "libermusicmultimedia"
-    #        MYSQL_USER: "root"
-    #    container_name: db_multimedia
+#    mysql_musica_privada:
+#        image: mysql/mysql-server:latest
+#        ports:
+#            - "3314:3306"
+#        restart: always
+#        volumes:
+#            - db_volume_musica_privada:/var/lib/mysql
+#            - ../db/bdmusicaprivada.sql:/docker-entrypoint-initdb.d/bdmusicaprivada.sql:ro
+#        command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_0900_ai_ci']
+#        environment: 
+#            MYSQL_ROOT_PASSWORD: "root"
+#            MYSQL_HOST: localhost
+#            MYSQL_DATABASE: "libermusicmusica"
+#            MYSQL_USER: "root"
+#        container_name: db_musica_privada
+       
+   mysql_multimedia:
+       image: mysql/mysql-server:latest
+       ports:
+           - "3312:3306"
+       restart: always
+       volumes:
+           - db_volume_multimedia:/var/lib/mysql
+           - ../db/bdmultimedia.sql:/docker-entrypoint-initdb.d/bdmultimedia.sql:ro
+       command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_0900_ai_ci']
+       environment: 
+           MYSQL_ROOT_PASSWORD: "root"
+           MYSQL_HOST: localhost
+           MYSQL_DATABASE: "libermusicmultimedia"
+           MYSQL_USER: "root"
+       container_name: db_multimedia
+
+
 
     # Microservicios
-   ms_suscripcion:
-        image: ms_suscripcion_libermusic
-        depends_on: 
-            - "mysql_suscripcion"
-        ports:
-            - "8090:80"
-        #build: 
-        #    context: ../MSSuscripcion/
-        #    dockerfile: Dockerfile
-        build:
-            https://github.com/aaron-77/LiberMusic#MSUsuarios
-        environment: 
-            DB_CONNECTION_STRING: "server=mysql_suscripcion;user=admin;password=admin;database=libermusicusuarios"
+#    ms_suscripcion:
+#         image: ms_suscripcion_libermusic
+#         depends_on: 
+#             - "mysql_suscripcion"
+#         ports:
+#             - "8090:80"
+#         #build: 
+#         #    context: ../MSSuscripcion/
+#         #    dockerfile: Dockerfile
+#         build:
+#             https://github.com/BaezCrdrmUV/proyecto-equipoc.git#MSSuscripcion
+#         environment: 
+#             DB_CONNECTION_STRING: "server=mysql_suscripcion;user=admin;password=admin;database=libermusicusuarios"
             
    ms_musica:
-        image: ms_musica_libermusic
-        depends_on: 
-            - "mysql_musica"
-        ports:
-            - "8091:4001"
-        #build: 
-        #    context: ../MSMusica/
-        #    dockerfile: Dockerfile
-        build:
-            https://github.com/BaezCrdrmUV/proyecto-equipoc#MSMusica
-        environment: 
-            TYPEORM_CONNECTION: "mysql"
-            TYPEORM_HOST: "mysql_musica"
-            TYPEORM_USERNAME: "admin"
-            TYPEORM_PASSWORD: "admin"
-            TYPEORM_DATABASE: "libermusicmusica"
-            TYPEORM_SYNCHRONIZE: "true"
-            TYPEORM_LOGGING: "true"
-            TYPEORM_ENTITIES: "dist/bd/entity/**/*.js"
-            
+       image: ms_musica_libermusic
+       depends_on: 
+           - "mysql_musica"
+       ports:
+           - "8091:4001"
+       build: 
+           context: ../MSMusica/
+           dockerfile: Dockerfile
+       #build:
+       #    https://github.com/BaezCrdrmUV/proyecto-equipoc.git#MSMusica
+       environment: 
+           TYPEORM_CONNECTION: "mysql"
+           TYPEORM_HOST: "mysql_musica"
+           TYPEORM_USERNAME: "admin"
+           TYPEORM_PASSWORD: "admin"
+           TYPEORM_DATABASE: "libermusicmusica"
+           TYPEORM_SYNCHRONIZE: "true"
+           TYPEORM_LOGGING: "true"
+           TYPEORM_ENTITIES: "dist/bd/entity/**/*.js"
 
-    # ms_clientes:
-    #    image: ms_clientes_uv
-    #    depends_on: 
-    #        - "mysql_clientes"
-    #    ports:
-    #        - "8092:80"
-    #    build: 
-    #        context: ../MSClientes/
-    #        dockerfile: Dockerfile
-    #    environment: 
-    #        DB_CONNECTION_STRING: "server=mysql_clientes;user=admin;password=admin;database=clientes"
+#    ms_musica_privada:
+#        image: ms_musica_privada_libermusic
+#        depends_on: 
+#            - "mysql_musica_privada"
+#        ports:
+#            - "8093:4005"
+#        #build: 
+#        #    context: ../MSMusicaPrivada/
+#        #    dockerfile: Dockerfile
+#        build:
+#            https://github.com/BaezCrdrmUV/proyecto-equipoc.git#MSMusicaPrivada
+#        environment: 
+#            TYPEORM_CONNECTION: "mysql"
+#            TYPEORM_HOST: "mysql_musica_privada"
+#            TYPEORM_USERNAME: "admin"
+#            TYPEORM_PASSWORD: "admin"
+#            TYPEORM_DATABASE: "libermusicmusica"
+#            TYPEORM_SYNCHRONIZE: "true"
+#            TYPEORM_LOGGING: "true"
+#            TYPEORM_ENTITIES: "dist/bd/entity/**/*.js"
+
+
+   ms_multimedia:
+       image: ms_multimedia
+       depends_on: 
+           - "mysql_multimedia"
+       ports:
+           - "8092:4002"
+       build: 
+           context: ../MSMultimedia/
+           dockerfile: Dockerfile
+       environment: 
+           TYPEORM_CONNECTION: "mysql"
+           TYPEORM_HOST: "mysql_multimedia"
+           TYPEORM_USERNAME: "admin"
+           TYPEORM_PASSWORD: "admin"
+           TYPEORM_DATABASE: "libermusicmultimedia"
+           TYPEORM_SYNCHRONIZE: "true"
+           TYPEORM_LOGGING: "true"
+           TYPEORM_ENTITIES: "dist/bd/entity/**/*.js"
 
     # API
     # api_gateway:
@@ -114,6 +160,7 @@ services:
     #         URL_MS_INVENTARIO: "http://localhost:8090"
 
 volumes:
-    db_volume_suscripcion:
+    #db_volume_suscripcion:
     db_volume_musica:
-    #db_volume_multimedia:
+    #db_volume_musica_privada:
+    db_volume_multimedia:
