@@ -15,33 +15,14 @@ import {MensajesManager} from "../utilities/MensajesManager";
 
 export class ServicioBusquedas {
 
-    
-  public async buscarMusicaPorArtista(){
-    
-  }
-  private async obtenerPortadas(artistaOAlbumesConsultados,requestManager,rutaPortada,params):Promise<any>{
-    try{
-        if(artistaOAlbumesConsultados.datos.length != undefined){
-          for(let i=0;i<artistaOAlbumesConsultados.datos.length ;i++){
-            
-              let respuestaPortadaConsultada = await requestManager.getRequest(rutaPortada,params);
-              artistaOAlbumesConsultados.datos[i].portada = respuestaPortadaConsultada.datos[0].urlPublicaDePortada;
-          }
-        }else{
-        
-            let respuestaPortadaConsultada = await requestManager.getRequest(rutaBuscarPortadaAlbum,params);
-            if(respuestaPortadaConsultada.estatus == false){
-              artistaOAlbumesConsultados.datos.portada = "NoEncontrada";
-            }else{
-              artistaOAlbumesConsultados.datos.portada = respuestaPortadaConsultada.datos.urlPublicaDePortada;
-            }
-           
-        }
-      
-    }catch(excepcion){
-        return MensajesManager.crearMensajeDeError("error al consultar los datos",excepcion);
-    }
-  }
+  BUSQUEDA_ID_ARTISTA:number = 1;
+  BUSQUEDA_ID_ALBUM:number = 2;
+  BUESUQEDA_ID_CANCION: number = 3;
+  BUESUQEDA_CANCIONES_LISTA_REPRODUCCION :number = 4
+  
+
+
+
   public async  buscarArtistaPorNombre(nombreArtistaP){
        let params = {
          nombreArtista: nombreArtistaP
@@ -57,19 +38,22 @@ export class ServicioBusquedas {
         if(artistasConsultados.estatus == true){
           
           try{
+           
+            //await this.obtenerPortadas(artistasConsultados,requestManager,rutaBuscarPortadaArtista,this.BUSQUEDA_ID_ARTISTA);
             let paramsPortada = {
               idArtista: artistasConsultados.datos[0].id
             } 
-            await this.obtenerPortadas(artistasConsultados,requestManager,rutaBuscarPortadaArtista,paramsPortada);
-            /*
-            for(let i=0;i<artistasConsultados.datos.length ;i++){
-              let paramsPortada = {
-                idArtista: artistasConsultados.datos[0].id
-              } 
+            if(artistasConsultados.datos.length != undefined){
+              for(let i=0;i<artistasConsultados.datos.length ;i++){
+               
+                let respuestaPortadaConsultada = await requestManager.getRequest(rutaBuscarPortadaArtista,paramsPortada);
+                artistasConsultados.datos[i].portada = respuestaPortadaConsultada.datos[0].urlPublicaDePortada;
+              }
+            }else{
+
               let respuestaPortadaConsultada = await requestManager.getRequest(rutaBuscarPortadaArtista,paramsPortada);
-              artistasConsultados.datos[i].portada = respuestaPortadaConsultada.datos[0].urlPublicaDePortada;
+                artistasConsultados.datos.portada = respuestaPortadaConsultada[0].datos.urlPublicaDePortada;
             }
-            */
           }catch(excepcion){
               return MensajesManager.crearMensajeDeError("error al consultar los datos",excepcion);
           }
@@ -95,17 +79,20 @@ export class ServicioBusquedas {
           let paramsPortada = {
             idArtista: artistasConsultados.datos.id
           } 
-          await this.obtenerPortadas(artistasConsultados,requestManager,rutaBuscarPortadaArtista,paramsPortada)
-          /* 
-          for(let i=0;i<artistasConsultados.datos.length ;i++){
-             let paramsPortada = {
-               idArtista: artistasConsultados.datos[0].id
-             } 
-             let respuestaPortadaConsultada = await requestManager.getRequest(rutaBuscarPortadaArtista,paramsPortada);
-             artistasConsultados.datos[i].portada = respuestaPortadaConsultada.datos[0].urlPublicaDePortada;
-           }
-           */
-          
+          //await this.obtenerPortadas(artistasConsultados,requestManager,rutaBuscarPortadaArtista,this.BUSQUEDA_ID_ARTISTA)
+           
+          if(artistasConsultados.datos.length != undefined){
+            for(let i=0;i<artistasConsultados.datos.length ;i++){
+              let paramsPortada = {
+                idArtista: artistasConsultados.datos[0].id
+              } 
+              let respuestaPortadaConsultada = await requestManager.getRequest(rutaBuscarPortadaArtista,paramsPortada);
+              artistasConsultados.datos[i].portada = respuestaPortadaConsultada.datos[0].urlPublicaDePortada;
+            }
+          }else{
+            let respuestaPortadaConsultada = await requestManager.getRequest(rutaBuscarPortadaArtista,paramsPortada);
+            artistasConsultados.datos.portada = respuestaPortadaConsultada.datos[0].urlPublicaDePortada;
+          }
          }catch(excepcion){
              return MensajesManager.crearMensajeDeError("error al consultar los datos",excepcion);
          }
@@ -130,16 +117,17 @@ export class ServicioBusquedas {
         idAlbum: albumesConsultados.datos[0].id
       } 
        try{
-        await this.obtenerPortadas(albumesConsultados,requestManager,rutaBuscarPortadaAlbum,albumesConsultados)
-        /* 
-        for(let i=0;i<artistasConsultados.datos.length ;i++){
-           let paramsPortada = {
-             idArtista: artistasConsultados.datos[0].id
-           } 
-           let respuestaPortadaConsultada = await requestManager.getRequest(rutaBuscarPortadaAlbum,paramsPortada);
-           artistasConsultados.datos[i].portada = respuestaPortadaConsultada.datos[0].urlPublicaDePortada;
+        //await this.obtenerPortadas(albumesConsultados,requestManager,rutaBuscarPortadaAlbum,this.BUSQUEDA_ID_ALBUM)
+         if(albumesConsultados.datos.length != undefined){
+          for(let i=0;i<albumesConsultados.datos.length ;i++){
+            
+            let respuestaPortadaConsultada = await requestManager.getRequest(rutaBuscarPortadaAlbum,paramsPortada);
+            albumesConsultados.datos[i].portada = respuestaPortadaConsultada.datos[0].urlPublicaDePortada;
+          }
+         }else{
+          let respuestaPortadaConsultada = await requestManager.getRequest(rutaBuscarPortadaAlbum,paramsPortada);
+          albumesConsultados.datos.portada = respuestaPortadaConsultada.datos[0].urlPublicaDePortada;
          }
-         */
        }catch(excepcion){
            return MensajesManager.crearMensajeDeError("error al consultar los datos",excepcion);
        }
@@ -166,16 +154,17 @@ export class ServicioBusquedas {
         idAlbum: albumesConsultados.datos.id
       } 
       // las portadas se agigan dentro de ste metodo auque no recuperemos el valor devuelto
-      await this.obtenerPortadas(albumesConsultados,requestManager,rutaBuscarPortadaAlbum,albumesConsultados);
-      /*
-      for(let i=0;i<artistasConsultados.datos.length ;i++){
-         let paramsPortada = {
-           idArtista: artistasConsultados.datos[0].id
-         } 
-         let respuestaPortadaConsultada = await requestManager.getRequest(rutaBuscarPortadaAlbum,paramsPortada);
-         artistasConsultados.datos[i].portada = respuestaPortadaConsultada.datos[0].urlPublicaDePortada;
-       }
-       */
+      //await this.obtenerPortadas(albumesConsultados,requestManager,rutaBuscarPortadaAlbum,this.BUSQUEDA_ID_ALBUM);
+      if(albumesConsultados.datos.length != undefined){
+        for(let i=0;i<albumesConsultados.datos.length ;i++){
+         
+          let respuestaPortadaConsultada = await requestManager.getRequest(rutaBuscarPortadaAlbum,paramsPortada);
+          albumesConsultados.datos[i].portada = respuestaPortadaConsultada.datos[0].urlPublicaDePortada;
+        } 
+      }else{
+          let respuestaPortadaConsultada = await requestManager.getRequest(rutaBuscarPortadaAlbum,paramsPortada);
+          albumesConsultados.datos.portada = respuestaPortadaConsultada.datos[0].urlPublicaDePortada;
+      }       
      }catch(excepcion){
          return MensajesManager.crearMensajeDeError("error al consultar los datos",excepcion);
      }
