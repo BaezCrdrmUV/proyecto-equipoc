@@ -93,5 +93,5 @@ START TRANSACTION;
 INSERT INTO `libermusicmultimedia`.`estatusdearchivos` ( `id`,`nombre`) VALUES ('1',' activo' );
 INSERT INTO `libermusicmultimedia`.`estatusdearchivos` (`id` ,`nombre`) VALUES ('2','inactivo' );
 INSERT INTO `libermusicmultimedia`.`datosarchivosdeportadas` (`id` ,`fkIdAlbum`,`nombreDeImagen`,`formato`,`urlDePortada`,`urlPublicaDePortada`) VALUES ('1','1','imagen','.png','una/ruta','otra/ruta' );
-INSERT INTO `libermusicmultimedia`.`datosarchivosdecanciones` ( `id`,`fkIdCancion`,`fkIdPortada`,`nombreDelArchivo`,`tamanoEnMb`,`formato`,`codigoIsrc`,`urlCancion`,`urlPublicaCancion`) VALUES (' 1','1','1','cancion',8,'.mp3','123456789101','una/ruta','otra ruta');
+INSERT INTO `libermusicmultimedia`.`datosarchivosdecanciones` ( `id`,`fkIdCancion`,`fkIdPortada`,`nombreDelArchivo`,`tamanoEnMb`,`formato`,`codigoIsrc`,`urlCancion`,`urlPublicaCancion`) VALUES ('1','1','1','cancion',8,'.mp3','123456789101','una/ruta','otra ruta');
 COMMIT;

@@ -168,7 +168,7 @@ START TRANSACTION;
 INSERT INTO `libermusicmusica`.`estatusderegistrosmusica` ( `id`,`nombreDeEstatus`) VALUES ('1',' activo' );
 INSERT INTO `libermusicmusica`.`estatusderegistrosmusica` (`id` ,`nombreDeEstatus`) VALUES ('2','inactivo' );
 INSERT INTO `libermusicmusica`.`estatusderegistrosmusica` (`id` ,`nombreDeEstatus`) VALUES ('3','en revision' );
-INSERT INTO `libermusicmusica`.`artistas` ( `id`,`nombre`,`nombreArtistico`,`anoDeNacimiento`,`web`,`nacionalidad`) VALUES ('1','James Labrie,John Perucci,Mike Portnoy','Dream Theather',1985,'www.dreamtheater.com','EUA');
+INSERT INTO `libermusicmusica`.`artistas` ( `id`,`nombre`,`nombreArtistico`,`anoDeNacimiento`,`web`,`nacionalidad`) VALUES (' 1','James Labrie,John Perucci,Mike Portnoy','Dream Theather',1985,'www.dreamtheater.com','EUA');
 INSERT INTO `libermusicmusica`.`albumes` ( `id`,`fkIdArtista`,`titulo`,`duracion`,`numeroDeTracks`,`companiaProductora`,`tipoDeAlbum`,`anoDeLanzamiento`) VALUES ('1',' 1' ,'When Dream and Day Unite',3600,9,'Mechanic Records','sencillo','1989');
 INSERT INTO `libermusicmusica`.`canciones` ( `id`,`fkIdAlbum`,`titulo`,`numeroDeTrack`,`genero`,`duracion`,`contenidoExplicito`) VALUES ('1','1' ,'A fortune in lies',1,'Progresive metal',5,0);
 INSERT INTO `libermusicmusica`.`listasdereproduccion` ( `id`,`fkIdUsuario` ,`nombre`,`numeroDeTracks`) VALUES ('1' ,'1','rock',0);
