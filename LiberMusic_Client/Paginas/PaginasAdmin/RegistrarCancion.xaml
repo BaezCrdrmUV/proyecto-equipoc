@@ -8,8 +8,8 @@
       Width="Auto" Height="Auto"
       d:DesignHeight="700" d:DesignWidth="1000"
       Title="RegistrarCancion">
-
-    <Grid Background="{StaticResource AzulCastilloLight}">
+    <ScrollViewer Background="{StaticResource AzulCastilloLight}">
+    <Grid>
         <StackPanel >
             <TextBlock Text="Agrege los datos &#x0a;de la cancion" Style="{StaticResource TituloCamposStyle}" TextAlignment="center" FontSize="25" Height="80">
 
@@ -178,4 +178,5 @@
         
 
     </Grid>
+    </ScrollViewer>
 </Page>

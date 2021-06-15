@@ -1,0 +1,233 @@
+﻿<Window x:Class="LiberMusic_Client.Ventanas.RegistrarUsuarioArtista"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LiberMusic_Client.Ventanas"
+        mc:Ignorable="d"
+        Title="RegistrarUsuarioArtista" Height="700" Width="800">
+    <ScrollViewer Background="{StaticResource AzulCastilloLight}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Background="{StaticResource Alert}">
+
+            </Grid>
+            <Grid Grid.Column="1">
+                <StackPanel Grid.Row="0">
+                    <TextBlock Text="Ingresa tus datos para &#x0a; registrarte" FontSize="22" Style="{StaticResource TituloPaginasStyle}" TextAlignment="Center" Margin="0,25,0,0" />
+                </StackPanel>
+                <StackPanel Width="500" Margin="25,121,25,524">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <StackPanel>
+                                <TextBlock Text="Nombre" Style="{StaticResource TituloCamposStyle}"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackPanel>
+                                <TextBox Template="{StaticResource InputControlTemplate}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
+                </StackPanel>
+                <StackPanel Width="500" Margin="25,530,25,119">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <StackPanel>
+                                <TextBlock Text="Anio Nacimiento" Style="{StaticResource TituloCamposStyle}"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackPanel>
+                                <TextBox Template="{StaticResource InputControlTemplate}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
+                </StackPanel>
+                <StackPanel Width="500" Margin="25,165,25,482">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <StackPanel>
+                                <TextBlock Text="Web" Style="{StaticResource TituloCamposStyle}"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackPanel>
+                                <TextBox Template="{StaticResource InputControlTemplate}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
+                </StackPanel>
+                <StackPanel Width="500" Margin="25,207,25,446">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <StackPanel>
+                                <TextBlock Text="NombreArtistico" Style="{StaticResource TituloCamposStyle}" Width="150"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackPanel>
+                                <TextBox Template="{StaticResource InputControlTemplate}" Width="350"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
+                </StackPanel>
+                <StackPanel Width="500" Margin="25,260,25,400">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <StackPanel>
+                                <TextBlock Text="Nacionalidad" Style="{StaticResource TituloCamposStyle}"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackPanel>
+                                <TextBox Template="{StaticResource InputControlTemplate}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
+                </StackPanel>
+
+
+
+
+                <StackPanel Width="500" Margin="25,303,25,342">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <StackPanel>
+                                <TextBlock Text="Pais" Style="{StaticResource TituloCamposStyle}"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackPanel>
+                                <TextBox Template="{StaticResource InputControlTemplate}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
+                </StackPanel>
+
+                <StackPanel Width="500" Margin="25,347,25,301">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <StackPanel>
+                                <TextBlock Text="Nombre de usuario" Style="{StaticResource TituloCamposStyle}"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackPanel>
+                                <TextBox Template="{StaticResource InputControlTemplate}" Cursor="IBeam"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
+                </StackPanel>
+
+                <StackPanel Width="500" Margin="25,388,25,268">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <StackPanel>
+                                <TextBlock Text="Correo" Style="{StaticResource TituloCamposStyle}"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackPanel>
+                                <TextBox Template="{StaticResource InputControlTemplate}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
+                </StackPanel>
+
+                <StackPanel Width="500" Margin="25,437,25,205">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <StackPanel>
+                                <TextBlock Text="Contrasenia" Style="{StaticResource TituloCamposStyle}"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackPanel>
+                                <PasswordBox Template="{StaticResource PasswordControlTemplate}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
+                </StackPanel>
+
+                <StackPanel Width="500" Margin="25,484,25,169">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <StackPanel>
+                                <TextBlock Text="Repita su contrasenia" Style="{StaticResource TituloCamposStyle}"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackPanel>
+                                <PasswordBox Template="{StaticResource PasswordControlTemplate}"/>
+                            </StackPanel>
+
+
+                        </Grid>
+                    </Grid>
+
+                </StackPanel>
+                <StackPanel Width="450" Margin="50,591,50,0">
+                    <Grid>
+                        <StackPanel Grid.Row="0">
+                            <Button Content="Registrar" Style="{StaticResource BotonPrincipalStyle}" Height="53"/>
+
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</Window>

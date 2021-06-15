@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace LiberMusic_Client.Models
 {
-    public class datosdelocalizacion
+    public class DatosDeLocalizacion
     {
-        public string email { get; set; }
-        public string pais { get; set; }
-        public string fkIdUsuario { get; set; }
+        public string Email { get; set; }
+        public string Pais { get; set; }
+        public string FKIdUsuario { get; set; }
     }
 }

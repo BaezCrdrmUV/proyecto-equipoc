@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:LiberMusic_Client.Ventanas"
         mc:Ignorable="d"
         Title="RegistrarUsuario" Height="450" Width="800">
+    <ScrollViewer>
     <Grid Background="{StaticResource AzulCastilloLight}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
@@ -31,7 +32,7 @@
                     </Grid>
                     <Grid Grid.Column="1">
                         <StackPanel>
-                            <TextBox Template="{StaticResource InputControlTemplate}"/>
+                            <TextBox Template="{StaticResource InputControlTemplate}" x:Name="txtNombre"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
@@ -54,7 +55,7 @@
                     </Grid>
                     <Grid Grid.Column="1">
                         <StackPanel>
-                            <TextBox Template="{StaticResource InputControlTemplate}"/>
+                            <TextBox Template="{StaticResource InputControlTemplate}" x:Name="txtPais"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
@@ -74,7 +75,7 @@
                     </Grid>
                     <Grid Grid.Column="1">
                         <StackPanel>
-                            <TextBox Template="{StaticResource InputControlTemplate}"/>
+                            <TextBox Template="{StaticResource InputControlTemplate}" Cursor="Hand" x:Name="txtNombreUsuario"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
@@ -94,7 +95,7 @@
                     </Grid>
                     <Grid Grid.Column="1">
                         <StackPanel>
-                            <TextBox Template="{StaticResource InputControlTemplate}"/>
+                            <TextBox Template="{StaticResource InputControlTemplate}" x:Name="Correo"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
@@ -114,7 +115,7 @@
                     </Grid>
                     <Grid Grid.Column="1">
                         <StackPanel>
-                            <PasswordBox Template="{StaticResource PasswordControlTemplate}"/>
+                            <PasswordBox Template="{StaticResource PasswordControlTemplate}" x:Name="Password"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
@@ -134,7 +135,7 @@
                     </Grid>
                     <Grid Grid.Column="1">
                         <StackPanel>
-                            <PasswordBox Template="{StaticResource PasswordControlTemplate}"/>
+                            <PasswordBox Template="{StaticResource PasswordControlTemplate}" x:Name="PasswordRepite" Cursor="Hand"/>
                         </StackPanel>
 
 
@@ -145,7 +146,7 @@
             <StackPanel Width="450" Margin="0,330,0,0">
                 <Grid>
                     <StackPanel Grid.Row="0">
-                        <Button Content="Registrar" Style="{StaticResource BotonPrincipalStyle}">
+                        <Button Content="Registrar" Style="{StaticResource BotonPrincipalStyle}" Click="Registrar" Cursor="Hand">
 
                         </Button>
 
@@ -154,4 +155,5 @@
             </StackPanel>
         </Grid>
     </Grid>
+    </ScrollViewer>
 </Window>

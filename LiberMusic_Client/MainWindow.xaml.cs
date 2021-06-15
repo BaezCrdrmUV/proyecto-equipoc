@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LiberMusic_Client.Models;
 using LiberMusic_Client.Utilities;
-
+using LiberMusic_Client.Ventanas;
 
 namespace LiberMusic_Client
 {
@@ -75,10 +75,16 @@ namespace LiberMusic_Client
 
 
 
+        private  void RegistrarUsuario(object sender, RoutedEventArgs e)
+        {
+            TipoUsuario ventanatipo = new TipoUsuario();
+            ventanatipo.Show();
+            this.Close();
 
-       
+        }
 
-    }
+
+        }
 
 
 

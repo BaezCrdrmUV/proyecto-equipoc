@@ -90,7 +90,7 @@
             <StackPanel Width="450" Margin="0,400,0,30">
                 <Grid>
                     <StackPanel Grid.Row="0">
-                        <Button Name="btnRegistrarse" Content="Registrarse" Style="{StaticResource BotonPrincipalStyle}" Cursor="Hand">
+                        <Button Name="btnRegistrarse" Content="Registrarse" Style="{StaticResource BotonPrincipalStyle}" Cursor="Hand" Click="RegistrarUsuario">
 
                         </Button>
 

@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using LiberMusic_Client.Models.ModelosMandar;
 
 namespace LiberMusic_Client.Utilities
 {
@@ -26,7 +27,7 @@ namespace LiberMusic_Client.Utilities
             HttpClient conexionApi = new HttpClient();
             HttpContent contenido = new StringContent(usuarioserializado, Encoding.UTF8, "application/json");
             var response = await conexionApi.PostAsync(
-                    "http://localhost:4003/LoginApi/doLogin", contenido);
+                    "http://localhost:4004/LoginApi/doLogin", contenido);
             if (response.IsSuccessStatusCode)
             {
                 var resultadoleido = await response.Content.ReadAsStringAsync();
@@ -48,14 +49,14 @@ namespace LiberMusic_Client.Utilities
         }
 
 
-        public async Task<String> RegistrarUsuario(Usuario usuarioL)
+        public async Task<String> RegistrarUsuario(UsuarioRegistrarMandar usuarioL)
         {
             string respuesta ="";
             string usuarioserializado = JsonSerializer.Serialize(usuarioL);
             HttpClient conexionApi = new HttpClient();
             HttpContent contenido = new StringContent(usuarioserializado, Encoding.UTF8, "application/json");
             var response = await conexionApi.PostAsync(
-                    "http://localhost:4003/Registrar/RegistrarUsuario", contenido);
+                    "http://localhost:4004/Registrar/RegistrarUsuario", contenido);
             if (response.IsSuccessStatusCode)
             {
                 var resultadoleido = await response.Content.ReadAsStringAsync();
@@ -86,7 +87,7 @@ namespace LiberMusic_Client.Utilities
             HttpClient conexionApi = new HttpClient();
             HttpContent contenido = new StringContent(usuarioserializado, Encoding.UTF8, "application/json");
             var response = await conexionApi.PutAsync(
-                    "http://localhost:4003/Actualizar/ActualizarUsuario", contenido);
+                    "http://localhost:4004/Actualizar/ActualizarUsuario", contenido);
             if (response.IsSuccessStatusCode)
             {
                 var resultadoleido = await response.Content.ReadAsStringAsync();
