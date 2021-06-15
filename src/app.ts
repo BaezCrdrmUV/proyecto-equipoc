@@ -2,6 +2,7 @@ import express from "express";
 import {busquedasApi} from "./apis/BusquedasApi";
 import {login} from "./apis/LoginApi";
 import {RegistrarApi} from "./apis/SuscripcionApi";
+import {musicaApi} from"./apis/MusicaApi"
 import morgan from 'morgan';
 class App {
     express : any;
@@ -43,6 +44,7 @@ class App {
         this.express.use('/LoginApi',login);
         this.express.use('/Registrar',RegistrarApi);
         this.express.use('/Actualizar',RegistrarApi);
+        this.express.use('/Musica',musicaApi);
        //
         //this.express.use('*',);
 

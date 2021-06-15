@@ -22,7 +22,7 @@ export class RequestManager {
           let res =await axios(axiosConfig);
          
           if(res.data.datos.length > 0){
-              return MensajesManager.crearMensajeDeExitoRequestServicio("transaccion realizada con exito",res.data);
+              return res.data;
           }else{
             return MensajesManager.crearMensajeDeErrorRequestServicio("Error la transaccion resultados");
           }
@@ -52,7 +52,7 @@ export class RequestManager {
           let res =await axios(axiosConfig);
          
           if(res.data.datos.length > 0){
-              return MensajesManager.crearMensajeDeExitoRequestServicio("transaccion realizada con exito",res.data);
+              return res.data;
           }else{
             return MensajesManager.crearMensajeDeErrorRequestServicio("Error la transaccion resultados");
           }
@@ -110,8 +110,8 @@ export class RequestManager {
        try{
           let res =await axios(axiosConfig);
          
-          if(res.data.datos.length > 0){
-              return MensajesManager.crearMensajeDeExitoRequestServicio("consulta realizada con exito",res.data);
+          if(res.data.datos.length > 0 || res.data.datos != undefined ){
+              return res.data;
           }else{
             return MensajesManager.crearMensajeDeErrorRequestServicio("No se obtuvieron resultados");
           }

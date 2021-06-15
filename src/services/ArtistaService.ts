@@ -1,6 +1,6 @@
 import axios from "axios";
 import {RequestManager} from "../utilities/RequestManager";
-import {rutaRegistrarArtista,rutaActualizarArtista} from "../config/datosConexion";
+import {rutaRegistrarArtista,rutaActualizarArtista} from "../config/datosConexionMusica";
 import {MensajesManager} from "../utilities/MensajesManager";
 
 

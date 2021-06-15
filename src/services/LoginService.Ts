@@ -1,6 +1,6 @@
 import axios from "axios";
 import {RequestManager} from "../utilities/RequestManager";
-import {rutaServicioBusquedaCanciones,rutaServicioBusquedaPortadas, rutaServicioLogin} from "../config/datosConexion";
+import {rutaServicioLogin} from "../config/datosConexion";
 import {MensajesManager} from "../utilities/MensajesManager";
 
 

@@ -1,10 +1,6 @@
-export const rutaServicioBusquedaCanciones = "http://192.168.100.51:8091/artistas/buscar"
+
 export const rutaServicioBusquedaPortadas = "http://192.168.100.51:8092/multimedia/buscarPortadaArtista/"
 export const rutaServicioLogin = "http://localhost:8090/suscripcion/login"
 export const rutaServicioRegistrar = "http://localhost:8090/suscripcion/RegistrarUsuario"
 export const rutaServicioActualizarUsuario = "http://localhost:8090/suscripcion/actualizarUsuario"
-export const rutaRegistrarAlbum = "http://localhost:8091/albumes/registrarAlbum"
-export const rutaActualizarAlbum = "http://localhost:8091/albumes/actualizar"
-export const rutaBuscarAlbum = "http://localhost:8091/albumes/buscar"
-export const rutaRegistrarArtista = "http://localhost:8091/artistas/crear"
-export const rutaActualizarArtista = "http://localhost:8091/artistas/actualizar"
+

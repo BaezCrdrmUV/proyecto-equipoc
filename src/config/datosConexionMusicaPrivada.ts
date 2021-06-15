@@ -1,0 +1,6 @@
+export const rutaRegistrarAlbumPrivado = "http://159.65.183.94:8091/albumesPrivados/crear"
+export const rutaActualizarAlbumPrivado = "http://159.65.183.94:8091/albumesPrivados/actualizar"
+export const rutaBuscarAlbumPrivado = "http://159.65.183.94:8091/albumesPrivados/buscar"
+export const rutaRegistarCancionPrivada ="http://159.65.183.94:8091/cancionesPrivadas/crear"
+export const rutaActualizarCancionPrivada = "http://159.65.183.94:8091/cancionesPrivadas/actualizar"
+export const rutaBuscarCancionPrivada = "http://159.65.183.94:8091/cancionesPrivadas/buscar"

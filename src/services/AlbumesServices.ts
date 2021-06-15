@@ -1,6 +1,6 @@
 import axios from "axios";
 import {RequestManager} from "../utilities/RequestManager";
-import {rutaRegistrarAlbum, rutaActualizarAlbum, rutaBuscarAlbum} from "../config/datosConexion";
+import {rutaRegistrarAlbum, rutaActualizarAlbum, rutaBuscarAlbum} from "../config/datosConexionMusica";
 import {MensajesManager} from "../utilities/MensajesManager";
 
 class AlbumesService{
