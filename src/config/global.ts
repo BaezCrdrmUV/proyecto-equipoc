@@ -4,5 +4,5 @@ export const rutaBaseCancionesYPortadas = path.join(__dirname,"..","..","artista
 export const nombrePredeterminadoDePortadas = "portada";
 export const nombrePredeterminadoDeCanciones = "original";
 export const rutaScriptDeSegmentacion = path.join(__dirname,"..","..","src","generate-dash.sh");
-export const rutaBaseAccesoPublicoPortadasYCanciones ="http://localhost:4002/";
+export const rutaBaseAccesoPublicoPortadasYCanciones ="http://http://18.209.177.19:8092/";
 
