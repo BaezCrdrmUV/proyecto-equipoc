@@ -55,7 +55,7 @@ namespace LiberMusic_Client.Paginas
                 Conexiones nuevaconexion = new Conexiones();
                 String mensaje = await nuevaconexion.ActualizarUsuario(usuarioMandar);
 
-                if (mensaje.Equals("Usuario registrado con exito"))
+                if (mensaje.Equals("Usuario actualizado con exito"))
                 {
 
                     VentanaInteraccion ventana = new VentanaInteraccion("Exito", "Se actualizó con exito");
