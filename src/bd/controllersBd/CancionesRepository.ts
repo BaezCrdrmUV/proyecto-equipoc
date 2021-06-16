@@ -147,7 +147,7 @@ export class CancionesRepository {
         }catch(excepcion){
             return MensajesManager.crearMensajeDeError(excepcion);
         }
-        return MensajesManager.crearMensajeDeExito("consulta realizada con exito");
+        return MensajesManager.crearMensajeDeExito("consulta realizada con exito",canciones);
     }
 }
 
