@@ -7,6 +7,8 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using LiberMusic_Client.Models.ModelosMandar;
+using LiberMusic_Client.Models;
+using LiberMusic_Client.Models.Respuestas;
 
 namespace LiberMusic_Client.Utilities
 {
@@ -111,5 +113,41 @@ namespace LiberMusic_Client.Utilities
 
 
 
+
+        public async Task<List<RespuestaCancionesMostrar>> ObtenerCanciones()
+        {
+
+
+            List<RespuestaCancionesMostrar> respuesta = new List<RespuestaCancionesMostrar>();
+          
+            HttpClient conexionApi = new HttpClient();
+            
+            var response = await conexionApi.GetAsync(
+                    "http://localhost:4004/musica/buscarMusica/todas");
+            if (response.IsSuccessStatusCode)
+            {
+                var resultadoleido = await response.Content.ReadAsStringAsync();
+                var respuestaDeserializada = JsonSerializer.Deserialize<RespuestaCanciones>(resultadoleido);
+                if (respuestaDeserializada.estatus)
+                {
+
+                    return respuesta = respuestaDeserializada.datos;
+
+
+                }
+            }
+            else
+            {
+                return respuesta;
+            }
+
+            return respuesta;
+
         }
+
+
+
+
+
+    }
 }
