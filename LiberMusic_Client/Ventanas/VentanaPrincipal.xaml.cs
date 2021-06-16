@@ -37,5 +37,15 @@ namespace LiberMusic_Client.Ventanas
         {
             PaginaFrame.Content = new Paginas.Canciones();
         }
+
+
+        private void IrCuenta(object sender, RoutedEventArgs e)
+        {
+            PaginaFrame.Content = new Paginas.InfoCuenta(_usuarioSesion);
+        }
+
+       
+
+
     }
 }

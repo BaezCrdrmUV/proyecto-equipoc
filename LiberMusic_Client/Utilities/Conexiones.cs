@@ -78,7 +78,7 @@ namespace LiberMusic_Client.Utilities
         }
 
 
-        public async Task<String> ActualizarUsuario(Usuario usuarioL)
+        public async Task<String> ActualizarUsuario(UsuarioActualizarMandar usuarioL)
         {
 
 
