@@ -18,6 +18,7 @@ class MusicaApi {
         this.router.get('/buscarMusica/idartista/:id',express.json(),this.buscarMusicaPorIdArtista);
         this.router.get('/buscarMusica/nombrealbum/:nombre',express.json(),this.buscarMusicaNombreAlbum); 
         this.router.get('/buscarMusica/idalbum/:id',express.json(),this.buscarMusicaIdAlbum); 
+        this.router.get('/buscarMusica/todas',express.json(),this.buscarMusicaTodasLasCanciones);
         //this.router.put('/actualizar',express.json() ,this.actualizarAlbum);
         //this.router.get('/buscar',express.json() ,this.buscarAlbumes);
     }
@@ -93,6 +94,37 @@ class MusicaApi {
             res.send(respuesta);
         }
     }
+
+
+    async buscarMusicaTodasLasCanciones(req: any, res: any, nextFunction: NextFunction) {
+        let respuesta;
+        try {
+                respuesta = await servicioBusquedas.buscarTodasLasCanciones();
+                res.send(respuesta);         
+        } catch (error) {
+            res.send(respuesta);
+        }
+    }
+
+    
+    async buscarMusicaNombreCancion(req: any, res: any, nextFunction: NextFunction) {
+        let respuesta;
+        try {
+            if(req.params.id != undefined){
+                respuesta = await servicioBusquedas.buscarCancionPorNombre(req.params.id);
+                if(respuesta.estatus == true){
+                    res.status(201);
+                    res.send(respuesta);
+                }else{
+                    res.status(204);
+                    res.send(respuesta);
+                }//
+            }
+        } catch (error) {
+            res.send(respuesta);
+        }
+    }
+    
 
 
     /*

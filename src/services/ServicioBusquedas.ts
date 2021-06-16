@@ -9,7 +9,7 @@
 import axios from "axios";
 import {RequestManager} from "../utilities/RequestManager";
 import {rutaBuscarCancion,rutaServicioBuscarArtista,rutaBuscarAlbum} from "../config/datosConexionMusica";
-import {rutaBuscarPortadaArtista,rutaBuscarPortadaAlbum} from "../config/datosConexionMultimeda";
+import {rutaBuscarPortadaArtista,rutaBuscarPortadaAlbum,rutaBuscarUrlCancion} from "../config/datosConexionMultimeda";
 import {MensajesManager} from "../utilities/MensajesManager";
 //const axios = require('axios').default;
 
@@ -172,7 +172,111 @@ export class ServicioBusquedas {
      return  MensajesManager.crearMensajeDeExito("artstas consultados con exito",albumesConsultados.datos);
 }
 
+public async  buscarTodasLasCanciones(){
+  let params = {
+    todas: true
+  }
+  let paramsAlbumes = {
+    id:""
+  }
+  let paramsArtistas = {
+    idArtista:""
+  }
+  let paramsPortada = {
+    idAlbum :""
+  }
+  let paramsArchivoCancion = {
+    idCancion:""
+  }
+  
+  let cancionCompleta= {
+    idCancion:"",
+    fkIdAlbum:"",
+    nombreAlbum:"",
+    idArtista:"",
+    nombreArtista:"",
+    urlPortada:"",
+    tituloCancion:"",
+    duracion:"",
+    numeroDeTrack:"",
+    urlDeCancion:""
+  }
+   let respuestaFinal =  {
+     estatus:false,
+     datos:new Array(),
+     errores:new Array()
+   };
 
+   let requestManager = new RequestManager();
+   let cancionesConsultadas = await requestManager.getRequest(rutaBuscarCancion,params);
+   let cancionesCompletas = new Array();
+   if(cancionesConsultadas.estatus == true){
+     try{
+      for(let i=0;i<cancionesConsultadas.datos.length ;i++){
+        paramsAlbumes.id =cancionesConsultadas.datos[i].fkIdAlbum;  
+        let albumConsultado =await requestManager.getRequest(rutaBuscarAlbum,paramsAlbumes);
+        paramsArtistas.idArtista = albumConsultado.datos.fkIdArtista;
+        paramsPortada.idAlbum = albumConsultado.datos.id;
+        paramsArchivoCancion.idCancion = cancionesConsultadas.datos[i].id;
+        let artistaConsultado = await requestManager.getRequest(rutaServicioBuscarArtista,paramsArtistas);
+        let portadaConsultada = await requestManager.getRequest(rutaBuscarPortadaAlbum,paramsPortada);
+        let archivoCancionConsultado = await requestManager.getRequest(rutaBuscarUrlCancion,paramsArchivoCancion);
+        cancionCompleta.idCancion = cancionesConsultadas.datos[i].id;
+        cancionCompleta.fkIdAlbum = cancionesConsultadas.datos[i].fkIdAlbum;
+        cancionCompleta.tituloCancion =cancionesConsultadas.datos[i].titulo;
+        cancionCompleta.duracion = cancionesConsultadas.datos[i].duracion;
+        cancionCompleta.numeroDeTrack =cancionesConsultadas.datos[i].numeroDeTrack; 
+        cancionCompleta.idArtista= albumConsultado.datos.fkIdArtista;   
+        cancionCompleta.nombreAlbum = albumConsultado.datos.titulo;
+        cancionCompleta.nombreArtista = artistaConsultado.datos.nombreArtistico;
+        cancionCompleta.urlPortada = portadaConsultada.datos[0].urlPublicaDePortada;
+        cancionCompleta.urlDeCancion = archivoCancionConsultado.datos;
+        cancionesCompletas.push(cancionCompleta);    
+     } 
+     }catch(excepcion){
+         return MensajesManager.crearMensajeDeError("error al consultar los datos",excepcion);
+     }
+   }          
+     return  MensajesManager.crearMensajeDeExito("artstas consultados con exito",cancionesCompletas);
+}
+
+
+public async  buscarCancionPorNombre(idAlbumP){
+  let params = {
+    id: idAlbumP
+  } 
+   let respuestaFinal =  {
+     estatus:false,
+     datos:new Array(),
+     errores:new Array()
+   };
+   let requestManager = new RequestManager();
+   let albumesConsultados = await requestManager.getRequest(rutaBuscarAlbum,params);
+ 
+   if(albumesConsultados.estatus == true){
+     
+     try{
+      let paramsPortada = {
+        idAlbum: albumesConsultados.datos.id
+      } 
+      // las portadas se agigan dentro de ste metodo auque no recuperemos el valor devuelto
+      //await this.obtenerPortadas(albumesConsultados,requestManager,rutaBuscarPortadaAlbum,this.BUSQUEDA_ID_ALBUM);
+      if(albumesConsultados.datos.length != undefined){
+        for(let i=0;i<albumesConsultados.datos.length ;i++){
+         
+          let respuestaPortadaConsultada = await requestManager.getRequest(rutaBuscarPortadaAlbum,paramsPortada);
+          albumesConsultados.datos[i].portada = respuestaPortadaConsultada.datos[0].urlPublicaDePortada;
+        } 
+      }else{
+          let respuestaPortadaConsultada = await requestManager.getRequest(rutaBuscarPortadaAlbum,paramsPortada);
+          albumesConsultados.datos.portada = respuestaPortadaConsultada.datos[0].urlPublicaDePortada;
+      }       
+     }catch(excepcion){
+         return MensajesManager.crearMensajeDeError("error al consultar los datos",excepcion);
+     }
+   }          
+     return  MensajesManager.crearMensajeDeExito("artstas consultados con exito",albumesConsultados.datos);
+}
 
     /*
     public async obtenerAlbumPorId(idAlbum){
