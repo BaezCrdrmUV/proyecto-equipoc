@@ -20,6 +20,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
      
                
             </Grid.RowDefinitions>
@@ -47,7 +48,14 @@
                 </Button>
 
             </StackPanel>
-          
+            <StackPanel Grid.Row="5">
+                <Button Content="Canciones" Style="{StaticResource BotonPrincipalStyle}" Click="Canciones" Cursor="Hand">
+
+                </Button>
+
+            </StackPanel>
+
+
 
 
         </Grid>
