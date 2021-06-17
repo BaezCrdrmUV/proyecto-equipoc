@@ -29,7 +29,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
                         <StackPanel>
-                            <TextBlock Text="Nombre" Style="{StaticResource TituloCamposStyle}"/>
+                            <TextBlock Text="Titulo" Style="{StaticResource TituloCamposStyle}"/>
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Column="1">

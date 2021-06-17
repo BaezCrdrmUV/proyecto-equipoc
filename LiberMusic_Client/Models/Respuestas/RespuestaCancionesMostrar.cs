@@ -8,7 +8,7 @@ namespace LiberMusic_Client.Models.Respuestas
 {
     public class RespuestaCancionesMostrar
     {
-        public int idCancion { get; set; }
+        public string idCancion { get; set; }
         public int fkIAlbum { get; set; }
         public string nombreAlbum { get; set; }
         public string nombreArtista { get; set; }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LiberMusic_Client.Models;
 
 namespace LiberMusic_Client.Models
 {
@@ -16,5 +17,6 @@ namespace LiberMusic_Client.Models
         public estatusderegistros? fkidEstatusNavigation{ set; get; }
         public DatosDeLocalizacion?  datosdelocalizacion{ set; get; }
         public Contrasena? contrasena { set; get; }
+       
     }
 }

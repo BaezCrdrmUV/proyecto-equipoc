@@ -9,7 +9,7 @@ namespace LiberMusic_Client.Models
     public class usuarioLogin
     {
 
-        public string? nombreDeUsuario { set; get; }
+        public string? NombreDeUsuario { set; get; }
         public ContrasenaMandar? contrasena { set; get; }
 
     }

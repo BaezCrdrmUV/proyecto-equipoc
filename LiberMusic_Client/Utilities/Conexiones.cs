@@ -7,37 +7,37 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using LiberMusic_Client.Models.ModelosMandar;
-using LiberMusic_Client.Models;
 using LiberMusic_Client.Models.Respuestas;
+
 
 namespace LiberMusic_Client.Utilities
 {
     public class Conexiones
     {
         public Usuario usuarioEncontrado;
-        public async Task<Usuario> HacerLogin(string nombre, string password)
+        public async Task<DatosRespuestaUsuario> HacerLogin(string nombre, string password)
         {
 
-            Usuario usuarioencontrado = new Usuario();
+            DatosRespuestaUsuario usuarioencontrado = new DatosRespuestaUsuario();
 
             usuarioLogin usuarioL = new usuarioLogin();
-            usuarioL.nombreDeUsuario = nombre;
+            usuarioL.NombreDeUsuario = nombre;
             ContrasenaMandar contrasena = new ContrasenaMandar();
             contrasena.contrasena1 = password;
             usuarioL.contrasena = contrasena;
             string usuarioserializado = JsonSerializer.Serialize(usuarioL);
-            HttpClient conexionApi = new HttpClient();
+            HttpClient conexionApi = new HttpClient(); 
             HttpContent contenido = new StringContent(usuarioserializado, Encoding.UTF8, "application/json");
             var response = await conexionApi.PostAsync(
                     "http://localhost:4004/LoginApi/doLogin", contenido);
             if (response.IsSuccessStatusCode)
             {
                 var resultadoleido = await response.Content.ReadAsStringAsync();
-                var respuestaDeserializada = JsonSerializer.Deserialize<Usuario>(resultadoleido);
-                if (respuestaDeserializada.nombreDeUsuario.Equals(nombre))
+                var respuestaDeserializada = JsonSerializer.Deserialize<RespuestasUsuario>(resultadoleido);
+                if (respuestaDeserializada.estatus == true)
                 {
 
-                    return usuarioEncontrado = respuestaDeserializada;
+                    return respuestaDeserializada.datos;
 
 
                 }
@@ -62,7 +62,7 @@ namespace LiberMusic_Client.Utilities
             if (response.IsSuccessStatusCode)
             {
                 var resultadoleido = await response.Content.ReadAsStringAsync();
-                var respuestaDeserializada = JsonSerializer.Deserialize<RespuestasUsuario>(resultadoleido);
+                var respuestaDeserializada = JsonSerializer.Deserialize<RespuestaUsuarioRegistro>(resultadoleido);
                 if (respuestaDeserializada.estatus)
                 {
 
@@ -132,6 +132,40 @@ namespace LiberMusic_Client.Utilities
                 {
 
                     return respuesta = respuestaDeserializada.datos;
+
+
+                }
+            }
+            else
+            {
+                return respuesta;
+            }
+
+            return respuesta;
+
+        }
+
+
+
+
+        public async Task<Album> ObtenerAlbumNombre(string nombre)
+        {
+
+
+            Album respuesta = new Album();
+
+            HttpClient conexionApi = new HttpClient();
+
+            var response = await conexionApi.GetAsync(
+                    "http://localhost:4004/musica/buscarMusica/nombrealbum/"+ nombre);
+            if (response.IsSuccessStatusCode)
+            {
+                var resultadoleido = await response.Content.ReadAsStringAsync();
+                var respuestaDeserializada = JsonSerializer.Deserialize<RespuestaAlbum>(resultadoleido);
+                if (respuestaDeserializada.estatus)
+                {
+
+                    return respuestaDeserializada.datos.Find(x => x.titulo.Equals(nombre));
 
 
                 }

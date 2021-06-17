@@ -13,7 +13,7 @@
             <TextBlock Text="Informacion de la cuenta" Style="{StaticResource TituloPaginasStyle}"
                        Margin="80,30,506,0"/>
 
-            <!--DATOS DE PEDIDO-->
+          
             <TextBlock Text="Datos del usuario:" Style="{StaticResource TituloStyle}"
                        Margin="110,30,0,0"/>
             <Canvas Margin="60,0,0,10">

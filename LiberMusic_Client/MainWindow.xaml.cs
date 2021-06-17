@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LiberMusic_Client.Models;
+using LiberMusic_Client.Models.Respuestas;
 using LiberMusic_Client.Utilities;
 using LiberMusic_Client.Ventanas;
 
@@ -35,19 +36,19 @@ namespace LiberMusic_Client
            Conexiones conexion = new Conexiones();
             try
             {
-                Usuario ususarioconsultado = await conexion.HacerLogin(txtUsuario.Text, txtPassword.Password);
+                DatosRespuestaUsuario ususarioconsultado = await conexion.HacerLogin(txtUsuario.Text, txtPassword.Password);
 
-                if (ususarioconsultado.id !=null)
+                if (ususarioconsultado.usuario.id !=null)
                 {
-                    if (ususarioconsultado.fkIdArtista == null)
+                    if (ususarioconsultado.usuario.fkIdArtista == null)
                     {
-                        Ventanas.VentanaPrincipal ventana = new Ventanas.VentanaPrincipal(ususarioconsultado);
+                        Ventanas.VentanaPrincipal ventana = new Ventanas.VentanaPrincipal(ususarioconsultado.usuario);
                         ventana.Show();
                         this.Close();
 
                     }
                     else {
-                        Ventanas.VentanaPrincipalCreador ventana = new Ventanas.VentanaPrincipalCreador(ususarioconsultado);
+                        Ventanas.VentanaPrincipalCreador ventana = new Ventanas.VentanaPrincipalCreador(ususarioconsultado.usuario);
                         ventana.Show();
                         this.Close();
                     }

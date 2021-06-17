@@ -43,8 +43,8 @@ namespace LiberMusic_Client.Paginas
                 usuarioMandar.nombreDeUsuario = txtNombreUsuario.Text;
                 usuarioMandar.nombreDelPropietario = txtNombre.Text;
                 usuarioMandar.FKIdEstatus = 1;
-                contrasena.contrasena1 = Password.Password;
-                contrasena.fkIdUsuario = _usuarioSesion.id;
+                contrasena.Contrasena1 = Password.Password;
+                contrasena.FkIdUsuario = _usuarioSesion.id;
 
                 usuarioMandar.contrasena = contrasena;
                 localizacion.Email = Correo.Text;

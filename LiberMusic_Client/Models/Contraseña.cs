@@ -8,7 +8,7 @@ namespace LiberMusic_Client.Models
 {
     public class Contrasena
     {
-       public string contrasena1 { get; set; }
-       public string fkIdUsuario { get; set; }
+       public string Contrasena1 { get; set; }
+       public string FkIdUsuario { get; set; }
     }
 }

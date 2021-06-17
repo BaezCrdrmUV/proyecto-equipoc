@@ -8,8 +8,9 @@ namespace LiberMusic_Client.Models
 {
     public class DatosDeLocalizacion
     {
+        public string FKIdUsuario { get; set; }
         public string Email { get; set; }
         public string Pais { get; set; }
-        public string FKIdUsuario { get; set; }
+        
     }
 }

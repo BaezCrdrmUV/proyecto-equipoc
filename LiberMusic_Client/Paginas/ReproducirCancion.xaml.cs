@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiberMusic_Client.Models.Respuestas;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -27,10 +28,12 @@ namespace LiberMusic_Client.Paginas
        
         private readonly DirectoryInfo vlcLibDirectory;
         private VlcControl control;
-
-        public ReproducirCancion()
+        private List<RespuestaCancionesMostrar> _listaCanciones;
+        public ReproducirCancion(List<RespuestaCancionesMostrar> listaCanciones)
         {
             InitializeComponent();
+            _listaCanciones = listaCanciones;
+            ListaCanciones.ItemsSource = _listaCanciones;
 
          
             var currentAssembly = Assembly.GetEntryAssembly();

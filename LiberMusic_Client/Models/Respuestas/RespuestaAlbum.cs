@@ -10,7 +10,7 @@ namespace LiberMusic_Client.Models.Respuestas
     {
         public bool estatus { get; set; }
         public string mensaje { get; set; }
-        public Album datos { get; set; }
+        public List<Album> datos { get; set; }
         public string[] errores { get; set; }
     }
 }

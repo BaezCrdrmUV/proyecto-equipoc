@@ -40,7 +40,7 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image>
+                                <Image Source="{Binding urlPortada}">
 
                                 </Image>
                             </DataTemplate>
@@ -64,7 +64,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding tituloCancion}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -91,7 +91,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding nombreAlbum}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -116,7 +116,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding nombreArtista}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

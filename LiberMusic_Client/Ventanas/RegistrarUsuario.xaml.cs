@@ -43,8 +43,8 @@ namespace LiberMusic_Client.Ventanas
                     usuarioMandar.nombreDeUsuario = txtNombreUsuario.Text;
                     usuarioMandar.nombreDelPropietario = txtNombre.Text;
                     usuarioMandar.FKIdEstatus = 1;
-                    contrasena.contrasena1 = Password.Password;
-                    contrasena.fkIdUsuario = "";
+                    contrasena.Contrasena1 = Password.Password;
+                    contrasena.FkIdUsuario = "";
 
                     usuarioMandar.contrasena = contrasena;
                     localizacion.Email = Correo.Text;
@@ -57,7 +57,7 @@ namespace LiberMusic_Client.Ventanas
 
 
 
-                    if (mensaje.Equals("Usuario registrado con exito"))
+                    if (mensaje.Equals("operacion registrada  con exito"))
                     {
 
                         VentanaInteraccion ventana = new VentanaInteraccion("Exito", "Se registró con exito, puede regresar al login");
@@ -81,7 +81,7 @@ namespace LiberMusic_Client.Ventanas
 
                 }
             }
-            catch (Exception){
+            catch (Exception ex){
                 VentanaInteraccion ventana = new VentanaInteraccion("error", "algo pasó con la conexion y la respuesta");
                 ventana.Show();
             }
