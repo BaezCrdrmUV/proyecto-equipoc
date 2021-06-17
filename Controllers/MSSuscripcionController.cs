@@ -125,6 +125,7 @@ namespace MSSuscripcion.Controllers
                         // se cirfra la contraseña que viene en la peticion
                         usuario.Contrasena.Contrasena1 =Cifrador.cifrarsha256(usuario.Contrasena.Contrasena1);
                         //se asigna la nueva contrasena ya cifrada
+                        usuarioDesdeBd.FkIdArtista = usuario.FkIdArtista;
                         usuarioDesdeBd.Contrasena = usuario.Contrasena;
                         usuarioDesdeBd.Datosdelocalizacion.Email = usuario.Datosdelocalizacion.Email;
                         usuarioDesdeBd.Datosdelocalizacion.Pais = usuario.Datosdelocalizacion.Pais;
