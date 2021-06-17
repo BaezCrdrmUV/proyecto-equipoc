@@ -22,7 +22,7 @@ namespace MSSuscripcion.Controllers
             dbContext = new libermusicUsuariosContext();
         }
 
-        [HttpGet("login")]
+        [HttpPost("login")]
         public async Task<ActionResult<Usuario>> login([FromBody]Usuario usuarioP = null)
         {
             Usuario usuario = null;
@@ -30,7 +30,6 @@ namespace MSSuscripcion.Controllers
                 return BadRequest("No se han ingresado todos los campos");
             }
 
-            
             ValidadorUsuarios validadorUsuarios = new ValidadorUsuarios();
             bool resultadoValidacion = validadorUsuarios.validarNombre(usuarioP.NombreDeUsuario,ValidadorUsuarios.REGEX_NOMBRE_DE_USUARIO);
             
