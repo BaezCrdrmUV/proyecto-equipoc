@@ -123,7 +123,7 @@ namespace LiberMusic_Client.Utilities
             HttpClient conexionApi = new HttpClient();
             
             var response = await conexionApi.GetAsync(
-                    "http://localhost:4004/musica/buscarMusica/todas");
+                    "http://localhost:4004/Musica/buscarMusica/todas");
             if (response.IsSuccessStatusCode)
             {
                 var resultadoleido = await response.Content.ReadAsStringAsync();

@@ -35,7 +35,7 @@ namespace LiberMusic_Client.Paginas
         }
         private void Regresar(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new PaginaBienvenidaUsuario(_usuarioSesion));
         }
     }
 }

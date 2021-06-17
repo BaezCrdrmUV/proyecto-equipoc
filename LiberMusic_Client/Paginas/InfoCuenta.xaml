@@ -33,7 +33,7 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBlock x:Name="txtnombreususario" Style="{StaticResource TituloCamposStyle}"
-                             Text="" Width="255" HorizontalAlignment="Left"/>
+                             Text="{Binding nombreDeUsuario}" Width="255" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -48,7 +48,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <TextBlock x:Name="txtnombrePropietario" Style="{StaticResource TituloCamposStyle}" Text=""
+                    <TextBlock x:Name="txtnombrePropietario" Style="{StaticResource TituloCamposStyle}" Text="{Binding nombreDelPropietario}"
                                Width="253" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
@@ -65,7 +65,7 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBlock x:Name="estatusText" Style="{StaticResource TituloCamposStyle}"
-                             Text="" Width="255" HorizontalAlignment="Left" ToolTip="Hola"/>
+                             Text="{Binding fkidEstatus}" Width="255" HorizontalAlignment="Left" ToolTip="Hola"/>
                 </StackPanel>
             </Grid>
 

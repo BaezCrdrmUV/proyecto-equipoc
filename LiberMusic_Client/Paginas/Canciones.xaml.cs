@@ -46,5 +46,10 @@ namespace LiberMusic_Client.Paginas
 
 
         }
+
+        private void ReproducirCancion(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
