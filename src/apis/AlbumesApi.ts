@@ -27,13 +27,8 @@ async RegistrarAlbum(req: any, res: any, nextFunction: NextFunction) {
     try {
         if(req.body.nombreDeUsuario != undefined){
             respuesta = await albumService.RegistrarAlbum(req.body);
-            if(respuesta.estatus == true){
-                res.status(201);
                 res.send(respuesta);
-            }else{
-                res.status(204);
-                res.send(respuesta);
-            }
+            
         }
     } catch (error) {
         res.send(respuesta);

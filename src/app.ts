@@ -2,8 +2,10 @@ import express from "express";
 import {busquedasApi} from "./apis/BusquedasApi";
 import {login} from "./apis/LoginApi";
 import {suscripcionApi} from "./apis/SuscripcionApi";
-import {musicaApi} from"./apis/MusicaApi"
+import {musicaApi} from"./apis/MusicaApi";
+import { cancionesApi } from "./apis/CancionesApi";
 import morgan from 'morgan';
+import uploadManager from 'express-fileupload';
 class App {
     express : any;
     upload : any;
@@ -19,14 +21,11 @@ class App {
         this.routes();
     }
 
-    private middleware(): void{
-
-        
+    private middleware(): void{        
         this.express.use(morgan('dev'));
         this.express.use(express.json());
         this.express.use(express.urlencoded({ extended: true }));
-       
-
+        this.express.use(uploadManager());
     }
 
     private routes(){
@@ -45,6 +44,7 @@ class App {
         this.express.use('/Registrar',suscripcionApi);
         this.express.use('/Actualizar',suscripcionApi);
         this.express.use('/Musica',musicaApi);
+        this.express.use('/subirCancion',cancionesApi);
        //
         //this.express.use('*',);
 

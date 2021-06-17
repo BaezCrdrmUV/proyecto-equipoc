@@ -32,6 +32,37 @@ export class RequestManager {
       }
     }
 
+    public async postFormRequest(url,form){
+        let axiosConfig: AxiosRequestConfig ={
+            method: 'post',
+            url: url,
+            data:form,
+            headers:form.getHeaders(),
+            responseType: 'json'
+        }       
+        let respuestaFinal = {
+            estatus:false,
+            mensaje :"",
+            datos:new Array(),
+            errores:new Array()
+        }
+        let artistasA = new Array();  
+        let res;
+       try{
+        res =await axios(axiosConfig);
+         
+          if(res.data != undefined){
+              return MensajesManager.crearMensajeDeExito("operacion registrada  con exito",res.data);
+          }else{
+            return MensajesManager.crearMensajeDeErrorRequestServicio("Error la transaccion resultados");
+          }
+          
+      }catch(excepcion){
+        return MensajesManager.crearMensajeDeErrorRequestServicio("No se obtuvieron resultados",excepcion);
+      }
+    }
+
+
 
     public async putRequest(url,bodyP ={}){
         let axiosConfig: AxiosRequestConfig ={

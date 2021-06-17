@@ -14,7 +14,8 @@ class AlbumesService{
           errores:new Array()
         };
         let requestManager = new RequestManager();
-       
+        let portada = album.files.portada;
+        let cancion = album.files.cancion;
         let albumConsultado = await requestManager.postRequest(rutaRegistrarAlbum,album);
         if(albumConsultado.estatus == true){
             
