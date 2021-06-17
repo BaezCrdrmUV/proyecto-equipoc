@@ -14,21 +14,17 @@ constructor() {
     this.routes();
 }
 routes(): void {   
-    this.router.post('/doLogin',express.json(),this.doLogin);   
+    this.router.get('/doLogin',express.json(),this.doLogin);   
 }
 
 async doLogin(req: any, res: any, nextFunction: NextFunction) {
     let respuesta;
     try {
-        if(req.body.nombreDeUsuario != undefined){
+        if(req.body.NombreDeUsuario != undefined){
+            
             respuesta = await Loginservice.HacerLogin(req.body);
-            if(respuesta.estatus == true){
-                res.status(201);
-                res.send(respuesta);
-            }else{
-                res.status(204);
-                res.send(respuesta);
-            }
+            res.send(respuesta);
+            
         }
     } catch (error) {
         res.send(respuesta);

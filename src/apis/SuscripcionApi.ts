@@ -24,13 +24,7 @@ async RegistrarUsuario(req: any, res: any, nextFunction: NextFunction) {
     try {
         if(req.body.nombreDeUsuario != undefined){
             respuesta = await suscripcionService.RegistrarUsuario(req.body);
-            if(respuesta.estatus == true){
-                res.status(201);
-                res.send(respuesta);
-            }else{
-                res.status(204);
-                res.send(respuesta);
-            }
+            res.send(respuesta);
         }
     } catch (error) {
         res.send(respuesta);
@@ -44,7 +38,6 @@ async ActualizarUsuario(req: any, res: any, nextFunction: NextFunction) {
         if(req.body.nombreDeUsuario != undefined){
             respuesta = await suscripcionService.ActualizarUsuario(req.body);
             res.send(respuesta);
-          
         }
     } catch (error) {
         res.send(respuesta);
@@ -55,4 +48,4 @@ async ActualizarUsuario(req: any, res: any, nextFunction: NextFunction) {
 
 
 }
-export let RegistrarApi = new LoginApi().router;
+export let suscripcionApi = new LoginApi().router;

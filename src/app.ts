@@ -1,7 +1,7 @@
 import express from "express";
 import {busquedasApi} from "./apis/BusquedasApi";
 import {login} from "./apis/LoginApi";
-import {RegistrarApi} from "./apis/SuscripcionApi";
+import {suscripcionApi} from "./apis/SuscripcionApi";
 import {musicaApi} from"./apis/MusicaApi"
 import morgan from 'morgan';
 class App {
@@ -42,8 +42,8 @@ class App {
         this.express.use('/',RootRouter);
         this.express.use('/buscarCancion',busquedasApi);
         this.express.use('/LoginApi',login);
-        this.express.use('/Registrar',RegistrarApi);
-        this.express.use('/Actualizar',RegistrarApi);
+        this.express.use('/Registrar',suscripcionApi);
+        this.express.use('/Actualizar',suscripcionApi);
         this.express.use('/Musica',musicaApi);
        //
         //this.express.use('*',);

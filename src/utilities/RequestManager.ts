@@ -17,12 +17,12 @@ export class RequestManager {
             errores:new Array()
         }
         let artistasA = new Array();  
-        
+        let res;
        try{
-          let res =await axios(axiosConfig);
+        res =await axios(axiosConfig);
          
-          if(res.data.datos.length > 0){
-              return res.data;
+          if(res.data != undefined){
+              return MensajesManager.crearMensajeDeExito("operacion registrada  con exito",res.data);
           }else{
             return MensajesManager.crearMensajeDeErrorRequestServicio("Error la transaccion resultados");
           }
@@ -47,18 +47,18 @@ export class RequestManager {
             errores:new Array()
         }
         let artistasA = new Array();  
-        
+        let res;
        try{
-          let res =await axios(axiosConfig);
+          res =await axios(axiosConfig);
          
-          if(res.data.datos.length > 0){
-              return res.data;
+          if(res.data != undefined){
+              return  MensajesManager.crearMensajeDeExito("datos actualizados con exito",res.data);
           }else{
-            return MensajesManager.crearMensajeDeErrorRequestServicio("Error la transaccion resultados");
+            return MensajesManager.crearMensajeDeErrorRequestServicio("No se obtuvieron resultados");
           }
           
       }catch(excepcion){
-        return MensajesManager.crearMensajeDeErrorRequestServicio("No se obtuvieron resultados",excepcion);
+        return MensajesManager.crearMensajeDeErrorRequestServicio("Error al realizar la transaccion",excepcion);
       }
     }
 
@@ -110,8 +110,11 @@ export class RequestManager {
        try{
           let res =await axios(axiosConfig);
          
-          if(res.data.datos.length > 0 || res.data.datos != undefined ){
-              return res.data;
+          if(res.data.length > 0 || res.data != undefined ){
+            if(res.data.estatus == undefined){
+                return MensajesManager.crearMensajeDeExito("Consulta exitosa",res.data);
+            }  
+            return res.data;
           }else{
             return MensajesManager.crearMensajeDeErrorRequestServicio("No se obtuvieron resultados");
           }
