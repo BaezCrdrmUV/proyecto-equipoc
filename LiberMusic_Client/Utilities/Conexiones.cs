@@ -33,11 +33,11 @@ namespace LiberMusic_Client.Utilities
             if (response.IsSuccessStatusCode)
             {
                 var resultadoleido = await response.Content.ReadAsStringAsync();
-                var respuestaDeserializada = JsonSerializer.Deserialize<RespuestasUsuario>(resultadoleido);
-                if (respuestaDeserializada.estatus)
+                var respuestaDeserializada = JsonSerializer.Deserialize<Usuario>(resultadoleido);
+                if (respuestaDeserializada.nombreDeUsuario.Equals(nombre))
                 {
 
-                    return usuarioEncontrado = respuestaDeserializada.datos;
+                    return usuarioEncontrado = respuestaDeserializada;
 
 
                 }

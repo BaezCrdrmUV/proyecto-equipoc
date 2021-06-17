@@ -11,6 +11,7 @@ namespace LiberMusic_Client.Models.Respuestas
         public bool estatus { get; set; }
         public string mensaje { get; set; }
         public List<RespuestaCancionesMostrar> datos { get; set; }
-        public string[] errores { get; set; }
+        public string [] erroresDeGuardado { get; set; }
+        public string[] erroresDeValidacion { get; set; }
     }
 }

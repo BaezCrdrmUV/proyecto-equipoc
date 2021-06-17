@@ -12,9 +12,9 @@ namespace LiberMusic_Client.Models
         public int?  fkIdArtista {get;set;}
         public string nombreDeUsuario { set; get; }
         public string nombreDelPropietario { set; get; }
-        public int FKIdEstatus { set; get; }
+        public int fkidEstatus { set; get; }
         public estatusderegistros? fkidEstatusNavigation{ set; get; }
-        public DatosDeLocalizacion?  DatosDeLocalizacion{ set; get; }
+        public DatosDeLocalizacion?  datosdelocalizacion{ set; get; }
         public Contrasena? contrasena { set; get; }
     }
 }
