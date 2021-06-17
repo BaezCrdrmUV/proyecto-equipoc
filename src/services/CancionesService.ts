@@ -5,6 +5,7 @@ import { rutaSubirCancion } from "../config/datosConexionMultimeda";
 import { MensajesManager } from "../utilities/MensajesManager";
 import path from "path";
 import FormData from "form-data";
+import fse from 'fs-extra';
 import fs from "fs";
 
 class CancionesService {
@@ -34,8 +35,8 @@ class CancionesService {
                 form.append("codigoIsrc", datosPreparados.archivoCancion.codigoIsrc);
                 form.append("urlCancion", datosPreparados.archivoCancion.urlCancion);
                 form.append("fkIdEstatus", datosPreparados.archivoCancion.fkIdEstatus);
-                this.recrearArchivoCancion(datosPreparados.archivoCancion.cancion);    
-                form.append("cancion", datosPreparados.archivoCancion.cancion.data);
+                let rutaCancion:string = await this.recrearArchivoCancion(datosPreparados.archivoCancion);    
+                form.append("cancion", fs.createReadStream(rutaCancion));
                 form.append("nombreArtista", datosPreparados.archivoCancion.nombreArtista);
                 form.append("nombreAlbum", datosPreparados.archivoCancion.nombreAlbum);
                 let resultadoRegistroArChivoDeCancion = await requestManager.postFormRequest(rutaSubirCancion, form);
@@ -116,16 +117,18 @@ class CancionesService {
         return (bytes/1024)/1024;
     }
 
-    private recrearArchivoCancion(cancion){
-        let rutaArchivo =path.join("archivo.mp3");
-        let cancionBinary = cancion;
-    
+    private async recrearArchivoCancion(cancionP):Promise<any>{
         
-        fs.writeFile(rutaArchivo,cancion.data,function(err){
-            console.log(err);
-        })
-
-
+        let nombreCancionConExtension = "original.mp3";
+        let rutaDeGuardadoFinal = path.join(nombreCancionConExtension);
+        let respuestaFinal = null;
+        try {
+               await fse.writeFile(rutaDeGuardadoFinal,cancionP.cancion.data);
+        }catch(excepcion){
+          
+          return undefined;
+        }
+        return rutaDeGuardadoFinal;
     }
  
 
