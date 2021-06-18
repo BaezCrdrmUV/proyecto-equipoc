@@ -187,7 +187,7 @@ namespace LiberMusic_Client.Utilities
             HttpClient conexionApi = new HttpClient();
             HttpContent contenido = new StringContent(usuarioserializado, Encoding.UTF8, "application/json");
             var response = await conexionApi.PostAsync(
-                    "http://localhost:4004/Registrar/RegistrarUsuario", contenido);
+                    "http://localhost:4004/Artista/RegistrarArtista", contenido);
             if (response.IsSuccessStatusCode)
             {
                 var resultadoleido = await response.Content.ReadAsStringAsync();
