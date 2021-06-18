@@ -32,7 +32,7 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <StackPanel>
-                                <TextBox Template="{StaticResource InputControlTemplate}"/>
+                                <TextBox Template="{StaticResource InputControlTemplate}" x:Name="txtnombre" Cursor="IBeam"/>
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -51,7 +51,7 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <StackPanel>
-                                <TextBox Template="{StaticResource InputControlTemplate}"/>
+                                <TextBox Template="{StaticResource InputControlTemplate}" Cursor="IBeam" x:Name="txtAnioNacimiento"/>
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -70,7 +70,7 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <StackPanel>
-                                <TextBox Template="{StaticResource InputControlTemplate}"/>
+                                <TextBox Template="{StaticResource InputControlTemplate}" x:Name="txtWeb"/>
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -89,7 +89,7 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <StackPanel>
-                                <TextBox Template="{StaticResource InputControlTemplate}" Width="350"/>
+                                <TextBox Template="{StaticResource InputControlTemplate}" Width="350" x:Name="txtNombreArtista"/>
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -108,7 +108,7 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <StackPanel>
-                                <TextBox Template="{StaticResource InputControlTemplate}"/>
+                                <TextBox Template="{StaticResource InputControlTemplate}" x:Name="txtNacionalidad"/>
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -131,7 +131,7 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <StackPanel>
-                                <TextBox Template="{StaticResource InputControlTemplate}"/>
+                                <TextBox Template="{StaticResource InputControlTemplate}" x:Name="txtPais"/>
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -151,7 +151,7 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <StackPanel>
-                                <TextBox Template="{StaticResource InputControlTemplate}" Cursor="IBeam"/>
+                                <TextBox Template="{StaticResource InputControlTemplate}" Cursor="IBeam" x:Name="txtNombreUsuario"/>
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -171,7 +171,7 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <StackPanel>
-                                <TextBox Template="{StaticResource InputControlTemplate}"/>
+                                <TextBox Template="{StaticResource InputControlTemplate}" x:Name="txtcorreo"/>
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -191,7 +191,7 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <StackPanel>
-                                <PasswordBox Template="{StaticResource PasswordControlTemplate}"/>
+                                <PasswordBox Template="{StaticResource PasswordControlTemplate}" x:Name="password"/>
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -211,7 +211,7 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <StackPanel>
-                                <PasswordBox Template="{StaticResource PasswordControlTemplate}"/>
+                                <PasswordBox Template="{StaticResource PasswordControlTemplate}" x:Name="passwordRepite"/>
                             </StackPanel>
 
 
@@ -222,7 +222,7 @@
                 <StackPanel Width="450" Margin="50,591,50,0">
                     <Grid>
                         <StackPanel Grid.Row="0">
-                            <Button Content="Registrar" Style="{StaticResource BotonPrincipalStyle}" Height="53"/>
+                            <Button Content="Registrar" Style="{StaticResource BotonPrincipalStyle}" Click="RegistrarArtista" Cursor="Hand"/>
 
                         </StackPanel>
                     </Grid>
