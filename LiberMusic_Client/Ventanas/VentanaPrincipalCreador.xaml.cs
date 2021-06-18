@@ -35,5 +35,10 @@ namespace LiberMusic_Client.Ventanas
         {
             PaginaFrameAdmin.Content = new Paginas.InfoCuenta(_usuarioSesion);
         }
+
+        private void CancionesArtista(object sender, RoutedEventArgs e)
+        {
+            PaginaFrameAdmin.Content = new Paginas.Canciones(_usuarioSesion);
+        }
     }
 }

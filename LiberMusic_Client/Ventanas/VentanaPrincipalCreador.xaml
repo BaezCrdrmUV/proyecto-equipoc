@@ -42,7 +42,7 @@
 
             </StackPanel>
             <StackPanel Grid.Row="4">
-                <Button Content="Mis Canciones" Style="{StaticResource BotonPrincipalStyle}">
+                <Button Content="Mis Canciones" Style="{StaticResource BotonPrincipalStyle}" Click="CancionesArtista" Cursor="Hand">
 
                 </Button>
 

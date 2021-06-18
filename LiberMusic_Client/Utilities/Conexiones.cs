@@ -211,6 +211,40 @@ namespace LiberMusic_Client.Utilities
 
 
 
+        public async Task<List<RespuestaCancionesMostrar>> ObtenerCancionesArtista(string nombre)
+        {
+
+
+            List<RespuestaCancionesMostrar> respuesta = new List<RespuestaCancionesMostrar>();
+
+            HttpClient conexionApi = new HttpClient();
+
+            var response = await conexionApi.GetAsync(
+                    "http://localhost:4004/musica/buscarMusica/nombreartista/" + nombre);
+            if (response.IsSuccessStatusCode)
+            {
+                var resultadoleido = await response.Content.ReadAsStringAsync();
+                var respuestaDeserializada = JsonSerializer.Deserialize<RespuestaCanciones>(resultadoleido);
+                if (respuestaDeserializada.estatus)
+                {
+
+                    return respuestaDeserializada.datos;
+
+
+                }
+            }
+            else
+            {
+                return respuesta;
+            }
+
+            return respuesta;
+
+        }
+
+
+
+
 
 
     }
