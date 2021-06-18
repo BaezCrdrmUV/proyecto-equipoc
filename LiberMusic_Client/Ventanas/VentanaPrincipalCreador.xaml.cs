@@ -1,4 +1,5 @@
 ﻿using LiberMusic_Client.Models;
+using LiberMusic_Client.Paginas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,19 @@ namespace LiberMusic_Client.Ventanas
     /// </summary>
     public partial class VentanaPrincipalCreador : Window
     {
-        public VentanaPrincipalCreador(Usuario usuario)
+        private Usuario _usuarioSesion;
+        private Artistas _artista;
+        public VentanaPrincipalCreador(Usuario usuario, Artistas artista)
         {
             InitializeComponent();
+            _usuarioSesion = usuario;
+            PaginaFrameAdmin.Content = new PaginaBienvenidaUsuario(_usuarioSesion);
+        }
+
+
+        private void IrCuenta(object sender, RoutedEventArgs e)
+        {
+            PaginaFrameAdmin.Content = new Paginas.InfoCuenta(_usuarioSesion);
         }
     }
 }

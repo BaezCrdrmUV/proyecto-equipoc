@@ -13,7 +13,7 @@
 
         <StackPanel>
            
-                <TextBlock Text="Ingese el nombre de &#x0a;la nueva lista de &#x0a;reproduccion" Style="{StaticResource TituloPaginasStyle}" Margin="80,10,0,0">
+                <TextBlock Text="Ingrese el nombre de &#x0a;la nueva lista de &#x0a;reproduccion" Style="{StaticResource TituloPaginasStyle}" Margin="80,10,0,0">
 
                 </TextBlock >
             <TextBlock Text="Datos De La Lista:" Style="{StaticResource TituloStyle}"

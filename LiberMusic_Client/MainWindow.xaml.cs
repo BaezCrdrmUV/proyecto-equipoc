@@ -48,7 +48,7 @@ namespace LiberMusic_Client
 
                     }
                     else {
-                        Ventanas.VentanaPrincipalCreador ventana = new Ventanas.VentanaPrincipalCreador(ususarioconsultado.usuario);
+                        Ventanas.VentanaPrincipalCreador ventana = new Ventanas.VentanaPrincipalCreador(ususarioconsultado.usuario,ususarioconsultado.artista);
                         ventana.Show();
                         this.Close();
                     }

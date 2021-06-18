@@ -30,7 +30,7 @@
                 </TextBlock>
             </StackPanel>
             <StackPanel Grid.Row="2">
-                <Button Content="Cuenta Admin" Style="{StaticResource BotonPrincipalStyle}">
+                <Button Content="Cuenta Admin" Style="{StaticResource BotonPrincipalStyle}" Cursor="Hand" Click="IrCuenta">
 
                 </Button>
 
