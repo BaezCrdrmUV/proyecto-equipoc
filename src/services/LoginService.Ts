@@ -5,7 +5,7 @@ import { MensajesManager } from "../utilities/MensajesManager";
 import { rutaServicioBuscarArtista } from "../config/datosConexionMusica";
 
 
-export class LoginService {
+class LoginService {
 
 
 
