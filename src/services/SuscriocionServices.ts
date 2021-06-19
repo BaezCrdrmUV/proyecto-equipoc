@@ -5,7 +5,7 @@ import { MensajesManager } from "../utilities/MensajesManager";
 import { artistaService } from "./ArtistaService";
 
 
-export class ServiciosSuscripcion {
+class ServiciosSuscripcion {
 
 
 
@@ -52,14 +52,4 @@ export class ServiciosSuscripcion {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
 export let suscripcionService = new ServiciosSuscripcion();
