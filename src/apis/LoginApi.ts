@@ -1,5 +1,5 @@
 import { Router, Request, Response,NextFunction,Express } from "express";
-import {Loginservice} from "../services/LoginService";
+import {loginservice} from "../services/LoginService";
 import express from 'express';
 
 
@@ -22,7 +22,7 @@ async doLogin(req: any, res: any, nextFunction: NextFunction) {
     try {
         if(req.body.NombreDeUsuario != undefined){
             
-            respuesta = await Loginservice.HacerLogin(req.body);
+            respuesta = await loginservice.HacerLogin(req.body);
             res.send(respuesta);
             
         }

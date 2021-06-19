@@ -40,4 +40,4 @@ export class LoginService {
 
 
 
-export let Loginservice = new LoginService();
+export let loginservice = new LoginService();
