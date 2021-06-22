@@ -18,7 +18,7 @@ class LoginService {
     let requestManager = new RequestManager();
     let usuarioConsultado;
     try {
-      usuarioConsultado = await requestManager.getRequest(rutaServicioLogin, {}, Usuario);
+      usuarioConsultado = await requestManager.postRequest(rutaServicioLogin, Usuario);
       usuarioConSuArtista.usuario = usuarioConsultado.datos;
       if (usuarioConsultado.estatus == true ) {
         if (usuarioConsultado.datos.fkIdArtista != undefined) {
