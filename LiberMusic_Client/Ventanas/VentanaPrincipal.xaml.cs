@@ -35,7 +35,7 @@ namespace LiberMusic_Client.Ventanas
 
         private void CambiarPagina(object sender, RoutedEventArgs e)
         {
-            PaginaFrame.Content = new Canciones();
+            PaginaFrame.Content = new Models.Canciones();
         }
     }
 }
