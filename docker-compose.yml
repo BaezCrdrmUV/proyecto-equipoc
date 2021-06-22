@@ -158,6 +158,12 @@ services:
            https://github.com/BaezCrdrmUV/proyecto-equipoc.git#apiGateway
        environment: 
            URL_MS_INVENTARIO: "http://localhost:8090"
+           URL_MS_Multimedia: "http://ms_multimedia"
+           URL_MS_Musica_Privada: "http://ms_musica_privada"
+           URL_MS_Musica: "http://ms_musica"
+           URL_MS_Suscripcion: "http://ms_suscripcion"
+
+
 
 volumes:
     db_volume_suscripcion:
